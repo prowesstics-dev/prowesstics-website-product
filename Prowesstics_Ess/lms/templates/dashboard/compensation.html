@@ -1,0 +1,161 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+ <style>
+  .card-title {
+  font-weight: 800;
+  color: white;
+  }
+    .card-header {
+  background: #15192B !important;
+  padding: 15px !important;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  }
+</style>
+                            <div class="card">
+                              <div class="container-fluid">
+                                       <div class="row">
+                                           <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                         <i class="icofont icofont-chart-pie bg-c-blue card1-icon"></i>
+                                                        <span class="text-c-blue f-w-600">Total Leaves Applied</span>
+                                                        <h4>{{leave_applied}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-pie-alt bg-c-yellow card1-icon"></i>
+                                                        <span class="text-c-yellow f-w-600">Total LOP Days</span>
+                                                        <h4>{{lop}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram bg-c-green card1-icon"></i>
+                                                        <span class="text-c-green f-w-600">Sick Leave Pending</span>
+                                                        <h4>{{sick_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram-alt bg-c-pink card1-icon"></i>
+                                                        <span class="text-c-pink f-w-600">Casual Leave Pending</span>
+                                                        <h4>{{casual_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                       </div>
+                              </div>
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title text-center">
+                                        Compensation Request</h4>
+                                </div>
+                                <form method="POST">
+                                          {% csrf_token %}
+                                    <div class="card-body" style="margin-right: 20px; margin-left: 10px;">
+                                        <div class="row" style="margin-right: 20px; margin-left: 10px;">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Start</label>
+                                                    <input type="date" name="startD" id="startD" class="form-control" onchange="set();">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>End</label>
+                                                    <input type="date" name="endD" id="endD" class="form-control" onchange="set();">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>No Of Days</label>
+                                                    <input type="text" id="countD" name="no-of-days" placeholder="" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="leaveT">Type</label>
+                                                    <select class="form-control" name="leaveT" id="leaveT" onchange="set();">
+                                                        <option value="full">Full day</option>
+                                                        <option value="half">Half day</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-7 col-lg-8 col-md-8 col-10 list text-left">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Description </label>
+                                                    <textarea type="textarea" id="" name="description" placeholder="Description"
+                                              class="form-control" rows="5" cols="50"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer col-md-12 text-center">
+                                                <button type="submit" class="btn btn-style">
+                                                    Compensation Request
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+<script>
+function set()
+	{
+		var d1 = new Date(document.getElementById('startD').value);
+		var d2 = new Date(document.getElementById('endD').value);
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+		today = yyyy + '-' + mm + '-' + dd;
+
+		if (d1 != 'Invalid Date' && d2!= 'Invalid Date'){
+			if(d2.toDateString() == d1.toDateString() || d2 > d1)
+			{
+				var sub =(d2-d1)/86400000;
+				document.getElementById('countD').value = sub+1;
+			}
+			else
+			{
+				document.getElementById('endD').value = '0000-00-00';
+				document.getElementById('countD').value = "";
+			}
+		}
+		if(document.getElementById('leaveT').getElementsByTagName('option')[1].selected==true){
+			document.getElementById('countD').value = 0.5;
+			document.getElementById('endD').value = document.getElementById('startD').value;
+		}
+		if (document.getElementById('countD').value > 1){
+			document.getElementById('leaveT').getElementsByTagName('option')[0].selected = true;
+		}
+		
+	}
+
+</script>
+
+
+{% endblock %}

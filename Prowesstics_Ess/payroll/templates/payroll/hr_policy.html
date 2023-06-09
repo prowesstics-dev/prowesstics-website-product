@@ -1,0 +1,53 @@
+{% extends 'payroll/base.html' %}
+{% load static %}
+{% block stylesheet %}
+    p {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 40px;
+        margin-right: 20px;
+        }
+    h5 {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 40px;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+
+        <style>
+            h4{
+            font-weight: 800;
+            color: white;
+            }
+            h5{
+            font-weight: 700;
+            }
+            .card-header {
+            background: #15192B !important;
+            padding: 15px !important;
+            }
+            p{
+            font-size: 14px;
+            font-weight: 600;
+            }
+            ol{
+            list-style-type:none;
+            }
+        </style>
+
+    <div class="card">
+        <div class="card-header text-center">
+           <h4>Prowesstics HR Policy</h4>
+        </div>
+        <embed src="{% url 'hr_policy_view' %}#view=FitH" type="application/pdf" width="100%" height="600px" toolbar="0"/>
+    </div>
+{% endblock %}

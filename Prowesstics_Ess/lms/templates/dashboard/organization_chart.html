@@ -1,0 +1,553 @@
+{% load static %}
+
+{% load humanize %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+      <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Dashboard - Prowesstics | {% block title %} {{ title }} {% endblock %}</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="Sidebar">
+      <meta name="keywords" content=" ">
+      <meta name="author" content="Prowesstics admin">
+      <!-- Favicon icon -->
+      <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/bootstrap/css/bootstrap.min.css' %}">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/icon/themify-icons/themify-icons.css' %}">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/icon/icofont/css/icofont.css' %}">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/jquery.mCustomScrollbar.css' %}">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/css/jquery.orgchart.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/js/jquery.orgchart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+<style type="text/css">
+     @media only screen and (max-width: 990px) {
+   #mobile-collapse {
+    display: block !important;
+  }
+}
+  @media only screen and (max-width: 990px) {
+   .user-profile {
+    background: #15192B !important;
+  }
+}
+    #mobile-collapse {
+    display: none;
+  }
+</style>
+
+<!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+<div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <a class="mobile-menu visible-xs" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+<!--                        <a class="mobile-search morphsearch-search" href="#">-->
+<!--                            <i class="ti-search"></i>-->
+<!--                        </a>-->
+                        <a href="/">
+                            <img class="img-fluid new-logo" style="max-width: 80% !important;" width="200px" src="{% static 'new_dashboard/images/auth/prowesstics_org.png' %}" alt="Prowesstics-Logo" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+<!--                            <li class="header-notification">-->
+<!--                                <a>-->
+<!--                                    <i class="ti-bell"></i>-->
+<!--                                </a>-->
+<!--                                <ul class="show-notification">-->
+<!--                                    <li>-->
+<!--                                        <h6>Notifications</h6>-->
+<!--                                        <label class="label label-danger">New</label>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="media">-->
+<!--                                            <img class="d-flex align-self-center img-radius" src="{% static 'new_dashboard/images/avatar-4.jpg' %}" alt="Generic placeholder image">-->
+<!--                                            <div class="media-body">-->
+<!--                                                <h5 class="notification-user">John Doe</h5>-->
+<!--                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>-->
+<!--                                                <span class="notification-time">30 minutes ago</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="media">-->
+<!--                                            <img class="d-flex align-self-center img-radius" src="{% static 'new_dashboard/images/avatar-3.jpg' %}" alt="Generic placeholder image">-->
+<!--                                            <div class="media-body">-->
+<!--                                                <h5 class="notification-user">Joseph William</h5>-->
+<!--                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>-->
+<!--                                                <span class="notification-time">30 minutes ago</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="media">-->
+<!--                                            <img class="d-flex align-self-center img-radius" src="{% static 'new_dashboard/images/avatar-4.jpg' %}" alt="Generic placeholder image">-->
+<!--                                            <div class="media-body">-->
+<!--                                                <h5 class="notification-user">Sara Soudein</h5>-->
+<!--                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>-->
+<!--                                                <span class="notification-time">30 minutes ago</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+                            <li class="user-profile header-notification">
+                                <a>
+                                     {% if request.user.profile_pic %}
+                                      <img style="max-width: 210px;border-radius: 20px !important;" class="rounded img-responsive center-block" src="{{ request.user.profile_pic.url }}">
+                                    {% else %}
+                                    <img src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x"class="img-radius" style="border-radius: 20px;" alt="User-Profile-Image">
+                                    {% endif %}
+                                    <span>{{ request.user}}</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification" style="font-size: 14px;">
+                                    {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'user_logout' %}"><i class="ti-layout-sidebar-left"></i>Logout</a></li>
+                                {% else %}
+                                <li><a href=""><i class="ti-arrow-circle-right"></i>Login</a></li>
+                                {% endif %}
+<!--                                <li><a href="{% url 'change_password' %}"><i class="ti-key"></i>Change Password</a></li>-->
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                            <a href="#"><i class="ti-user"></i>View Profile</a>
+                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
+                                            <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation"></div>
+                            <ul id="NavTabs" class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="{% url 'organization_chart' %}">
+                                        <span class="pcoded-micon"><i class="ti-view-grid"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Organization Chart</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user_login' %}">
+                                        <span class="pcoded-micon"><i class="ti-bookmark-alt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Employee Self Service</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        {% block content %}
+        <section class="content">
+            <section class="container-fluid">
+                            </section> <!-- /container -->
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/css/jquery.orgchart.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/js/jquery.orgchart.min.js"></script>
+    <style>
+        #chart-container {
+            font-family: Arial;
+            height: 600px;
+            {#border: 2px dashed #aaa;#}
+            border-radius: 5px;
+            overflow: auto;
+            text-align: center;
+        }
+                 .card-title{
+          color: white !important;
+          font-weight: 700 !important;
+          }
+            .card-header {
+          background: #15192B !important;
+          padding: 15px !important;
+          }
+
+        #github-link {
+            position: fixed;
+            top: 0px;
+            right: 10px;
+            font-size: 3em;
+        }
+
+        .orgchart {
+            background: #fff;
+        }
+
+        .orgchart td.left, .orgchart td.right, .orgchart td.top , {
+            border-color: #ffffff;
+
+        }
+
+        .orgchart .MANAGER .title {
+            background-color: #006699;
+        }
+
+        .orgchart .MANAGER .content {
+            border-color: #006699;
+        }
+
+        .orgchart .INTERN .title {
+            background-color: #009933;
+        }
+
+        .orgchart .INTERN .content {
+            border-color: #009933;
+        }
+
+        .orgchart .EMPLOYEE .title {
+            background-color: #f22613;
+        }
+
+
+        .orgchart .ADMIN .title{
+            background-color: #cb1436;
+        }
+
+        .orgchart .HR .title{
+            background-color: #eb34a5;
+        }
+
+
+        .fc-header-title h2 {
+            margin-top: 16px;
+            white-space: nowrap;
+        }
+
+        .card {
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+            border: none;
+            {#background-color: rgba(0, 0, 0, .2);#}
+        }
+               .avatar_ {
+            position: relative;
+            z-index: 1;
+            border-radius: 50%;
+            margin-bottom: -107px;
+            height: 39px;
+            width: 45px;
+            object-fit: cover;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .orgchart{
+
+        }
+        .orgchart .node .content {
+            line-height: 110px;
+            height: 67px;
+            font-size:14px;
+            font-weight: 600;
+            color: #2f3542;
+        }
+
+        .orgchart .node .topEdge , .orgchart .node .horizontalEdge {
+        display: none;
+        }
+        .orgchart .node.focused {
+        background-color: #dfe6e9;
+        }
+        .orgchart .node:hover {
+        background-color: #dfe6e9;
+        transition: .5s;
+        cursor: default;
+        z-index: 20;
+    }
+        .orgchart .node .title {
+        background-color: #2980b9;
+    }
+        .orgchart .EMPLOYEE .title {
+        background-color: #636e72 !important;
+    }
+        .orgchart .INTERN .title {
+        background-color:#ff4757 !important;
+}
+.orgchart .node .content {
+    border: 1px solid #5352ed;
+}
+    </style>
+    <div id="myDIV" class="container-fluid">
+<!--        <div class="row">-->
+
+<!--            <div class="col-12 col-lg-12">-->
+<!--                <div class="card" id="myDIV3" style="background-color: rgba(0, 0, 0, .2)">-->
+<!--                    <div class="card-header" style="height: 0px;">-->
+<!--                        <div class="">-->
+
+
+<!--                        </div>-->
+<!--                        <div class="col-sm-6 text-center">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="row ">
+
+            <div class="col-12 col-lg-12">
+                <div class="card" >
+                    <div class="card-header text-center"><h4 class="card-title text-center">My Team</h4> </div>
+                    <div id="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function ($) {
+            $(function () {
+                var ds = {
+                    'name': 'Arun',
+                    'title': 'Manager',
+                    'className': 'Manager',
+                    'children': [
+                        {'name': 'Mindy Ling', 'title': 'Manager', 'className': 'manager'},
+                        {
+                            'name': 'Julise Qiu', 'title': 'Finance manager',
+                            'children': [
+                                {
+                                    'name': 'Sam Wong', 'title': 'Senior Engineer', 'children': [
+                                        {'name': 'Alasdair Little', 'title': 'Engineer', 'className': 'user'},
+                                        {'name': 'Atikah Aziz', 'title': 'UE engineer', 'className': 'user'}
+                                    ], 'className': 'user'
+                                },
+
+                            ], 'className': 'manager'
+                        },
+                        {'name': 'Helena Wong', 'title': 'Department Manager', 'className': 'manager'},
+                        {'name': 'Malathe Ramayaa', 'title': 'Department Manager', 'className': 'manager'}
+                    ],
+                };
+                var ds =
+                {{ user_org|safe }}
+                var oc = $('#chart-container').orgchart({
+                    'data': ds,
+                    'depth': 5,
+                    'nodeContent': 'title',
+                    "createNode": function(node, data) {
+                if(data.avatar){
+                    var elAvatar = $(`<img class="avatar_" src="${data.avatar}"/>`);
+                    node.prepend(elAvatar);
+                }
+
+                /* onClick */
+                {#node.on('click', function(){#}
+                {#    alert('MODAL');#}
+
+            }
+                });
+
+
+
+                $('#chart-container').find('.node').on('click', function () {
+                    {#alert(JSON.stringify($(this).data('nodeData')));#}
+                });
+
+            });
+        })(jQuery);
+    </script>
+
+
+
+
+
+
+
+        </section>
+        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery-ui/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/popper.js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="{% static 'new_dashboard/js/modernizr/modernizr.js' %}"></script>
+<!-- am chart -->
+<script src="{% static 'new_dashboard/pages/widget/amchart/amcharts.min.js' %}"></script>
+<script src="{% static 'new_dashboard/pages/widget/amchart/serial.min.js' %}"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="{% static 'new_dashboard/pages/todo/todo.js' %}"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="{% static 'new_dashboard/pages/dashboard/custom-dashboard.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/script.js' %}"></script>
+<script type="text/javascript " src="{% static 'new_dashboard/js/SmoothScroll.js' %}"></script>
+<script src="{% static 'new_dashboard/js/pcoded.min.js' %}"></script>
+<script src="{% static 'new_dashboard/js/demo-12.js' %}"></script>
+<script src="{% static 'new_dashboard/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+        {% block extrajs%}
+
+
+
+        {% endblock %}
+
+</script>
+
+<script>
+    $( document ).ready(function() {
+         var currentUrl = "{{ request.path_info }}"
+         var tab = document.getElementById("NavTabs");
+         console.log(tab)
+         //console.log("tab", [tab])
+         //tab.children[2].classList.add("dummy");
+         Array.from(tab.children).forEach(liTag => {
+            console.log("liTag", liTag.innerHTML)
+            if (liTag.innerHTML.includes(currentUrl)){
+                liTag.classList.add("active")
+            }else{
+                liTag.classList.remove("active")
+            }
+         })
+    });
+</script>
+
+<script type="text/javascript">
+
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.prev-holder .prev-avatar').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $(document).ready(function(){
+
+        $('.refresh-page').click(function(){
+            /*Script refreshes the page*/
+            console.log('refresh page clicked !!!');
+            location.reload(true);
+
+        });
+
+
+        $( "#id_birthday,#id_dateissued,#id_startdate,#id_enddate" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+
+
+    });
+
+
+</script>
+</body>
+
+</html>

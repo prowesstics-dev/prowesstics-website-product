@@ -1,0 +1,325 @@
+{% extends 'includes/timesheet_layoutt.html' %}
+<!--CONTENTS-->
+{% block content %}
+<style>
+.card-header {
+ background: none !important;
+ }
+ .btn {
+    margin: 0.375rem;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    white-space: normal;
+    cursor: pointer;
+    border: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead {
+  background: #15192B;
+}
+.btn-grd-inverse.hor-grd {
+    background: #4FCFE6 !important;
+    border-radius: 4px;
+    font-weight: 800;
+}
+.modal-header h4{
+  color: white;
+  font-weight: 600;
+  }
+ .modal-content {
+   background-clip: revert-layer !important;
+   }
+   .modal-content p{
+    font-size: 13px;
+    color: #000000;
+    font-weight: 700;
+    }
+    .modal-content select {
+    width: 100%;
+    font-size: 13px;
+    min-height: 27px;
+    }
+     .modal-content input {
+    width: 100%;
+    font-size: 13px;
+    min-height: 27px;
+    }
+    .modal-content textarea {
+    width: 100%;
+    font-size: 13px;
+    min-height: 90px;
+    }
+    .modal-dialog{
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    }
+    .btn-danger, .btn-primary{
+    color: #fff !important;
+    }
+</style>
+                                           <!-- Basic table card start -->
+                                    <div class="card-header col-lg-12">
+                                                 <div class="today-timesheet text-right">
+                        <button type="button" class="add-task-timesheet btn hor-grd btn-grd-inverse" data-toggle="modal" data-target="#addtask"  >Add Timesheet </button>
+                                               </div>
+                                        </div>
+                                    <div class="card">
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Project</th>
+                                                            <th>Manager</th>
+                                                            <th>Date</th>
+                                                            <th>Start Time</th>
+                                                            <th>End Time</th>
+                                                            <th>Logged Hours</th>
+                                                            <th>Status</th>
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in sheets %}
+                                                        <tr>
+                                                            <td class="pt-3-half">{{i.project}}</td>
+                                                            <td class="pt-3-half">{{ i.project_manager}}</td>
+                                                            <td class="pt-3-half">{{ i.date }}</td>
+                                                            <td class="pt-3-half">{{ i.start_time }}</td>
+                                                            <td class="pt-3-half">{{ i.end_time}}</td>
+                                                            <td class="pt-3-half">{{ i.logged_hours }}</td>
+                                                            <td class="pt-3-half" style="max-width: 270px;white-space: normal !important; word-wrap: break-word;">{{ i.status|safe|truncatewords:"15"}}</td>
+                                                            <td class="pt-3-half">
+                                                                {% if i.access %}
+                                                            <button type="submit" id="edit" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light" onclick='getTitle(this.value)' value="{{i.id}}">
+                                                                 Edit
+                                                            </button>
+                                                            {% else %}
+                                                            <button  class="btn btn-primary btn-rounded btn-sm my-0 waves-effect waves-light" id="edit"  type="submit" onclick='getTitle(this.value)' value="{{i.id}}" style="background:">
+                                                                Edit
+                                                                </button>
+                                                            {% endif %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Basic table card end -->
+
+
+<!-- Modal -->
+<div  data-target="#mymodal" id="addtask" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content timesheet">
+      <div class="modal-header" style="background: #fff;">
+        <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4  style="color: #000; font-weight: 600;font-size: 17px;" class="modal-title text-center" id="mname">Add Timesheet</h4>
+      </div>
+      <div class="modal-body">
+        <form id ='form1' action ='{% url "timesheet"  %}' method="post">
+          {% csrf_token %}
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-3">
+                  <p>Project</p>
+                </div>
+                <div class="col-md-9">
+                <select id='project' class="js-example-basic-single"   name="project" >
+                  <option id='project'  value="none"> Select </option>
+                  {% for i in task %}
+                  <option  id='project' value="{{i.id}}" >{{ i.project_name  }}</option>
+                  {% endfor %}}
+                   <option  id='project' value= "Others"> Others </option>
+
+                </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3" >
+                  <p>Manager</p>
+                </div>
+                <div class="col-md-9">
+
+                  <input  id='manager' type="text" name="manager"  required />
+                </div>
+              </div>
+              </div>
+
+
+              </div>
+           <div class="row">
+                <div class="col-md-3">
+                  <p>Todays Date</p>
+                </div>
+                <div class="col-md-9">
+                  <input id="date" type="text" name="todaydate" value="{{date}}" required readonly/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <p>Start Time</p>
+                </div>
+                <div class="col-md-9">
+                  <input id='stime' type="time" name="stime"  required/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p>End Time</p>
+                </div>
+                <div class="col-md-9">
+                  <input id ='etime' type="time" name="etime" required/>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-md-3">
+                  <p>Logged Hours</p>
+                </div>
+               <div class="col-md-9">
+                  <input id ='logg' type="number" name="logg" required/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p>Status</p>
+                </div>
+                <div class="col-md-9">
+                    <textarea id='status' type="text" name= 'status' required> </textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-9">
+
+
+                   <div clas="actionbutton text-center">
+     <p class="button-container text-center">
+         <button type="submit" class="user-aciton btn btn-info">Save</button>
+     </p>
+
+   </div>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+          </div>
+
+    </div>
+  </div>
+
+      </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+//         $(document).ready(function () {
+//
+//   var $titleElem = $(document).find('#mname'), titleOld = $titleElem.text();
+//   $('#edit').click(function() {
+//     var text = $titleElem.text() === titleOld ? "Edit Timesheet" : titleOld;
+//     console.log(text)
+//     $titleElem.text(text);
+//   });
+// })
+
+    $("#project").change(function () {
+        const subjectId = $(this).val();
+      {
+       console.log(subjectId)
+      }
+      if(subjectId === 'none'){
+        $("#manager").val('');
+      }
+      else{
+
+        $.ajax({
+            type: "POST",
+            url: '{% url "get_manager" %}',
+            data: {
+                'subject_id': subjectId,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (data) {
+             console.log(manager)
+              if(data.manager==='Others'){
+               $("#manager").val('').removeAttr('readonly');
+              }
+              else{
+
+                $("#manager").val(data.manager).attr('readonly','true');
+
+       }
+            }
+        });}
+    });
+
+
+
+
+
+function getTitle(value) {
+        const Id = value;
+      {
+       console.log(Id)
+      }
+      if(Id === 'none'){
+        $("#edit").val('');
+      }
+      else{
+
+        $.ajax({
+
+            type: "POST",
+            url: '{% url "edit_timesheet" %}',
+            data: {
+                'id': Id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (data)  {
+        // $("#mymodal").toggle("show");
+        jQuery("#addtask").modal('show');
+
+        $('#project option[value='+data.project+']').attr('selected','selected')
+                console.log(data,"Edit Timesheet")
+        $("#mname").text("Edit Timesheet");
+        $("#manager").val(data.manager);
+        $("#date").val(data.date);
+        $("#stime").val(data.stime);
+        $("#etime").val(data.etime);
+        $("#logg").val(data.logg)
+         if (data.status === 'DetailsNone') {
+
+        $("#status").val('');
+        } else
+       {
+
+      $("#status").val( data.status );
+       }
+        var id =data.id
+                console.log(id)
+         $('#form1').attr('action', '{% url "etime"  %}?id='+data.id+' ')
+    }
+        });}
+    }
+
+
+
+
+
+</script>
+
+
+{% endblock %}

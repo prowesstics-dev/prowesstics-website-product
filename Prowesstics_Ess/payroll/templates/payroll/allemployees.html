@@ -1,0 +1,52 @@
+{% extends 'payroll/base.html' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% block content %}
+
+<style>
+  table thead {
+  background: #15192B;
+  }
+  h3{
+  font-weight: 800;
+  }
+</style>
+
+
+                                     <!-- Hover table card start -->
+
+                                    <div class="col-lg-12 col text-center p-4">
+                                        <h3>Employees List</h3>
+                                    </div>
+                                    <div class="card">
+<!--                                        <div class="card-header">-->
+<!--                                            <h3>Employees List</h3>-->
+<!--                                            </div>-->
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Employee No</th>
+                                                            <th>Designation</th>
+                                                            <th>Current CTC</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for user in user %}
+                                                        <tr>
+                                                            <td>{{ user.email }}</td>
+                                                            <td>{{ user.id }}</td>
+                                                            <td>{{ user.designation }}</td>
+                                                            <td>{{ user.ctc }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Hover table card end -->
+
+
+{% endblock %}

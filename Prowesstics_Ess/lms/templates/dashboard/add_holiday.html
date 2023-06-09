@@ -1,0 +1,120 @@
+{% extends 'admin_portal_base.html' %}
+{% block stylesheet %}
+{% endblock %}
+
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+           
+        
+            $(".add").click(function() {
+                var row = $('.body_class');
+                var newRow = $("<tr>");
+                newRow.html('<td><input type="text"  name="holiday_name" required></td><td><input type="date" name="holiday_date" required></td><td><select name="optional"><option value="1">Optional Holiday</option><option value="0">Holiday</option></select></td><td><a class="btn btn-danger delete" id="delete">Delete</a></td>');
+                row.append(newRow);
+                newRow.find('.delete').click(function() {
+                    $(this).closest('tr').remove();
+                });
+            });
+        });
+        
+
+    </script>
+
+    <style>
+        h4{
+            font-weight: 800;
+            color: white;
+        }
+        .card-header {
+            background: #15192B !important;
+            padding: 10px !important;
+        }
+        tbody tr td input, select{
+            width: 200px;
+            height: 40px;
+
+        }
+        tbody tr th div{
+            position: relative;
+            margin-left: 44px;
+        }
+        <style>
+        h4{
+  font-weight: 800;
+  color: white;
+  }
+   h5{
+  font-weight: 700;
+  }
+    .card-header {
+  background: #15192B !important;
+  padding: 15px !important;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 5px 15px !important;
+  cursor: pointer;
+  }
+  tbody tr td input, select {
+    width: 154px;
+    height: 30px;
+}
+    </style>
+    </style>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h4 class="text-center">
+                Add Holiday Calender - {% now "Y" %}</h4>
+        </div>
+        <div class="card-block table-border-style" style="margin: 25px;">
+            <form method="post" action="{% url 'add_holiday' %}">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody style="background-color: grey; color: white;">
+                            <tr class="head">
+                                <th><div>Holiday Name</div></th>
+                                <th><div>Holiday Date</div></th>
+                                <th><div>Holiday Type</div></th>
+                                <th></th>
+                            </tr>
+                        </tbody>
+                        <tbody class="body_class">
+                            <tr>
+                                <td><input type="text"  name="holiday_name" placeholder ="Holiday Name" required></td>
+                                <td><input type="date"  name="holiday_date" required></td>
+                                <td>
+                                    <select name="optional">
+                                        <option value="1">Optional Holiday</option>
+                                        <option value="0">Holiday</option>
+                                    </select>
+                                </td>
+                                <td><a class="btn btn-primary add">
+                                  <i class="fa fa-plus"></i> Add Fields
+                                </a></td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                    <div class="card-footer col-md-12 text-center">
+                        <button type="submit" class="btn btn-style" id="submit">
+                            SUBMIT
+                        </button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

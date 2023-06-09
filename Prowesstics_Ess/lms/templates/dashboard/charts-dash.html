@@ -1,0 +1,140 @@
+{% extends 'includes/timesheet_layoutt.html' %}
+<!--CONTENTS-->
+{% block content %}
+<body>
+<div class="card">
+<div class="card-header text-center" style="padding: 20px 20px;">
+    <div class="card-block">
+                                                                        <form action ='{% url "chart"  %}?id={{id}}' method="post">
+                                                                           {% csrf_token %}
+                                                                            <div class="form-group row">
+                                                                                <div class="col col-lg-5 text-center">
+                                                                                    <label for="fdate">From:</label>
+                                                                                    <input id='f' value="{{f}}" type="date" class="form-control datepicker" placeholder="col" name="fdate" required >
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-lg-5 text-center">
+                                                                                    <label for="todate">To:</label>
+                                                                                    <input value="{{t}}" type="date" class="form-control datepicker"
+                                                                                    placeholder="col-sm-4" name="todate"  required>
+                                                                                </div>
+                                                                                <div class="col col-lg-2 text-center" style="text-align: center;">
+                                                                                    <button  type="submit" style="margin-top: 27px; color: white!important " class="btn btn-primary hor-grd btn-grd-inverse">submit</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+<h3 style="font-size: 20px; text-align: center; color: #9B1B30;font-weight: 700;"> Monthly Timesheet Chart</h3>
+</div>
+
+
+<div class="card-block">
+<div id="chart">
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header text-center" style="padding: 20px 20px;">
+<h3 style="font-size: 20px; text-align: center; color: #9B1B30; font-weight: 700;">Leave Chart</h3>
+</div>
+<div class="card-block">
+<div id="chart1">
+</div>
+</div>
+</div>
+
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+#chart {
+  max-width: 100%;
+  margin: 35px auto;
+}
+#chart1 {
+  max-width: 450px;
+  margin: 35px auto;
+}
+
+</style>
+<script>
+
+var options = {
+
+          series: [{
+              name: "logged hours ",
+          data: {{y|safe}}
+        }],
+          chart: {
+          type: 'bar',
+          height: 350,
+                  toolbar: {
+      show: !1
+  }
+
+
+
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 1,
+            horizontal: false,
+          }
+        },
+        dataLabels: {
+          enabled: true,
+        },
+        yaxis: {
+          title: {
+            text: 'Logged Hours',
+          },
+        },
+        xaxis: {
+               title: {
+            text: 'Dates',
+            offsetY: 80,
+
+          },
+          categories: {{x|safe}},
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+<script>
+
+var options = {
+         series: {{leave|safe}} ,
+
+    labels: ['Casual Leave Balance', 'Sick Leave  Balance', 'Casual Leave Taken ', 'Sick Leave Taken'],
+          chart: {
+          type: 'pie',
+
+
+
+        },
+        plotOptions: {
+          pie: {
+
+            customScale: 0.8,
+            borderRadius: 1,
+            size :100,
+            horizontal: false,
+          }
+        },
+        dataLabels: {
+          enabled: true,
+
+        },
+
+        };
+
+
+   var chart = new ApexCharts(document.querySelector("#chart1"), options);
+        chart.render();
+</script>
+</body>
+{% endblock %}

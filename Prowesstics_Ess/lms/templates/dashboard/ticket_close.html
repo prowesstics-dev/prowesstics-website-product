@@ -1,0 +1,218 @@
+{% extends 'help_base.html' %}
+
+
+{% block content %}
+<style>
+        .card-title{
+  font-weight: 800;
+  color: white;
+  }
+   h5{
+  font-weight: 700;
+  }
+    .card-header {
+  background: #15192B !important;
+  padding: 15px !important;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 7px 20px !important;
+  cursor: pointer;
+  }
+  #center{
+  text-align: center;
+  }
+  #right{
+  text-align: right;
+  }
+  #btn-1{
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #2EBDD6;
+  }
+  #btn-2{
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: green;
+  }
+  .btn-primary{
+  background: #55efc4 !important;
+  color: #0c2461 !important;
+  font-size: 16px;
+  padding: 7px 20px !important;
+  cursor: pointer;
+  border: none !important;
+  }
+    </style>
+<div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">
+                                Employee Tickets</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    {% if help %}
+									<tbody>
+                                    {% for h in help %}
+									<tr>
+
+                                        <td>
+                                            {{h.user.name}}
+                                        </td>
+                                        <td>
+                                            {{h.category}}
+                                        </td>
+                                        <td style="width: 189px;">
+                                            {{h.description|safe|truncatewords:"5"}}
+                                        </td>
+                                        <td id="right">
+                                        <button type="button"  class="btn btn-primary" value="{{h.ticket_solved}}">
+                                            Closed
+
+                                       </button></td>
+                                        {% if role == 'HR' %}
+                                        <td id="center">
+                                           <a href="{% url 'tickets_view' %}?id={{h.id}}"  class="btn add-task-timesheet btn hor-grd btn-style" >Views </a>
+
+                                        </td>
+                                        {% else %}
+                                        {% if h.ticket_solved %}
+                                         <td id="btn-1">
+                                            CLOSED
+                                        </td>
+                                        {% else %}
+                                        <td id="btn-2">
+                                           PENDING
+                                        </td>
+                                        {% endif %}
+                                        {% endif %}
+
+                                    </tr>
+                                    </tbody>
+									{% endfor %}
+									{% else %}
+									<h4 class="text-center"> NO DATA AVAILABLE </h4>
+									{% endif %}
+                                </table>
+                            </div>
+
+<nav aria-label="Page navigation example">
+    {% if help.has_other_pages %}
+        <ul class="pagination justify-content-center">
+        {% if help.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ help.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+          </li>
+        {% endif %}
+
+        {% if help.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page={{ help.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in help.paginator.page_range %}
+            {% if help.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > help.number|add:'-4' and i < help.number|add:'4' %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if help.paginator.num_pages > help.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page={{ help.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if help.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page_l={{ help.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+     {% endif %}
+    </nav>
+                            </div>
+                        </div>
+
+<div  data-target="#mymodal" id="addtask" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content timesheet">
+      <div class="modal-header" style="background: #fff;">
+        <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4  style="color: #000; font-weight: 600;font-size: 17px;" class="modal-title text-center" id="mname">Add Timesheet</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+
+
+              </div>
+
+
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-3">
+                  <p>End Time</p>
+                </div>
+                <div class="col-md-9">
+                  <input id ='etime' type="time" name="etime" required/>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-md-3">
+                  <p>Logged Hours</p>
+                </div>
+               <div class="col-md-9">
+                  <input id ='logg' type="number" name="logg" required/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p>Status</p>
+                </div>
+                <div class="col-md-9">
+                    <textarea id='status' type="text" name= 'status' required> </textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                </div>
+
+                </div>
+              </div>
+
+
+          </div>
+
+    </div>
+  </div>
+
+      </div>
+</div>
+
+{% endblock %}

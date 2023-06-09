@@ -1,0 +1,154 @@
+{% extends 'admin_portal_base.html' %} {% block stylesheet %} {% endblock %} {%
+block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $(".add").click(function () {
+      var row = $(this).closest("tr"); // Get the closest table row to the clicked button
+      var newRow = $("<tr>");
+      newRow.html(
+        '<td><input type="text"  name="holiday_name" required></td><td><input type="date" name="holiday_date" required></td><td><select name="optional"><option value="1">Optional Holiday</option><option value="0">Holiday</option></select></td><td><a class="delete btn btn-danger">Delete</a></td>'
+      );
+      row.after(newRow); // Add the new row after the current row
+    });
+
+    $(".delete").click(function () {
+      var id = $(this).attr("value");
+      $.ajax({
+        url: "/profile/delete_holiday/" + id + "/",
+        type: "POST",
+        data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+        success: function (response) {
+          if (response.status === "ok") {
+            $(this).closest("tr").remove();
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Successfully Deleted!!!",
+            });
+          } else {
+            alert("Error deleting object");
+          }
+        },
+      });
+      $(this).closest("tr").remove();
+    });
+
+    $(".modify").click(function () {
+      var id = $(this).attr("value");
+      var a = $(this).closest("tr");
+      var holiday_name = a.find("td:eq(0) input").val();
+      var holiday_date = a.find("td:eq(1) input").val();
+      var optional = a.find("td:eq(2) select").val();
+      $.ajax({
+        url: "/profile/modify_or_delete_holiday/" + id + "/",
+        type: "POST",
+        data: {
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+          holiday_name: holiday_name,
+          holiday_date: holiday_date,
+          optional: optional,
+        },
+        success: function (response) {
+          if (response.status === "ok") {
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Holiday Update Successful!!!",
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Not Update",
+              text: "There is No Update",
+            });
+          }
+        },
+      });
+    });
+  });
+</script>
+
+<style>
+  h4 {
+    font-weight: 800;
+    color: white;
+  }
+  .card-header {
+    background: #15192b !important;
+    padding: 10px !important;
+  }
+  tbody tr td input,
+  select {
+    width: 200px;
+    height: 40px;
+  }
+  tbody tr th div {
+    position: relative;
+    margin-left: 44px;
+  }
+</style>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-center">Modify Holiday Calender - {% now "Y" %}</h4>
+  </div>
+  <div class="card-block table-border-style">
+    <form method="post">
+      {% csrf_token %}
+      <div class="table-responsive">
+        <table class="table">
+          <tbody style="background-color: grey; color: white">
+            <tr class="head">
+              <th><div>Holiday Name</div></th>
+              <th><div>Holiday Date</div></th>
+              <th><div>Holiday Type</div></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tbody>
+          <tbody>
+            {% if holiday %} {% for h in holiday %}
+            <tr>
+              <td>
+                <input type="text" name="holiday_name" value="{{ h.name }}" />
+              </td>
+              <td>
+                <input type="date" name="holiday_date" value="{{ h.date }}" />
+              </td>
+              <td>
+                <select name="optional">
+                  {% if h.opt %}
+                  <option value="1" selected>Optional Holiday</option>
+                  <option value="0">Holiday</option>
+                  {% else %}
+                  <option value="0" selected>Holiday</option>
+                  <option value="1">Optional Holiday</option>
+                  {% endif %}
+                </select>
+              </td>
+              <td>
+                <a class="modify btn btn-info" value="{{ h.sno }}">Update</a>
+              </td>
+
+              <td>
+                <a class="delete btn btn-danger" value="{{ h.sno }}">Delete</a>
+              </td>
+            </tr>
+            {% endfor%} {% else %}
+            <h4>NO DATA AVAILABLE</h4>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+<script>
+
+</script>
+<style>
+ .card-body{
+ font-weight: 700;
+ }
+ h4{
+  font-weight: 800;
+  color: white;
+  }
+   .card-header {
+  background: #15192B !important;
+  padding: 10px !important;
+  }
+   .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 7px 25px !important;
+  cursor: pointer;
+  }
+  table td{
+  padding: 5px !important;
+  }
+</style>
+    <div class="card">
+            <div class="card-header">
+                <h4 class="card-title text-center">
+                    User Holiday Details</h4>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div>
+                        <table align="center" class="leave-table">
+                            <tr>
+								<td><label class="form-control-label">Name</label></td>
+								<td><input type="text" id="name" name="name" value="{{user_detail.user.name}}" class="form-control" readonly></td>
+							</tr>
+							<tr>
+								<td><label class="form-control-label">Sick Leaves Taken</label></td>
+								<td><input type="number" id="sick_leave" name="sick_leave" value="{{user_detail.sick_leave}}" step="0.5" class="form-control" autocomplete="off" required></td>
+							</tr>
+							<tr>
+								<td><label class="form-control-label">Casual Leaves Taken</label></td>
+								<td><input type="number" id="casual_leave" name="casual_leave" value="{{user_detail.casual_leave}}" step="0.5" class="form-control" autocomplete="off" required></td>
+							</tr>
+							<tr>
+								<td><label class="form-control-label">Optional Holiday Taken</label></td>
+								<td><input type="number" id="optional_leave" name="optional_leave" value="{{user_detail.optional_leave}}" step="0.5" class="form-control" autocomplete="off" required></td>
+							</tr>
+							<tr>
+								<td><label class="form-control-label">LOP</label></td>
+								<td><input type="number" id="lop" name="lop" value="{{user_detail.lop}}" step="0.5" class="form-control" autocomplete="off"></td>
+							</tr>	
+						</table>
+						<br><br>
+						<div id='apply-leave' class="card-footer text-center">
+                            <button type="submit" class="btn btn-style">Update
+                            </button>
+						</div>
+						<br><br>
+					</div>
+					
+                </div>
+				
+            </form>
+    </div>
+    {% endblock %}
+

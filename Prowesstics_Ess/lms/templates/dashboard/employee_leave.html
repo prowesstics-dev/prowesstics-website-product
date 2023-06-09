@@ -1,0 +1,321 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+var yearsLength = 30;
+var currentYear = new Date().getFullYear();
+for(var i = 0; i < 30; i++){
+var next = currentYear+1;
+var year = currentYear + '-' + next.toString().slice(-2);
+$('#financialYear').append(new Option(year, year));
+currentYear--;
+}
+
+<script>
+    {#$(document).ready(function () {#}
+    {#            $("#years_").change(function () {#}
+    {#                var sel = $('option:selected', this).text()#}
+                    {#alert(sel)#}
+    {#                $('#change_year_').click()#}
+    {#            });#}
+    {##}
+    {#        });#}
+
+
+
+</script>
+
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+<script>
+$(document).ready(function ()
+{
+
+       $('body').on('click', '.leave_details', function(event){
+    var value= $(this).text().trim()
+    console.log(value)
+    var x= $(this).closest('td').prev('td').text();
+    var y= x.trim()
+    // var z = $.find('#user_is').text();
+    // var tdValue = $('#user_id').find('#user_id_v').text();
+
+    console.log(x)
+
+
+
+                if (value ==='0'){
+                     console.log(value ==='0')
+                }
+               else
+                 {$("#myModal").modal();
+                $("#jn_lf").empty();
+
+                    var holiday_ = {{holiday | safe}}
+                    console.log(holiday_)
+                    for (var i = 0; i < holiday_.length; i++) {
+                        // console.log(holiday_)
+                        console.log(y == holiday_[i].user_.trim(),'ttorff')
+                        console.log(holiday_[i].user_, y)
+                        if (y == holiday_[i].user_.trim())
+                        {
+                            // alert(y + ": " + holiday_[i].user_)
+                            var ele = "<tr> <td>" + holiday_[i].user_ + "</td><td>" + holiday_[i].type_ + "</td><td>" + holiday_[i].no_days+ "</td><td>" + holiday_[i].description_ + "</td><td>" + holiday_[i].start_date + "</td><td>" + holiday_[i].end_date + "</td> <td>" + holiday_[i].decision_ + "</td></tr>"
+                            // alert(ele, 'hiiiiii')
+                            $('#jn_lf').append(ele)
+
+
+                        }
+                    }}
+            });
+            });
+
+        $("#myModal").draggable({ handle: ".modal-header" });
+
+
+</script>
+<script>
+              window.onload = function () {
+  const table = document.querySelector('table');
+  const thList = table.querySelectorAll('th');
+
+
+  thList.forEach((th) => {
+
+    th.addEventListener('click', () => {
+
+      const order = th.classList.contains('asc') ? 'desc' : 'asc';
+      console.log(order,'ssss')
+      const columnIdx = th.cellIndex;
+      const isNumeric = [...table.querySelectorAll('tbody tr')].every((tr) => !isNaN(tr.children[columnIdx].textContent));
+
+      const sortedRows = [...table.querySelectorAll('tbody tr')].sort((tr1, tr2 ) => {
+        const val1 = tr1.children[columnIdx].textContent;
+        const val2 = tr2.children[columnIdx].textContent;
+
+        return isNumeric ? val1 - val2 : val1.localeCompare(val2);
+      });
+
+      if (order === 'desc') {
+        sortedRows.reverse();
+        th.classList.add('desc');
+        th.classList.remove('asc');
+      } else {
+        th.classList.add('asc');
+        th.classList.remove('desc');
+      }
+
+      sortedRows.forEach((row) => {
+        table.querySelector('tbody').appendChild(row);
+      });
+    });
+  });
+};
+
+    </script>
+
+<style>
+  h4{
+  font-weight: 800;
+  color: white;
+  }
+    .card-header {
+  padding: 15px !important;
+  background: #15192B !important;
+  }
+  table thead{
+  background: #15192B !important;
+  color: white;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 2px 10px !important;
+  cursor: pointer;
+  }
+  .select-style{
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 2px 7px;
+  border: 2px solid Black;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  .btn-style-2{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 5px 10px !important;
+  cursor: pointer;
+  }
+  .leave_details{
+  cursor: pointer;
+ }
+ .modal_res_width{
+ width: 183px !important;
+ }
+ #jn_lf td {
+    word-wrap: break-word !important;
+    white-space: break-spaces !important;
+  }
+
+</style>
+
+     <div class="container">
+                <form action="{% url 'user_leave_history' %}" method="GET">
+                    <div class="col-lg-12 p-3">
+                        <div class="row">
+                    <div class="col-lg-10 col-md-10 col">
+                            <select name='pg_r'
+                                    class="float-right select-style" id="">
+                                <option style="color: black" value="10" {% if pg_r == 10 %} selected {% endif %}>Show 10 record</option>
+                                <option style="color: black" value="20" {% if pg_r == 20 %} selected {% endif %}>Show 20 record</option>
+                                <option style="color: black" value="30" {% if pg_r == 30 %} selected {% endif %}>Show 30 record</option>
+                                <option style="color: black" value="50" {% if pg_r == 50 %} selected {% endif %}>Show 50 record</option>
+                                <option style="color: black" value="100" {% if pg_r == 100 %} selected {% endif %}>Show 100 record</option>
+
+                            </select>
+                    </div>
+                        <div class="col-lg-2 col-md-2 col" style="">
+                            <button class="btn-style">Filter</button>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+     </div>
+                             <!--table card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center">Employee Leave Details</h4>
+                                        </div>
+                                        <div class="col-md-12 p-2" id="textbox">
+                                            <form action="{% url 'user_leave_history' %}" method="GET">
+                                                <h5 class="alignleft" style="font-weight: bold; margin-top:15px;">Financial year:{{ y_ }}</h5>
+                                                <h5  class="alignright" style="font-weight: bold;">Change Year:
+                                                    <select class="select-style" id="years_" name="year_">
+                                                      {% for year in available_years %}
+                                                              <option label="{{ year }}" value="{{ year }}" {% if year == y_ %} selected {% endif %}></option>
+                                                      {% endfor %}
+                                                    </select>
+                                                    <button class="btn-style-2" type="submit" id="change_year_">Filter</button>
+                                                </h5>
+                                            </form>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th id ='user_id'>ID</th>
+                                                            <th>Employee Name <span>&uarr;</span></th>
+                                                            <th>Leaves Applied</th>
+                                                            <th>Time Sheet Deductions</th>
+                                                            <th>Leaves Pending</th>
+                                                            <th>Sick Leaves Pending</th>
+                                                            <th>Casual Leaves Pending</th>
+                                                            <th>LOP <span>&uarr;</span></th>
+                                                            <th>Optional Holidays Availed</th>
+                                                            <th>Compensation Applied</th>
+                                                            <th>Leave redeemed</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {%for user in users%}
+                                                        <tr>
+                                                            <td id ='user_id_v'>{{user.id}}</td>
+                                                            <td class="name_">{{user.name}}</td>
+                                                            <td class="leave_details">{{user.applied}}</td>
+                                                            <td>{{user.time_det}}</td>
+                                                            <td>{{user.pending}}</td>
+                                                            <td>{{user.sick_leave_pending | floatformat:0 }}</td>
+                                                            <td>{{user.casual_leave_pending | floatformat:0 }}</td>
+                                                            <td>{{user.lop}}</td>
+                                                            <td>{{user.optional}}</td>
+                                                            <td>{{user.compensation}}</td>
+                                                            <td>{{user.redeem}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        {% if users.has_other_pages %}
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                              {% if users.has_previous %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ users.previous_page_number }}&year_={{ y_ }}&pg_r={{ pg_r }}" tabindex="-1">Previous</a></li>
+                                              {% else %}
+                                                <li class="page-item disabled"><span>Previous</span></li>
+                                              {% endif %}
+                                              {% for i in users.paginator.page_range %}
+                                                {% if users.number == i %}
+                                                  <li class="page-item active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                                {% else %}
+                                                  <li class="page-item"><a class="page-link" href="?page={{ i }}&year_={{ y_ }}&pg_r={{ pg_r }}">{{ i }}</a></li>
+                                                {% endif %}
+                                              {% endfor %}
+                                              {% if users.has_next %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ users.next_page_number }}&year_={{ y_ }}&pg_r={{ pg_r }}">Next</a></li>
+                                              {% else %}
+                                                <li class="page-item disabled"><span>Next</span></li>
+                                              {% endif %}
+                                            </ul>
+                                        </nav>
+                                      {% endif %}
+                                    </div>
+                           <!-- table card end -->
+
+<div class="container">
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="/*padding-top: 200px; padding-left: 100px*/ ">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="color:  #464646;">Leave Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: white; color: #3f3939;">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>No Of Days</th>
+                                <th class="modal_res_width">Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th class="modal_res_width">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="jn_lf">
+                            </tbody>
+                        </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer" style="background-color: white; color: white">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $("#myModal").draggable({
+    handle: ".modal-header"
+});
+</script>
+
+{% endblock %}

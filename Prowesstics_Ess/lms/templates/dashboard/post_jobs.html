@@ -1,0 +1,68 @@
+{% extends 'career_sidebar.html' %}
+{% load static %}
+
+{% load humanize %}
+
+    {% block stylesheet %}
+     th{
+       font-size: 17px !important;
+     }
+    .table thead th {
+    color: black !important;
+    }
+
+
+    {% endblock %}
+
+        {% block content %}
+        <section class="content">
+            <section class="container-fluid">
+                <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">
+                               Jobs</h4>
+                        </div>
+                     <div class="row">
+                         <div  class="card-block col-sm-12">
+                        <form action="{% url 'post_jobs' %}" method="post">
+                            {% csrf_token %}
+                        <div class="form-group p-1">
+                            <div class="col-sm-12 text-center">
+
+                            <div class="form-group row justify-content-center">
+                                <label class="col-sm-3 text-left col-form-label">Role</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="role" class="form-control form-control-normal" placeholder="Enter the Role">
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-center">
+                                <label class="col-sm-3 text-left col-form-label">Roles and Responsibilities</label>
+                                <div class="col-sm-6">
+                                    <textarea type="textarea" name="role_res" placeholder="Enter the Roles and Responsibilities" class="form-control" rows="5" cols="50"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-center">
+                                <label class="col-sm-3 text-left col-form-label">Skills</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="skills" class="form-control form-control-normal" placeholder="Enter the Skills">
+                                </div>
+                            </div>
+                        <div class="col-sm-12 text-center p-3">
+                            <button type="submit" class="btn btn-style" style="background: #3B185F !important;">Submit</button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                        </div>
+                        </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+            </section> <!-- /container -->
+     </section>
+         {% endblock %}

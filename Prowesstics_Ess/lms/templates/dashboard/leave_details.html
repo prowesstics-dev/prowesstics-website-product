@@ -1,0 +1,253 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+<!------ Include the above in your HEAD tag ---------->
+
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+
+    <link rel="icon" href="Favicon.png">
+
+    <title>Laravel</title>
+</head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+</script>
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+<style>
+  h4{
+  font-weight: 800;
+  color: white;
+  }
+   .card-header {
+  padding: 15px !important;
+  background: #15192B !important;
+  }
+  label{
+  color: #000;
+  font-weight: 600;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 7px 20px !important;
+  cursor: pointer;
+  }
+   @media (min-width: 576px){
+  .modal-dialog {
+   max-width: 500px;
+   margin: 133px auto !important;
+ }
+ }
+ .modal-header{
+   padding: 15px !important;
+   background: #15192B !important;
+   color: white !important;
+   }
+   spanc{
+  color: white !important;
+  }
+</style>
+<script type="text/javascript">
+    function close_form()
+    {
+        document.getElementById('id01').style.display='none';
+
+    }
+
+
+
+</script>
+<script type="text/javascript">
+    function show(btn_name)
+    {
+        document.getElementById('id01').style.display='block';
+        document.getElementById('yes').setAttribute('name', btn_name);
+        document.getElementById('yes').value=btn_name;
+    }
+
+
+
+</script>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center">
+            Leave Details
+        </h4>
+    </div>
+    <div class="card-body my-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <form class="col-lg-12" name="my-form" action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" value="{{application.id}}" name='id' hidden>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Name
+                        </label>
+                         <label class="col text-left">
+                            {{application.user.name}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            E-Mail Address
+                        </label>
+                         <label style="word-break: break-all;" class="col text-left">
+                           {{application.user.email}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Applied Date
+                        </label>
+                         <label class="col text-left">
+                            {{application.date}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Leave Start Date
+                        </label>
+                         <label class="col text-left">
+                            {{application.start_date}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Leave End Date
+                        </label>
+                         <label class="col text-left">
+                            {{application.end_date}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Leave Type
+                        </label>
+                         <label class="col text-left">
+                            {{application.category}} LEAVE ({{application.type}})
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            No Of days of leave requested
+                        </label>
+                         <label class="col text-left">
+                            {{application.no_of_days}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Sick leave remaining
+                        </label>
+                         <label class="col text-left">
+                            {{leave.sick}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Casual leave remaining
+                        </label>
+                         <label class="col text-left">
+                            {{leave.casual}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Optional leave remaining
+                        </label>
+                         <label class="col text-left">
+                            {{leave.optional}}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-6 text-right">
+                            Leave discription
+                        </label>
+                         <label class="col-6 text-left">
+                            {%if application.description%}
+                             {{application.description}}
+                             {%else%}
+                             -
+                             {%endif%}
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col text-right">
+                            Leave decision
+                        </label>
+                         <label class="col text-left">
+                             {%if application.decision%}
+                             {{application.decision}}
+                             {%else%}
+                             -
+                             {%endif%}
+                        </label>
+                    </div>
+            </div>
+            </div>
+        <div class="card-footer col-md-12 text-center">
+            {%if access == 'False'%}
+            <button type="button" class="btn btn-style" onclick="show('delete');"
+                    style="">
+                DELETE
+            </button>
+            {%endif%}
+            {%if access == 'True'%}
+            <button type="button" onclick="show('accept');" class="btn btn-style" id="accept" name="accept" value="approve"
+                    style="">
+                Approve
+            </button>
+            <button type="button" onclick="show('reject');" class="btn btn-style" id="reject" name="reject" value="reject"
+                    style="">
+                Reject
+            </button>
+            {%endif%}
+            <button type="button" class="btn btn-style" id='back' name='back'
+                    onclick="window.location.replace('{% url 'dashboard'%}');" ;
+                    style="">
+                BACK
+            </button>
+
+            <div id="id01" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center">Enter Your Comments?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <spanc onclick="close_form();" aria-hidden="true">&times;</spanc>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <textarea style="max-width: 90%;" type="textarea" id="decision" name="decision" placeholder="Description" class="form-control" rows="" cols="" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer clearfix">
+                            <button type="button" onclick="close_form();" class="cancelbtn btn-style">Cancel</button>
+                            <button type="submit" id="yes" class="deletebtn btn-style">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}
+</html>

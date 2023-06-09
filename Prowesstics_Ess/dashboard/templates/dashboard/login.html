@@ -1,0 +1,237 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <title>Powerbi Dashboard</title>
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- ** Plugins Needed for the Project ** -->
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome/font-awesome.min.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+    <!-- venobox -->
+    <link rel="stylesheet" href="{% static 'plugins/venobox/venobox.css' %}">
+    <!-- slick -->
+    <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+    <!-- AOS -->
+    <link rel="stylesheet" href="{% static 'plugins/aos/aos.css' %}">
+
+    <!-- Main Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'slider/jquery-gallery.css' %}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161807522-1"></script>
+    <script async src="{% static 'js/jquery.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161844369-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161844369-1');
+    </script>
+
+
+</head>
+<style>
+    .spinner {
+        background: url('/static/images/loader/giphy.gif') no-repeat center center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 115%;
+        width: 100%;
+        z-index: 9999999;
+    }
+
+    .sbm {
+        display: none;
+    }
+</style>
+
+<body>
+<!-- preloader start -->
+<!-- preloader end -->
+
+
+<div class="spinner" style="display: none">
+</div>
+
+<div class="preloader">
+    <img src="{% static 'images/preloader.gif' %}" alt="preloader" class="img-fluid">
+</div>
+<div class="logo">
+    <a class="navbar-brand" href="./"><img style="width:180px;"
+                                           src="{% static 'images/logo/prowesstics_org.png' %}"></a>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row justify-content-center member-login">
+                <h2>User Login</h2>
+            </div>
+            <div class="text-center mx-auto refresh" style="display: none;">
+                <p style="font-size: large;" class="text-danger"> Do not refresh the page or the session will be closed.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-12 text-center member-img">
+            <img src="{% static 'images/img-01.png' %}" style="height:150px;width:165px" alt="IMG">
+        </div>
+        <div class="col-lg-12 text-center mt-4 user-form">
+            <form role="form" class="row" autocomplete="off" id="contact_form" name="contact_form" method="POST">
+                {% csrf_token %}
+                <div class="col-lg-12 ">
+                    <input type="text" class="form-control mb-4 mx-auto" id="username" name="username"
+                           placeholder="Username" required style="width:340px;background-color:#E6E6E6;">
+                    <button class="sbm">Go</button>
+                </div>
+                <div class="col-lg-12 ">
+                    <input type="password" class="form-control mb-4  mx-auto" id="password" name="password"
+                           placeholder="Password" required style="width:340px;background-color:#E6E6E6;">
+                    <button class="sbm">Go</button>
+                </div>
+                <div class="col-lg-12 alert" id="error_notif" style="display: none">
+                    <p class=text-danger>Invalid login, please try again.
+                </div>
+                <h3 class="col-lg-6"></h3>
+                <div class="col-12">
+                    <button type="button" id="con_submit" class="btn btn-primary mx-auto">Log in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% block javascript %}
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- slick -->
+    <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+    <!-- venobox -->
+    <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+    <!-- Aos -->
+    <script src="{% static 'plugins/aos/aos.js' %}"></script>
+    <!-- google map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+    <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+    <!-- Main Script -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'slider/jquery-gallery.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            wireUpEvents();
+            function timeout() {
+                // messages timeout for 10 sec
+                setTimeout(function () {
+                    $('.alert').fadeOut('slow');
+                }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+            }
+
+            // submit button click event
+            var hasBeenClicked = false;
+
+            $('#con_submit').on('click', function () {
+                debugger;
+                hasBeenClicked = true;
+                var data = {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                };
+                if ((data.username).length === 0 || (data.password).length === 0) {
+                    $('.sbm').click();
+                }
+                else {
+                    $('.spinner').show();
+                    $('.member-login').hide();
+                    $('.member-img').hide();
+                    $('.user-form').hide();
+                    $('.refresh').show();
+                    $.ajax({
+                        url: "{% url 'login' %}",
+                        type: 'POST',
+                        data: data,
+                        success: function (data) {
+                            if (data.status === 'pass') {
+                                console.log('passssssssssss');
+                                window.location.href = "{% url 'gettoken' %}"
+                            }
+                            else if (data.status === 'fail') {
+                                var message = data.message;
+                                console.log(message);
+                                $('.spinner').hide();
+                                $('#error_notif').show();
+                                timeout();
+                            }
+
+                        },
+                        error: function (err) {
+                            console.log('hee')
+                        }
+                    });
+                }
+            });
+
+            if (hasBeenClicked == false) {
+                debugger;
+                endSession();
+            }
+
+            // browser ot tab is closed to call the logout using ajax
+            var validNavigation = false;
+
+            function endSession() {
+                // Browser or broswer tab is closed
+                $.ajax({
+                    url: '{% url "logout" %}'
+                }).done(function () {
+                    console.log('pass');
+                    window.href.location = '{% url "login" %}'
+                })
+            }
+
+            function wireUpEvents() {
+                console.log('wireupevent');
+                window.onunload = function () {
+                    debugger;
+                    if (!validNavigation) {
+                        endSession();
+                    }
+                };
+
+            }
+
+        });
+    </script>
+
+
+{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+{% extends 'payroll/base.html' %}
+{% load static %}
+{% block stylesheet %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+var yearsLength = 30;
+var currentYear = new Date().getFullYear();
+for(var i = 0; i < 30; i++){
+var next = currentYear+1;
+var year = currentYear + '-' + next.toString().slice(-2);
+$('#financialYear').append(new Option(year, year));
+currentYear--;
+}
+
+{% endblock %}
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+    .card-header{
+    background: #15192B !important;
+    padding: 20px;
+    color: white !important;
+    text-align: center;
+    }
+    .card-header h4{
+     font-weight: 800 !important;
+    }
+    .new-pdf-img{
+    width: 45%;
+    height: auto;
+    }
+    @media only screen and (max-width: 600px) {
+   .new-pdf-img{
+    width: 100%;
+    height: auto;
+    }
+    }
+</style>
+
+  <div class="col-lg-12" style="padding: 10px;height: 70px;">
+        {% if payslip is not None %}
+            <a href="{% url 'download_payslip' month=payslip.month year=payslip.year %}">
+                <button type="button" class="btn btn-primary" style="float:right;color: white !important;">Download PDF </button>
+            </a>
+        {% endif %}
+    </div>
+
+  <div class="card">
+          <div class="card-header">
+              <h4>Pay Slips</h4>
+          </div>
+       <form action="{% url 'pay_slip' %}" method="get">
+        <div class="col-md-12 p-4" id="textbox">
+            <div class="row">
+          <!--  <div class="form-group">
+                <label>Year</label>
+               <select name='year' style="width: 100px" class="form-control">
+                    <option value="2021">2021</option>
+                </select>
+          </div>-->
+            <div>
+            <h5  class="alignright" style="font-weight: bold;font-size: 17px;">Year:
+                            <select name='year'>
+                            <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                        </select>
+                            </h5>
+            </div>
+
+            <div>
+            <h5 class="alignright" style="font-weight: bold;padding: 0px 10px;font-size: 17px;">
+                Month:
+               <select name='month'>
+                    <option value="{{ payslip.month_name_no }}">{{ payslip.month }}</option>
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+          </h5>
+            </div>
+
+          <div style="padding: 0px 10px;">
+          <button style="padding: 5px 20px;font-weight: bold;" type="submit" class="btn btn-danger">Apply</button>
+          </div>
+            </div>
+           </div>
+      </form>
+
+		<div class="card-body">
+
+      <div class="salary-slip table-responsive" >
+            <table class="empDetail table table-bordered">
+              <!--<tr height="100px" style='background-color: #c2d69b'>
+                <td colspan='4'>
+                  <img height="90px" src='https://organisationmedia.toggleflow.com/demo/logo.png' /></td>
+                <td colspan='4' class="companyName"> Co-Operative Bank Ltd.</td>
+              </tr>-->
+
+            <tbody class="border-center">
+
+
+
+                <tr>
+<!--                  <th colspan="8" style="text-align: center;background-color: #7EB5E2;" >Prowesstics IT Services Pvt.Ltd </th>-->
+
+
+
+                  <td  colspan="4" style="background-color: #15192B; border: 0px solid black;height: 30px;" >
+                      <!--<img height="90px" src='https://organisationmedia.toggleflow.com/demo/logo.png' />-->
+                    <!--  <img  style="height: 90px; width: 255px;margin-left: -9px;" src="{% static 'images/logo/prowesstics_org.png' %}" >-->
+                      <img class="new-pdf-img"  src="{% static 'images/logo/prowesstics_org.png' %}" >
+                  </td>
+                    <th colspan="7" style="margin:0 auto;background-color: #15192B;font-size: 25px;color: white;line-height: 2.5;">Prowesstics IT Services Pvt.Ltd </th>
+
+                </tr >
+                <tr>
+                  <th colspan="12" style="text-align: center; font-size: 20px; "> Employee Pay Slip </th>
+                  <td colspan="4" style="border: 0px solid black;"></td>
+
+                </tr >
+                <tr>
+                  <th colspan="12" style="text-align: center;">{{ payslip.month }} - {{ payslip.year }}</th>
+                  <td colspan="4" style="    border: 0px solid black;"></td>
+                </tr >
+             <tr>
+                  <th colspan="12" style="text-align: left;">Employee Details</th>
+
+
+                </tr >
+
+              </tbody>
+
+               <tbody class="border-center">
+
+                <tr>
+                  <th colspan="4" style="text-align: end;">Bank : </th>
+                    {% if payslip.bank != 'None' %}
+                     <td colspan="8">{{payslip.bank}}</td>
+                    {% else %}
+                    <td colspan="8"> - </td>
+                    {% endif %}
+
+
+                </tr >
+                <tr>
+                  <th colspan="4" style="text-align: end;">Bank Account No :</th>
+                    {% if payslip.acc_no != 'None' %}
+                  <th colspan="8"> {{payslip.acc_no}}</th>
+                    {% else %}
+                  <th colspan="8"> - </th>
+                    {% endif %}
+
+                </tr >
+
+                <tr>
+                  <th colspan="4" style="text-align: end;">Name:</th>
+                  <th colspan="8">{{ payslip.employee_name }}</th>
+
+
+                </tr >
+                <tr>
+                  <th colspan="4" style="text-align: end;">Designation:</th>
+                  <td colspan="8">{{ payslip.employee_designation }}</td>
+                </tr >
+                <tr>
+                  <th colspan="4" style="text-align: end;">Employee id no:</th>
+                  <td colspan="8">{{ payslip.employee_id }}</td>
+                </tr >
+                <tr>
+                  <th colspan="12" style="text-align: center;"> Pay slip Details  </th>
+
+                </tr >
+                 <tr style="background-color: #7EB5E2;">
+                 <th colspan="3" style="">Pay Head Group</th>
+                 <th colspan="3" style="text-align: center;">Pay Head</th>
+                  <th colspan="3" style="">Amount</th>
+                  <th colspan="3" style="">YTD</th>
+
+                </tr >
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Basic Salary</th>
+                  <th colspan="3" style="text-align: end;" >₹ {{ payslip.m_basic_salary  }} </th>
+                  <th colspan="3" style="text-align: end;" >₹ {{ payslip.basic_salary }}</th>
+
+                </tr >
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >HRA Allowance</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.m_hra_allowance }}</th>
+                  <th colspan="3"style="text-align: end;" >₹ {{ payslip.hra_allowance }}</th>
+
+                </tr >
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Conv.Allowance</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_conv_allowance }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.conv_allowance }}</th>
+
+                </tr >
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >City Compensatory Allowance</th>
+                  <th colspan="3" style="text-align: end;" >-</th>
+                  <th colspan="3" style="text-align: end;" >-</th>
+
+                </tr >
+                 <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Others</th>
+                  <th colspan="3" style="text-align: end;" >₹ {{ payslip.m_other_allowance }}</th>
+                  <th colspan="3" style="text-align: end;" >₹ {{ payslip.other_allowance }}</th>
+
+                </tr >
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Spl Allowance</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_spl_allowance }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.spl_allowance }}</th>
+                </tr>
+                <tr style="background-color: #7EB5E2;">
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Total Earnings</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_total_earnings }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.total_earnings }}</th>
+                </tr>
+               <tr>
+                 <th colspan="3" >Deductions</th>
+                 <th colspan="3" >Provident fund</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_provident_fund }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.provident_fund }}</th>
+                </tr>
+               <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Other Deductions</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_other_deduction }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.other_deduction }}</th>
+                </tr>
+               <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Income Tax</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_income_tax }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.income_tax }}</th>
+                </tr>
+                <tr>
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Professional Tax</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.pro_tax }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.pro_tax }}</th>
+                </tr>
+               <tr style="background-color: #7EB5E2;">
+                 <th colspan="3" ></th>
+                 <th colspan="3" >Total Deductions</th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_total_deduction }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.total_deduction }}</th>
+                </tr>
+
+               <tr>
+                 <th colspan="3" >Net Amount</th>
+                 <th colspan="3" ></th>
+                  <th colspan="3"  style="text-align: end;">₹ {{ payslip.m_net_amt }}</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.net_amt }}</th>
+                </tr>
+               <tr>
+                 <th colspan="3" >Salary (CTC)/ PM</th>
+                 <th colspan="3" >₹ {{ payslip.sal_ctc_pm }}</th>
+                  <th colspan="3"  style="text-align: end;">Gross Salary</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.sal_ctc_pm }}</th>
+                </tr>
+                <tr>
+                 <th colspan="3" >Salary (CTC)/ PA</th>
+                 <th colspan="3" >₹ {{ payslip.sal_ctc_pa }}</th>
+                  <th colspan="3"  style="text-align: end;">Net Salary</th>
+                  <th colspan="3" style="text-align: end;">₹ {{ payslip.sal_ctc_pa }}</th>
+                </tr>
+
+
+              </tbody>
+
+
+
+
+            </table >
+            <h5 style="font-weight: bold">System generated payslip no signature required</h5>
+          </div >
+
+  </div>
+{% endblock %}
+
+
+

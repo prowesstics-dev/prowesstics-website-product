@@ -1,0 +1,61 @@
+{% extends 'payroll/base.html' %}
+{% block content %}
+
+<style>
+  h3{
+  font-weight: 800;
+  }
+    table thead {
+  background: #15192B;
+  }
+  .col-form-label{
+  text-align: end;
+  font-size: 16px;
+  }
+  .form-control{
+  max-width: 200px;
+  }
+  @media only screen and (max-width: 670px) {
+    .col-form-label{
+  text-align: center !important;
+  }
+  .form-control{
+  max-width: 100%;
+  }
+}
+
+</style>
+
+
+                                                 <div class="card">
+                                                    <div class="text-center p-3">
+                                                     <h3>Form 16</h3>
+                                                    </div>
+                                                 <div class="card-header">
+                                                 <form action="{% url 'form16' %}" method="get">
+                                                     <div class="col-lg-12" id="textbox">
+                                                       <div class="row">
+                                                       <div style="padding: 10px;font-size: 20px;font-weight: 800;">
+                                                           Year:
+                                                       </div>
+                                                       <div style="padding: 10px;">
+                                                           <select style="padding: 3px 10px;font-size: 15px;" name='year'>
+                                                                       <option value="{{ year }}">{{ year }}</option>
+                                                                       <option value="2021">2021</option>
+                                                                       <option value="2022">2022</option>
+                                                                   </select>
+                                                       </div>
+                                                        <div style="padding: 10px;">
+                                                            <button style="padding: 5px 20px;" type="submit" class="btn btn-primary waves-effect waves-light">Filter</button>
+                                                       </div>
+                                                       </div>
+                                                     </div>
+                                                 </form>
+                                                     <object data="{{ form16 }}" type="application/pdf" width="100%" height="800px">
+                                                     </object>
+                                                 </div>
+
+                                                 </div>
+
+
+{% endblock %}

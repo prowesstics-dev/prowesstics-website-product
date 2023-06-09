@@ -1,0 +1,173 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+<script>
+        window.onload = function () { // After page loads
+            Array.from(document.getElementsByTagName("th")).forEach((element, index) => { // Table headers
+                element.addEventListener("click", function (event) {
+                    let table = this.closest("table");
+
+                    let order_icon = this.getElementsByTagName("span")[0];
+                    let order      = encodeURI(order_icon.innerHTML).includes("%E2%86%91") ? "desc" : "asc";
+
+                    let value_list = {}; // <tr> Object
+                    let obj_key    = []; // Values of selected column
+
+                    let string_count = 0;
+                    let number_count = 0;
+
+                    table.querySelectorAll("tbody tr").forEach((linha, index_line) => { // <tbody> rows
+                        let key = linha.children[element.cellIndex].innerHTML.toUpperCase();
+                        key.replace("-", "").match(/^[0-9,.]*$/g) ? number_count++ : string_count++; // Check if value is numeric or string
+
+                        value_list[key + index_line] = linha.outerHTML; // Adding <tr> to object
+                        obj_key.push(key + index_line);
+                    });
+
+                    if (number_count > 0 && string_count <= 0) { // If all values are numeric
+                        obj_key.sort(function(a, b) {
+                            return a - b;
+                        });
+                    }
+                    else {
+                        obj_key.sort();
+                    }
+
+                    if (order == "desc"){
+                        obj_key.reverse();
+                        order_icon.innerHTML = "&darr;";
+                    }
+                    else {
+                        order_icon.innerHTML = "&uarr;";
+                    }
+
+                    let html = "";
+                    obj_key.forEach(function (chave) {
+                        html += value_list[chave];
+                    });
+                    table.getElementsByTagName("tbody")[0].innerHTML = html;
+                });
+            });
+        }
+    </script>
+
+<style>
+  .select-style{
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 2px 7px;
+  border: 2px solid Black;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 2px 10px !important;
+  cursor: pointer;
+  }
+   h4{
+  font-weight: 800;
+  }
+  .card-header{
+  padding: 15px !important;
+  }
+   table thead {
+  padding: 15px !important;
+  background: #15192B !important;
+  }
+</style>
+
+<div class="col-lg-12 p-2">
+    <form action="{% url 'modified_user' %}" method="GET">
+        <div class="row">
+            <div class="col col-lg-10 col-md-10" style="">
+                <select name='pg_r'
+                        style=""
+                        class="float-right select-style" id="">
+                    <option style="color: black" value="10" {% if pg_r == 10 %} selected {% endif %}>Show 10 record</option>
+                    <option style="color: black" value="20" {% if pg_r == 20 %} selected {% endif %}>Show 20 record</option>
+                    <option style="color: black" value="30" {% if pg_r == 30 %} selected {% endif %}>Show 30 record</option>
+                    <option style="color: black" value="50" {% if pg_r == 50 %} selected {% endif %}>Show 50 record</option>
+                    <option style="color: black" value="100" {% if pg_r == 100 %} selected {% endif %}>Show 100 record</option>
+                </select>
+            </div>
+            <div class="col col-lg-2 col-md-2 " style="">
+                <button class="btn-style">Filter</button>
+            </div>
+        </div>
+    </form>
+</div>
+                               <!--table card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title text-center">Modify User</h4>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            {% if users%}
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Employee Name     <span>&uarr;</span></th>
+                                                            <th>E-Mail Address</th>
+                                                            <th>Role</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for user in users %}
+                                                        <tr>
+                                                            <td>{{user.id}}</td>
+                                                            <td>{{user.name}}</td>
+                                                            <td>{{user.email}}</td>
+                                                            <td>{{user.role}}</td>
+                                                            <td>
+                                                                <a href="/profile/edit_user/?id={{user.id}}" name={{user.id}}>
+                                                                    <i class="ti-pencil"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                 <div>
+                                                     {% if users.has_other_pages %}
+                                                     <nav aria-label="Page navigation example">
+                                                         <ul class="pagination" style="margin-left: 18px; text-align: center">
+                                                             {% if users.has_previous %}
+                                                             <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                                                             {% else %}
+                                                             <li class="disabled"><span>&laquo;</span></li>
+                                                             {% endif %}
+                                                             {% for i in users.paginator.page_range %}
+                                                             {% if users.number == i %}
+                                                             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                                             {% else %}
+                                                             <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                                             {% endif %}
+                                                             {% endfor %}
+                                                             {% if users.has_next %}
+                                                             <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                                                             {% else %}
+                                                             <li class="disabled"><span>&raquo;</span></li>
+                                                             {% endif %}
+                                                         </ul>
+                                                         {% endif %}</nav>
+                                                 </div>
+                                            </div>
+                                            {%else%}
+                                            <h4 class="text-center"> NO USERS ADDED YET </h4>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!--table card end -->
+    {% endblock %}

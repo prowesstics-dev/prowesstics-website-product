@@ -1,0 +1,496 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+     <!-- Favicon icon -->
+      <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
+
+    <title>Employee-self-service</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'emp_login/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'emp_login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'emp_login/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'emp_login/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'emp_login/assets/css/owl.css' %}">
+  </head>
+
+<body>
+<style>
+  .notification-ess {
+    color: #943126;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    animation: blink 1s infinite;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .notification-ess.clicked {
+    animation: none;
+  }
+
+  .notification-ess i{
+    color: #F8BB5E;
+    font-size: 14px;
+  }
+
+  .notification-ess .notify-msg{
+    background: #15192B;
+    border: none;
+    font-size: 15px;
+    box-shadow: none;
+    font-weight: 600;
+    color: #F8BB5E;
+    border-radius: 4px;
+  }
+
+  .notification-content-box .modal .modal-header{
+    background: #2EBDD6;
+  }
+
+  .notification-content-box .modal .modal-header h5{
+   margin: 0 auto;
+  }
+
+  .notification-content-box .modal .modal-header button{
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .notification-content-box .modal .modal-body{
+      height: 495px;
+      overflow-y: auto;
+  }
+</style>
+
+  <!-- ***** Header Area Start ***** -->
+  <header id="head">
+<nav class="navbar navbar-light">
+  <a class="navbar-brand" href="/">
+    <img width="200px" src="{% static 'new_dashboard/images/auth/prowesstics_org.png' %}"  class="d-inline-block align-top" alt="">
+  </a>
+</nav>
+    </header>
+  <!-- ***** Header Area End ***** -->
+  <script>
+    function showPopup(title, description) {
+    // create the popup window
+    var popup = window.open("", "Popup", "width=400,height=300");
+
+    // set the content of the popup window
+    popup.document.write("<h2>" + title + "</h2>");
+    popup.document.write("<p>" + description + "</p>");
+
+    // prevent the link from navigating to another page
+    return false;
+}
+
+  </script>
+
+{% if request.user.role == 'EMPLOYEE' or request.user.role == 'INTERN' or request.user.role == 'MANAGER'   %}
+   <div class="col-lg-12" id="main-con">
+       <h1 class="text-center">Welcome To Prowesstics Employee Login</h1>
+   </div>
+
+  <div class="col-lg-12 notification-content-box">
+    {% if notifications %}
+     {% for notification in notifications %}
+      {% if notification.end_time %}
+    <div class="notification-ess d-flex justify-content-center align-items-center">
+      <i class="fa fa-bell" aria-hidden="true"></i>
+      <button type="button" class="notify-msg" data-bs-toggle="modal" data-bs-target="#{{ notification.title }}exampleModal">
+        New Announcement
+      </button>
+    </div>
+      <div class="modal fade bd-example-modal-lg notify-modal-box" id="{{ notification.title }}exampleModal" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="exampleModalLabel">{{ notification.title }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{ notification.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+  </div>
+  <section class="services mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-service-item owl-carousel">
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/salary.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Payroll</h4>
+                <p>Run payroll in a few clicks and get payslips, HR policy, and form16.</p>
+                <a style="margin: 28px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'pay_dashboard' %}" role="button"><span
+                            class="fa fa-credit-card"></span> PAY ROLL</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/management.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>LMS</h4>
+                <p>Easily apply, manage, and keep track of your leave balances.</p>
+                 <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'dashboard' %}"  role="button"><span class="fa fa-calendar">
+                 </span> LMS</a>
+              </div>
+            </div>
+             <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/timesheet.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Timesheet</h4>
+                <p>Manage all your work from start to end. Customize your workflows.</p>
+                   <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href=" {% url 'chart' %} " role="button"><span class="fa fa-file-text-o">
+                 </span> Timesheet </a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/team.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Team</h4>
+                <p>Explore your team chart and Discover current team members.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'organization_chart' %}" role="button">
+                  <span class="fa fa-users"></span> My Team</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/personal-information.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Details</h4>
+                <p>Update your profile and keep the information up-to-date.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg"  href="{% url 'address' %}"  role="button">
+                  <span class="fa fa-info-circle"></span> My Details</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/support.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Help Desk</h4>
+                <p>Manage your support cases effectively with the help desk.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'help-desk' %}" role="button">
+                   <span class="fa fa-envelope"></span> Help Desk</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/training.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Training</h4>
+                <p>Enroll in the training courses and develop your strategic thinking.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'training' %}" role="button">
+                   <span class="fa fa-newspaper-o"></span> Training</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% if request.user.role == 'HR' %}
+  <div class="col-lg-12" id="main-con">
+       <h1 class="text-center">Welcome To Prowesstics Employee Login</h1>
+   </div>
+
+  <section class="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-service-item owl-carousel">
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/salary.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Payroll</h4>
+                <p>Run payroll in a few clicks and get payslips, HR policy, and form16.</p>
+                <a style="margin: 28px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'pay_dashboard' %}" role="button"><span
+                            class="fa fa-credit-card"></span> PAY ROLL</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/management.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>LMS</h4>
+                <p>Easily apply, manage, and keep track of your leave balances.</p>
+                 <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'dashboard' %}"  role="button"><span class="fa fa-calendar">
+                 </span> LMS</a>
+              </div>
+            </div>
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/timesheet.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Timesheet</h4>
+                <p>Manage all your work from start to end. Customize your workflows.</p>
+                   <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href=" {% url 'hr_timesheet_dashbord' %} " role="button"><span class="fa fa-file-text-o">
+                 </span> Timesheet </a>
+              </div>
+            </div>
+
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/team.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Team</h4>
+                <p>Explore your team chart and Discover current team members.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'organization_chart' %}" role="button">
+                  <span class="fa fa-users"></span> My Team</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/personal-information.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Details</h4>
+                <p>Update your profile and keep the information up-to-date.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg"  href="{% url 'address' %}"  role="button">
+                  <span class="fa fa-info-circle"></span> My Details</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/support.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Help Desk</h4>
+                <p>Manage your support cases effectively with the help desk.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'help-desk' %}" role="button">
+                   <span class="fa fa-envelope"></span> Help Desk</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/jobs.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Jobs</h4>
+                <p>To post and modify new jobs details with the help of jobs.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'new_jobs' %}" role="button">
+                   <span class="fa fa-briefcase"></span> Jobs</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endif %}
+{% if  request.user.role == 'ADMIN' or request.user.role == 'CEO'  %}
+  <div class="col-lg-12" id="main-con">
+       <h1 class="text-center">Welcome To Prowesstics Employee Login</h1>
+   </div>
+  <div  style="text-align: center" >
+        {% if notifications %}
+          <ul class="notifications">
+                {% for notification in notifications %}
+                  <li>
+                    <a href="#" onclick="openNotificationPopup('{{ notification.title }}', '{{ notification.description }}')">{{ notification.title }}</a>
+                    (until {{ notification.end_time|date:'F j, Y, g:i a' }})
+                  </li>
+                {% endfor %}
+          </ul>
+        {% endif %}
+
+      </div>
+
+  <section class="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-service-item owl-carousel">
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/salary.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Payroll</h4>
+                <p>Run payroll in a few clicks and get payslips, HR policy, and form16.</p>
+                <a style="margin: 28px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'pay_dashboard' %}" role="button"><span
+                            class="fa fa-credit-card"></span> PAY ROLL</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/team.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Team</h4>
+                <p>Explore your team chart and Discover current team members.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'organization_chart' %}" role="button">
+                  <span class="fa fa-users"></span> My Team</a>
+              </div>
+            </div>
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/management.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>LMS</h4>
+                <p>Easily apply, manage, and keep track of your leave balances.</p>
+                 <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg" href="{% url 'dashboard' %}"  role="button"><span class="fa fa-calendar">
+                 </span> LMS</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/personal-information.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>My Details</h4>
+                <p>Update your profile and keep the information up-to-date.</p>
+                <a style="margin: 27px 0px 16px 0px;" class="btn btn-primary btn-lg"  href="{% url 'address' %}"  role="button">
+                  <span class="fa fa-info-circle"></span> My Details</a>
+              </div>
+            </div>
+
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/support.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Help Desk</h4>
+                <p>Manage your support cases effectively with the help desk.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'help-desk' %}" role="button">
+                   <span class="fa fa-envelope"></span> Help Desk</a>
+              </div>
+            </div>
+            <div class="item" style="height: 350px;">
+              <div class="icon">
+                <img src="{% static 'emp_login/assets/images/training.png' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>Training</h4>
+                <p>Enroll in the training courses and develop your strategic thinking.</p>
+                 <a class="btn btn-primary btn-lg"  style="margin: 27px 0px 16px 0px;" href="{% url 'training' %}" role="button">
+                   <span class="fa fa-newspaper-o"></span> Training</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% block javascript %}
+ <script src="{% static 'emp_login/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'emp_login/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'emp_login/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'emp_login/assets/js/custom.js' %}"></script>
+    <script>
+      const marquee = document.querySelector('.notify-box-content');
+      const buttons = document.querySelectorAll('.notify-box-content button');
+      buttons.forEach((button) => {
+        button.addEventListener('mouseenter', () => {
+          marquee.stop();
+        });
+
+        button.addEventListener('mouseleave', () => {
+          marquee.start();
+        });
+      });
+    </script>
+  <script>
+    const notificationMsg = document.querySelector('.notification-ess');
+    if (sessionStorage.getItem('notificationClicked')) {
+      notificationMsg.classList.add('clicked');
+    }
+
+    notificationMsg.addEventListener('click', function() {
+      notificationMsg.classList.add('clicked');
+      sessionStorage.setItem('notificationClicked', true);
+    });
+  </script>
+  <script>
+    const notificationDataAttribute = document.querySelector('.notify-msg');
+    console.log("notificationDataAttribute", notificationDataAttribute)
+    const textAttribute = notificationDataAttribute.getAttribute('data-bs-target').replace(/\s+/g, '-');
+    console.log("textAttribute", textAttribute)
+    notificationDataAttribute.setAttribute('data-bs-target', textAttribute);
+
+    const notificationDataAttributeTwo = document.querySelector('.notify-modal-box');
+    const textAttributeTwo = notificationDataAttributeTwo.getAttribute('id').replace(/\s+/g, '-');
+    notificationDataAttributeTwo.setAttribute('id', textAttributeTwo);
+  </script>
+
+{% endblock %}
+</body>
+
+</html>
+

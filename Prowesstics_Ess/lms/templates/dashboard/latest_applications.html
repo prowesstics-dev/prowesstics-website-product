@@ -1,0 +1,532 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+
+<style>
+  h4{
+  font-weight: 800;
+  }
+    table thead {
+  background: #15192B;
+  }
+   #jn_lf td{
+    min-width: 160px;
+    white-space: normal;
+  }
+  @media only screen and (max-width: 600px) {
+  #jn_lf td{
+    min-width: 160px;
+    white-space: normal;
+  }
+}
+ @media (min-width: 481px) and (max-width: 767px) {
+             #jn_lf td{
+    min-width: 250px;
+    white-space: normal;
+  }
+ }
+.leave_details{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white !important;
+    background: #4680FF;
+    padding: 2px 13px;
+    font-size: 14px;
+    border-radius: 7px;
+ }
+  @media (min-width: 576px){
+.modal-dialog {
+    max-width: 850px !important;
+    margin: 30px auto;
+}
+}
+.modal-body {
+padding: 0px;
+}
+.widget-card-1 {
+    margin-top: 40px;
+    text-align: right;
+    height: 100px !important;
+}
+.view-btn{
+margin-top: -33px;
+float: left;
+}
+  @media only screen and (max-width: 600px) {
+  .view-btn{
+margin-top: -29px;
+float: left;
+}
+}
+</style>
+
+                           <div class="card">
+                                 <div class="container-fluid">
+                                       <div class="row">
+
+                                           <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                         <i class="icofont icofont-chart-pie bg-c-blue card1-icon"></i>
+                                                        <span  class="text-c-blue f-w-600">Total Leaves Applied</span>
+                                                        <h4>{{leave_applied}}</h4>
+                                                        <div class="view-btn" ><button class="leave_details">View</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-pie-alt bg-c-yellow card1-icon"></i>
+                                                        <span class="text-c-yellow f-w-600">Total LOP Days</span>
+                                                        <h4 >{{lop}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram bg-c-green card1-icon"></i>
+                                                        <span class="text-c-green f-w-600">Sick Leave Pending</span>
+                                                        <h4>{{sick_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram-alt bg-c-pink card1-icon"></i>
+                                                        <span class="text-c-pink f-w-600">Casual Leave Pending</span>
+                                                        <h4>{{casual_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                       </div>
+                                 </div>
+                               <!--table card start -->
+                                        <div class="card-header">
+                                            <h4 class="text-center">Latest Leave Applications</h4>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                {%if leave_application1%}
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            {%comment%}
+                                                            <th>NAME</th>
+                                                            {%endcomment%}
+                                                            <th>Leave Type</th>
+                                                            <th>Applied date</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {%for application in leave_application1%}
+                                                        <tr>
+                                                            {%comment%}
+                                                            <td>{{application.user.name}}</td>
+                                                            {%endcomment%}
+                                                            <td>{{application.category}}</td>
+                                                            <td>{{application.date}}</td>
+                                                            <td>
+                                                                {%if application.admin_level_approval == True %}
+                                                                Approved
+                                                                {% elif application.admin_level_approval == False%}
+                                                                Rejected
+                                                                {%else%}
+                                                                Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <a href="/profile/leave_details/?id={{application.id}}">
+                                                                    <span>View</span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {%endfor%}
+                                                    </tbody>
+                                                </table>
+                                                    {%else%}
+                                                    <h4 class="text-center">
+                                                        NO DATA
+                                                    </h4>
+                                                    {%endif%}
+                                            </div>
+                                        </div>
+                                    <!--table card end -->
+<!--                               {% if leave_application1.has_other_pages %}-->
+<!--                               <nav aria-label="Page navigation example" class="p-2">-->
+<!--                                 <ul class="pagination justify-content-center">-->
+<!--                                     {% if leave_application1.has_previous %}-->
+<!--                                     <li class="page-item">-->
+<!--                                         <a class="page-link" href="?page={{ leave_application1.previous_page_number }}" tabindex="-1">Previous</a>-->
+<!--                                     </li>-->
+<!--                                     {% else %}-->
+<!--                                     <li class="page-item disabled">-->
+<!--                                         <a class="page-link" tabindex="-1">Previous</a>-->
+<!--                                     </li>-->
+<!--                                     {% endif %}-->
+<!--                                     {% for i in leave_application1.paginator.page_range %}-->
+<!--                                     {% if leave_application1.number == i %}-->
+<!--                                     <li class="page-item active">-->
+<!--                                         <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>-->
+<!--                                     </li>-->
+<!--                                     {% else %}-->
+<!--                                     <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>-->
+<!--                                     {% endif %}-->
+<!--                                     {% endfor %}-->
+<!--                                     {% if users.has_next %}-->
+<!--                                     <li class="page-item">-->
+<!--                                         <a class="page-link" href="?page={{ leave_application1.next_page_number }}">Next</a>-->
+<!--                                     </li>-->
+<!--                                     {% else %}-->
+<!--                                      <li class="page-item disabled">-->
+<!--                                         <a class="page-link">Next</a>-->
+<!--                                     </li>-->
+<!--                                     {% endif %}-->
+<!--                                 </ul>-->
+<!--                               </nav>-->
+<!--                               {% endif %}-->
+<nav aria-label="Page navigation example">
+    {% if leave_application1.has_other_pages %}
+        <ul class="pagination justify-content-center">
+        {% if leave_application1.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ leave_application1.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+          </li>
+        {% endif %}
+
+        {% if leave_application1.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page={{ leave_application1.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in leave_application1.paginator.page_range %}
+            {% if leave_application1.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > leave_application1.number|add:'-4' and i < leave_application1.number|add:'4' %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if leave_application1.paginator.num_pages > leave_application1.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page={{ leave_application1.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if leave_application1.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ leave_application1.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+     {% endif %}
+    </nav>
+                               <!--table card start -->
+                                        <div class="card-header">
+                                            <h4 class="text-center">Latest Applications - For Approval</h4>
+                                        </div>
+
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                {%if leave_application%}
+                                                <table class="table" id="myTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>NAME</th>
+                                                            <th>Leave Type</th>
+                                                            <th>Applied date</th>
+                                                            {% if role == 'MANAGER' or role == 'HR' %}
+                                                            <th>MANAGER Status</th>
+                                                            {%endif%}
+                                                            {% if role == 'MANAGER' or role == 'HR' %}
+                                                            <th>HR Status</th>
+                                                            {%else%}
+                                                            <th>Status</th>
+                                                            {%endif%}
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {%for app in leave_application%}
+                                                        <tr>
+                                                            <td>{{app.user.name}}</td>
+                                                            <td>{{app.category}}</td>
+                                                            <td>{{app.date}}</td>
+                                                            {% if role == 'MANAGER' or role == 'HR' %}
+                                                            <td>
+                                                                {%if app.manager_level_approval == True %}
+                                                                Approved
+                                                                {% elif app.manager_level_approval == False%}
+                                                                Rejected
+                                                                {%else%}
+                                                                Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            {%endif%}
+                                                            <td>
+                                                               {%if app.hr_level_approval == True %}
+                                                                Approved
+                                                                {% elif app.hr_level_approval == False%}
+                                                                Rejected
+											                    {%else%}
+											                    Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <a href="/profile/leave_details/?id={{app.id}}">
+                                                                    <span>View</span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {%endfor%}
+                                                    </tbody>
+                                                </table>
+                                                {%else%}
+                                                 <h4 class="text-center"> NO DATA</h4>
+                                                {%endif%}
+                                            </div>
+                                        </div>
+
+     <!--Pagination-->
+<!--    <nav aria-label="Page navigation example">-->
+<!--        <ul class="pagination justify-content-center">-->
+<!--        {% if leave_application.has_previous %}-->
+<!--            <li class="page-item">-->
+<!--            <a class="page-link" href="?page_l={{ leave_application.previous_page_number }}">Previous</a>-->
+<!--          </li>-->
+<!--        {% else %}-->
+<!--            <li class="page-item disabled">-->
+<!--            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>-->
+<!--          </li>-->
+<!--        {% endif %}-->
+
+<!--        {% if leave_application.number|add:'-4' > 1 %}-->
+<!--            <li class="page-item"><a class="page-link" href="?page_l={{ leave_application.number|add:'-5' }}">&hellip;</a></li>-->
+<!--        {% endif %}-->
+
+<!--        {% for i in leave_application.paginator.page_range %}-->
+<!--            {% if leave_application.number == i %}-->
+<!--                <li class="page-item active" aria-current="page">-->
+<!--              <span class="page-link">-->
+<!--                {{ i }}-->
+<!--                <span class="sr-only">(current)</span>-->
+<!--              </span>-->
+<!--            </li>-->
+<!--            {% elif i > leave_application.number|add:'-4' and i < leave_application.number|add:'4' %}-->
+<!--                 <li class="page-item"><a class="page-link" href="?page_l={{ i }}">{{ i }}</a></li>-->
+<!--            {% endif %}-->
+<!--        {% endfor %}-->
+
+<!--        {% if leave_application.paginator.num_pages > leave_application.number|add:'4' %}-->
+<!--           <li class="page-item"><a class="page-link" href="?page_l={{ leave_application.number|add:'5' }}">&hellip;</a></li>-->
+<!--        {% endif %}-->
+
+<!--        {% if leave_application.has_next %}-->
+<!--            <li class="page-item">-->
+<!--            <a class="page-link" href="?page_l={{ leave_application.next_page_number }}">Next</a>-->
+<!--          </li>-->
+<!--        {% else %}-->
+<!--            <li class="page-item disabled">-->
+<!--            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>-->
+<!--          </li>-->
+<!--        {% endif %}-->
+<!--      </ul>-->
+<!--    </nav>-->
+    <!--end of Pagination-->
+                               <nav aria-label="Page navigation example">
+    {% if leave_application.has_other_pages %}
+        <ul class="pagination justify-content-center">
+        {% if leave_application.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page_l={{ leave_application.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+          </li>
+        {% endif %}
+
+        {% if leave_application.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page_l={{ leave_application.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in leave_application.paginator.page_range %}
+            {% if leave_application.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > leave_application.number|add:'-4' and i < leave_application.number|add:'4' %}
+                 <li class="page-item"><a class="page-link" href="?page_l={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if leave_application.paginator.num_pages > leave_application.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page_l={{ leave_application.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if leave_application1p.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page_l={{ leave_application.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+     {% endif %}
+    </nav>
+
+                           </div>
+
+<div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="/*padding-top: 200px; padding-left: 100px*/ ">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="font-size: 0.87rem !important;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="color:  #464646;">Leave Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: white; color: #3f3939;">
+                        <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+
+                                <th>Type</th>
+                                <th>No of Days</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                  <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody id="jn_lf">
+                            </tbody>
+                        </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer" style="background-color: white; color: white">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+
+$(document).ready(function ()
+{
+
+       $('body').on('click', '.leave_details', function(event) {
+           var value = $(this).text().trim()
+           var ids = '{{user}}'
+           var id = ids.trim()
+           console.log(id)
+
+                if (value ==='0'){
+                     console.log(value ==='0')
+                }
+                 else
+                 {$("#myModal").modal();
+                $("#jn_lf").empty();
+
+                    var holiday_ = {{holiday | safe}}
+
+                    for (var i = 0; i < holiday_.length; i++) {
+
+                        if (id === holiday_[i].user_) {
+
+                           var ele = "<tr> <td>" + holiday_[i].type_ + "</td><td>" + holiday_[i].days_ + "</td><td>" + holiday_[i].start_date + "</td><td>" + holiday_[i].end_date + "</td><td>" + holiday_[i].description_ + "</td></tr>"
+
+                            $('#jn_lf').append(ele)
+                        }
+                    }}
+
+       })
+            });
+    $(function() {
+        $('#myModal').draggable({
+            handle: ".modal-header"
+        });
+    });
+</script>
+<script>
+window.onload = function () {
+  const table = document.querySelector('#myTable');
+  console.dir(table)
+
+  const thList = table.querySelectorAll('th');
+
+  thList.forEach((th) => {
+
+    th.addEventListener('click', () => {
+
+      const order = th.classList.contains('asc') ? 'desc' : 'asc';
+      const columnIdx = th.cellIndex;
+      const isNumeric = [...table.querySelectorAll('tbody tr')].every((tr) => !isNaN(tr.children[columnIdx].textContent));
+
+      const sortedRows = [...table.querySelectorAll('tbody tr')].sort((tr1, tr2 ) => {
+        const val1 = tr1.children[columnIdx].textContent;
+        const val2 = tr2.children[columnIdx].textContent;
+
+        return isNumeric ? val1 - val2 : val1.localeCompare(val2);
+      });
+
+      if (order === 'desc') {
+        sortedRows.reverse();
+        th.classList.add('desc');
+        th.classList.remove('asc');
+      } else {
+        th.classList.add('asc');
+        th.classList.remove('desc');
+      }
+
+      sortedRows.forEach((row) => {
+        table.querySelector('tbody').appendChild(row);
+      });
+    });
+  });
+};
+
+    </script>
+
+</script>
+
+
+    {% endblock %}

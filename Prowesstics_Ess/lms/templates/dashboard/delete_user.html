@@ -1,0 +1,230 @@
+
+{% extends '_layout.html' %}
+{% block stylesheet %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+
+    <link rel="icon" href="Favicon.png">
+
+    <title>Laravel</title>
+</head>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$('input[name="all"],input[name="title"]').bind('click', function(){
+var status = $(this).is(':checked');
+$('input[type="checkbox"]', $(this).parent('li')).attr('checked', status);
+});
+
+});
+</script>
+{% endblock %}
+<!--CONTENTS-->
+{% block content %}
+<style>
+
+</style>
+
+<script type="text/javascript">
+    function close_form()
+    {
+        document.getElementById('id01').style.display='none';
+        document.getElementById('form').style.display='none';
+    }
+</script>
+<script type="text/javascript">
+    function show()
+    {
+        document.getElementById('id01').style.display='block';
+        document.getElementById('form').style.display='block';
+    }
+</script>
+
+<style>
+  .btn-style{
+  background: #15192B !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 7px 25px !important;
+  cursor: pointer;
+  }
+   h4{
+  font-weight: 800;
+  }
+  .card-header{
+  padding: 15px !important;
+  }
+  .modal-header{
+   padding: 15px !important;
+   background: #15192B !important;
+   color: white !important;
+   }
+   table thead {
+  padding: 15px !important;
+  background: #15192B !important;
+  }
+  .card-footer{
+  background: none !important;
+  border: none !important;
+  }
+  spanc{
+  color: white !important;
+  }
+  .modal p{
+  font-size: 17px;
+  }
+  @media (min-width: 576px){
+  .modal-dialog {
+   max-width: 500px;
+   margin: 133px auto !important;
+ }
+ }
+</style>
+
+                               <!--table card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="text-center">Delete User</h4></div>
+                                        <div class="card-block table-border-style">
+                                            {% if users%}
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Employee Name</th>
+                                                            <th>E-Mail Address</th>
+                                                            <th>Role</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <form action="{% url 'delete_user' %}" method="POST">
+                                                        {% csrf_token %}
+                                                    <tbody>
+                                                    {% for user in users %}
+                                                        <tr>
+                                                            <th>{{user.id}}</th>
+                                                            <td>{{user.name}}</td>
+                                                            <td>{{user.email}}</td>
+                                                            <td>
+                                                                {%if user.role == '0'%}
+                                                                HR
+                                                                {%elif user.role == '1'%}
+                                                                MANAGER
+                                                                {%else%}
+                                                                EMPLOYEE
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="id" value="{{user.id}}" id="id" onclick="document.getElementById('delete-btn').disabled = false;">
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                             {%else%}
+						                     <h4> NO USERS FOUND </h4>
+                                             {% endif %}
+                                        </div>
+
+                                         <div class="card-footer col-md-12 text-center ">
+                                             <button onclick="show();" class="btn btn-style" title="Del Product"
+                                              type="button" id="delete-btn" disabled>
+					                              	Delete
+                                             </button>
+
+                                             <div id="id01" class="modal" tabindex="-1" role="dialog">
+                                              <div class="modal-dialog" role="document">
+                                               <div class="modal-content">
+                                                 <div class="modal-header">
+                                                   <h5 class="modal-title text-center">Delete User</h5>
+                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                     <spanc onclick="close_form();" aria-hidden="true">&times;</spanc>
+                                                   </button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <p>Are you sure you want to delete?</p>
+                                                 </div>
+                                                 <div class="modal-footer clearfix">
+                                                   <button type="button" onclick="close_form();" class="cancelbtn btn-style">Cancel</button>
+                                                   <button type="submit" class="deletebtn btn-style">Delete</button>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                           </div>
+                                         </div>
+                                   </form>
+                                        <nav aria-label="Page navigation example">
+    {% if users.has_other_pages %}
+        <ul class="pagination justify-content-center">
+        {% if users.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ users.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+          </li>
+        {% endif %}
+
+        {% if users.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page={{ users.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in users.paginator.page_range %}
+            {% if users.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > users.number|add:'-4' and i < users.number|add:'4' %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if leave_application1.paginator.num_pages > leave_application1.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page={{ users.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if leave_application1.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ users.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+     {% endif %}
+    </nav>
+                                    </div>
+
+                                    <!--table card end -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+alert("Hoii");
+if ($('#id').prop("checked"))
+{
+	alert("Hoii");
+
+}
+}
+</script>
+      
+{% endblock %}

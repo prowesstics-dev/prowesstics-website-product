@@ -1,0 +1,355 @@
+{% load static %}
+
+{% load humanize %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Dashboard - Prowesstics | {% block title %} {{ title }} {% endblock %}</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="Sidebar">
+      <meta name="keywords" content=" ">
+      <meta name="author" content="Prowesstics admin">
+      <!-- Favicon icon -->
+      <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/bootstrap/css/bootstrap.min.css' %}">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/icon/themify-icons/themify-icons.css' %}">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/icon/icofont/css/icofont.css' %}">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'new_dashboard/css/jquery.mCustomScrollbar.css' %}">
+
+</head>
+<body>
+
+<style>
+   @media only screen and (max-width: 990px) {
+   #mobile-collapse {
+    display: block !important;
+  }
+}
+  @media only screen and (max-width: 990px) {
+   .user-profile {
+    background: #15192B !important;
+  }
+}
+    #mobile-collapse {
+    display: none;
+  }
+</style>
+
+
+<!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <a class="mobile-menu visible-xs" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+<!--                        <a class="mobile-search morphsearch-search" href="#">-->
+<!--                            <i class="ti-search"></i>-->
+<!--                        </a>-->
+                        <a href="/">
+                            <img class="img-fluid new-logo" style="max-width: 80% !important;" width="200px" src="{% static 'new_dashboard/images/auth/prowesstics_org.png' %}" alt="Prowesstics-Logo" />
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <a>
+                                    {% if request.user.profile_pic %}
+                                      <img style="max-width: 210px;border-radius: 20px !important;" class="rounded img-responsive center-block" src="{{ request.user.profile_pic.url }}">
+                                    {% else %}
+                                    <img src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x"class="img-radius" style="border-radius: 20px;" alt="User-Profile-Image">
+                                    {% endif %}
+                                    <span>{{ request.user}}</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification" style="font-size: 14px;">
+                                    {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'user_logout' %}"><i class="ti-layout-sidebar-left"></i>Logout</a></li>
+                                {% else %}
+                                <li><a href=""><i class="ti-arrow-circle-right"></i>Login</a></li>
+                                {% endif %}
+<!--                                <li><a href="{% url 'change_password' %}"><i class="ti-key"></i>Change Password</a></li>-->
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                            <a href="#"><i class="ti-user"></i>View Profile</a>
+                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
+                                            <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation"></div>
+                            <ul id="NavTabs" class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="{% url 'dashboard' %}">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    {%if  role == 'EMPLOYEE' or role == 'MANAGER' or role == 'INTERN'  %}
+                                    <a href="{% url 'my_profile' %}">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">My Profile</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                {%if role == 'ADMIN'%}
+                                <li >
+                                    <a href="{% url 'create_user' %}">
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Create User</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{% url 'modified_user' %}">
+                                        <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Modify User</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{% url 'delete_user' %}">
+                                        <span class="pcoded-micon"><i class="ti-trash"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Delete User</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                
+                                {% endif %}
+				{%if role != 'ADMIN' and role != 'CEO'%}
+                                <li>
+                                    <a href="{% url 'apply_leave' %}">
+                                        <span class="pcoded-micon"><i class="ti-briefcase"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Leave Request</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                {%if role != 'HR'%}
+                                <li >
+                                    <a href="{% url 'compensation' %}">
+                                        <span class="pcoded-micon"><i class="ti-envelope"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Compensation Request</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                {%endif%}
+				{%if role == 'HR'%}
+                                <li>
+                                    <a href="{% url 'leave_history' %}">
+                                        <span class="pcoded-micon"><i class="ti-comment-alt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Leave History</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{% url 'rejected_applications' %}">
+                                        <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Rejected Applications</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                {%endif%}
+                                <li>
+                                    <a href="{% url 'redeem' %}">
+                                        <span class="pcoded-micon"><i class="ti-gift"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Redeem Request</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                {% endif %}
+				{%if role == 'CEO'%}
+                                <li >
+                                    <a href="{% url 'hr_leave_request' %}">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Leave Applications</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                {%endif%}
+                                
+                                <li >
+                                    <a href="{% url 'holiday_calender' %}">
+                                        <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Holiday Calender</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'leave_policy' %}">
+                                        <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Leave Policy</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user_login' %}">
+                                        <span class="pcoded-micon"><i class="ti-bookmark-alt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Employee self service</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        {% block content %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">-->
+<!--    </script>-->
+<!--<script>-->
+<!--        $(function () {-->
+<!--            $("li").click(function (e) {-->
+<!--                e.preventDefault();-->
+<!--                $("li").removeClass("active");-->
+<!--                $(this).addClass("active");-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery-ui/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/popper.js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{% static 'new_dashboard/js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="{% static 'new_dashboard/js/modernizr/modernizr.js' %}"></script>
+<!-- am chart -->
+<script src="{% static 'new_dashboard/pages/widget/amchart/amcharts.min.js' %}"></script>
+<script src="{% static 'new_dashboard/pages/widget/amchart/serial.min.js' %}"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="{% static 'new_dashboard/pages/todo/todo.js' %}"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="{% static 'new_dashboard/pages/dashboard/custom-dashboard.js' %}"></script>
+<script type="text/javascript" src="{% static 'new_dashboard/js/script.js' %}"></script>
+<script type="text/javascript " src="{% static 'new_dashboard/js/SmoothScroll.js' %}"></script>
+<script src="{% static 'new_dashboard/js/pcoded.min.js' %}"></script>
+<script src="{% static 'new_dashboard/js/demo-12.js' %}"></script>
+<script src="{% static 'new_dashboard/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+<script>
+    $( document ).ready(function() {
+         var currentUrl = "{{ request.path_info }}"
+         var tab = document.getElementById("NavTabs");
+         console.log(tab)
+         //console.log("tab", [tab])
+         //tab.children[2].classList.add("dummy");
+         Array.from(tab.children).forEach(liTag => {
+            console.log("liTag", liTag.innerHTML)
+            if (liTag.innerHTML.includes(currentUrl)){
+                liTag.classList.add("active")
+            }else{
+                liTag.classList.remove("active")
+            }
+         })
+    });
+</script>
+  {% load sweetify %}
+{% sweetify %}
+</body>
+
+</html>

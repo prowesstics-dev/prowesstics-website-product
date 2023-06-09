@@ -1,0 +1,293 @@
+{% extends 'payroll/base.html' %}
+{% block stylesheet %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+var yearsLength = 30;
+var currentYear = new Date().getFullYear();
+for(var i = 0; i < 30; i++){
+var next = currentYear+1;
+var year = currentYear + '-' + next.toString().slice(-2);
+$('#financialYear').append(new Option(year, year));
+currentYear--;
+}
+
+{% endblock %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+
+$(document).ready(function() {
+    $('body').on('click', '#form_upload', function() {
+        var emp_id = $(this).parents('tr').find("td:eq(1)").text();
+        {#alert(emp_id)#}
+        $('#emp_id').val(emp_id)
+    });
+});
+</script>
+
+<style>
+  h3{
+  font-weight: 800;
+  }
+    table thead {
+  background: #15192B;
+  }
+  .col-form-label{
+  text-align: end;
+  font-size: 16px;
+  }
+  .form-control{
+  max-width: 200px;
+  }
+  @media only screen and (max-width: 670px) {
+    .col-form-label{
+  text-align: center !important;
+  }
+  .form-control{
+  max-width: 100%;
+  }
+}
+
+</style>
+
+
+   <!--card start -->
+                                                <div class="card">
+                                                    <div class="text-center p-3">
+                                                    <h3>Form 16 Updation</h3>
+                                                    </div>
+                                                    <div class="card-header">
+                                                        <form>
+                                                                <div class="form-group row text-center">
+                                                                    <label class="col-sm-6 col-md-6 col-lg-5 col-form-label font-weight-bold">Search</label>
+                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                        <input type="text" id="tableSearch" placeholder="Search.."class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                    <!--table card start -->
+
+                                        <div class="card-block table-border-style p-3">
+                                            <div class="table-responsive" id="tableData">
+                                                <table id="example" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Employee No</th>
+                                                            <th>Designation</th>
+                                                            <th>Current CTC</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="myTable">
+                                                    {% for i in user %}
+                                                        <tr>
+                                                            <td>{{ i.email }}</td>
+                                                            <td>{{ i.emp }}</td>
+                                                            <td>{{i.designation }}</td>
+                                                            <td>{{ i.ctc }}</td>
+                                                            <td>
+                                                                <a type="button" style="background: #15192B;" class="btn btn-danger " href="" data-toggle="modal" data-target="#exampleModal" role="button" id="form_upload">Upload</a>
+
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                                    <!--table card end -->
+                                                     <div>
+                                {% if user.has_other_pages %}
+                                <nav aria-label="Page navigation example">
+      <ul class="pagination" style="margin-left: 18px; text-align: center">
+        {% if user.has_previous %}
+          <li><a href="?page={{ user.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in user.paginator.page_range %}
+          {% if user.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if user.has_next %}
+          <li><a href="?page={{ user.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+                                    {% endif %} </nav></div>
+                                                </div>
+
+
+                                    <!--card end -->
+
+
+
+
+
+<div class="content">
+ <!--   <div>
+    <button style="float:right">Download PDF </button>
+</div>-->
+    <div class="container-fluid" style="margin: 15px 68px 10px 41px;">
+
+
+	<div class="card">
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0 text-center">
+        <h5 class="modal-title font-weight-bold" style="margin: 0 auto;" id="exampleModalLabel ">Upload Form 16</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'form16_update' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="modal-body">
+            <div class="form-group text-center">
+                <label>Year</label>
+               <select name='year' class="form-control" style="margin: 0 auto;">
+                    <option value="">Select Year</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+          </div>
+          <div class="form-group text-center">
+            <label for="email1">Form 16 </label>
+            <input style="margin: 0 auto;" type="file" class="form-control" name="form16"  placeholder="Upload Form">
+          </div>
+            <div class="form-group" hidden>
+                <input style="margin: 0 auto;" type="number" class="form-control" name="emp_id" id="emp_id" value="">
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button style="background: #15192B;color: white !important;" type="submit" class="btn btn-danger">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+	</div>
+
+                        </div>
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+
+$(document).ready(function(){
+  $("#tableSearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<!--<script>-->
+<!--(function($) {-->
+<!--    $(function() {-->
+<!--        $.widget("zpd.paging", {-->
+<!--            options: {-->
+<!--                limit: 5,-->
+<!--                rowDisplayStyle: 'block',-->
+<!--                activePage: 0,-->
+<!--                rows: []-->
+<!--            },-->
+<!--            _create: function() {-->
+<!--                var rows = $("tbody", this.element).children();-->
+<!--                this.options.rows = rows;-->
+<!--                this.options.rowDisplayStyle = rows.css('display');-->
+<!--                var nav = this._getNavBar();-->
+<!--                this.element.after(nav);-->
+<!--                this.showPage(0);-->
+<!--            },-->
+<!--            _getNavBar: function() {-->
+<!--                var rows = this.options.rows;-->
+<!--                var nav = $('<div>', {class: 'paging-nav'});-->
+<!--                for (var i = 0; i < Math.ceil(rows.length / this.options.limit); i++) {-->
+<!--                    this._on($('<a>', {-->
+<!--                        href: '#',-->
+<!--                        text: (i + 1),-->
+<!--                        "data-page": (i)-->
+<!--                    }).appendTo(nav),-->
+<!--                            {click: "pageClickHandler"});-->
+<!--                }-->
+<!--                //create previous link-->
+<!--                this._on($('<a>', {-->
+<!--                    href: '#',-->
+<!--                    text: '<<',-->
+<!--                    "data-direction": -1-->
+<!--                }).prependTo(nav),-->
+<!--                        {click: "pageStepHandler"});-->
+<!--                //create next link-->
+<!--                this._on($('<a>', {-->
+<!--                    href: '#',-->
+<!--                    text: '>>',-->
+<!--                    "data-direction": +1-->
+<!--                }).appendTo(nav),-->
+<!--                        {click: "pageStepHandler"});-->
+<!--                return nav;-->
+<!--            },-->
+<!--            showPage: function(pageNum) {-->
+<!--                var num = pageNum * 1; //it has to be numeric-->
+<!--                this.options.activePage = num;-->
+<!--                var rows = this.options.rows;-->
+<!--                var limit = this.options.limit;-->
+<!--                for (var i = 0; i < rows.length; i++) {-->
+<!--                    if (i >= limit * num && i < limit * (num + 1)) {-->
+<!--                        $(rows[i]).css('display', this.options.rowDisplayStyle);-->
+<!--                    } else {-->
+<!--                        $(rows[i]).css('display', 'none');-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            pageClickHandler: function(event) {-->
+<!--                event.preventDefault();-->
+<!--                $(event.target).siblings().attr('class', "");-->
+<!--                $(event.target).attr('class', "selected-page");-->
+<!--                var pageNum = $(event.target).attr('data-page');-->
+<!--                this.showPage(pageNum);-->
+<!--            },-->
+<!--            pageStepHandler: function(event) {-->
+<!--                event.preventDefault();-->
+<!--                //get the direction and ensure it's numeric-->
+<!--                var dir = $(event.target).attr('data-direction') * 1;-->
+<!--                var pageNum = this.options.activePage + dir;-->
+<!--                //if we're in limit, trigger the requested pages link-->
+<!--                if (pageNum >= 0 && pageNum < this.options.rows.length) {-->
+<!--                    $("a[data-page=" + pageNum + "]", $(event.target).parent()).click();-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--})(jQuery);-->
+
+
+
+
+
+<!--</script>-->
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#tableData').paging({limit:5});
+            });
+
+</script>
+
+
+			{% endblock %}

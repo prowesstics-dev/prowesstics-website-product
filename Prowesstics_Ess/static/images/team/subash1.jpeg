@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)https://picresize.com/en/edit -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" type="text/javascript" src="./subash1_files/v2"></script><script async="" type="text/javascript" src="./subash1_files/v2(1)"></script><script src="./subash1_files/amp4ads-host-v0.js"></script><script src="./subash1_files/osd.js"></script><script async="" type="text/javascript" src="./subash1_files/v2(2)"></script><script async="" type="text/javascript" src="./subash1_files/v2(3)"></script><script src="./subash1_files/pubads_impl_rendering_2019102401.js"></script><script async="" type="text/javascript" src="./subash1_files/sic.js"></script><script async="" type="text/javascript" src="./subash1_files/cyEo1M344r5iTYacwqm_6r.js"></script><script src="./subash1_files/ti.js"></script><script async="" src="./subash1_files/apstag.js"></script><script type="text/javascript" async="" src="./subash1_files/jpt"></script><script type="text/javascript" async="" src="./subash1_files/jpt(1)"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="The original FREE picture resize and crop tool since 2005! Resize, crop, compress, add effects to your images, photos, and screenshots for free!">
+<meta name="keywords" content="picture resize, online image resizer, free image resizer, crop picture, resize pictures, resize photos, reduce photo size, reduce picture size">
+<title>PicResize - Crop, Resize, Edit images online for free!</title>
+<link rel="stylesheet" href="./subash1_files/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+<link rel="stylesheet" href="./subash1_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script type="text/javascript" async="" src="./subash1_files/analytics.js"></script><script src="./subash1_files/local.js"></script>
+<link href="./subash1_files/mdb.min.css" rel="stylesheet">
+<link href="./subash1_files/mdb-file-upload.min.css" rel="stylesheet">
+<link href="./subash1_files/style.min.css" rel="stylesheet">
+<link href="./subash1_files/carbon.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./subash1_files/imgareaselect-animated.css">
+<link rel="stylesheet" href="./subash1_files/jquery.minicolors.css">
+<link rel="shortcut icon" href="https://picresize.com/favicon.ico?v=2">
+<link rel="canonical" href="https://picresize.com/en/edit">
+<meta property="og:site_name" content="PicResize - Crop, Resize, Edit images online for free!">
+<meta property="og:title" content="PicResize - Crop, Resize, Edit images online for free!">
+<meta property="og:description" content="The original FREE picture resize and crop tool since 2005! Resize, crop, compress, add effects to your images, photos, and screenshots for free!">
+<meta property="og:image" content="https://www.picresize.com/img/picresize-graph.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://picresize.com/en/edit">
+<script async="" src="./subash1_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-781133-1');
+</script>
+<script async="async" src="./subash1_files/gpt.js"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/3092934/picresize_sitewide_atf_728x90', [[728, 90], [970, 90], [468, 60]], 'div-gpt-ad-1559967090531-0').addService(googletag.pubads());
+    googletag.defineSlot('/3092934/picresize_sitewide_btf_728x90', [[728, 90], [970, 90], [468, 60]], 'div-gpt-ad-1559967153831-0').addService(googletag.pubads());
+
+    
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().disableInitialLoad();
+    googletag.enableServices();
+  });
+</script>
+<script src="./subash1_files/merge.152220.js"></script><iframe src="./subash1_files/index(2).html" marginheight="0" marginwidth="0" scrolling="no" style="display: none; border: 0px;" width="0px" height="0px"></iframe>
+<script>
+var crop_selection;
+var crop_started = false;
+var orig_width = 640;
+var orig_height = 1280;
+var cropped_width = 640;
+var cropped_height = 1280;
+</script>
+<link rel="preload" href="./subash1_files/f(6).txt" as="script"><script type="text/javascript" src="./subash1_files/f(6).txt"></script><link rel="preload" href="./subash1_files/f(7).txt" as="script"><script type="text/javascript" src="./subash1_files/f(7).txt"></script><script src="./subash1_files/pubads_impl_2019102401.js" async=""></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><link type="text/css" rel="stylesheet" href="./subash1_files/sic.css"><script async="" type="text/javascript" src="./subash1_files/authorize"></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-36/html/container.html"></head>
+<body style=""><iframe frameborder="0" id="tynt-ox-iframe-12" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource.html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-11" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(1).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-10" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(2).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-9" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(3).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-8" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(4).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-7" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(5).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-6" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(6).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-5" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(7).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-4" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(8).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-3" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(9).html"></iframe><div style="display:inline-block;position:absolute; margin:-10px; left:0; top:0" tynt-data="no-content" class="tynt-ad-fence tynt-ad-fence-startpos-left tynt-ad-media-banner">
+  <div id="tynt-ad-aezi5fkn" class="tynt-ad-container" hs-name="tallboy-rising-star" style="display:inline-block;padding:10px">
+    <div class="inview-level-0 tynt-tallboy">
+  <div class="inview-level-1" style="width: 300px; height: 250px; left: 0px; bottom: 0px;">
+    <div class="inview-level-2">
+      <div class="tynt-close-btn-container">
+        <div class="tynt-close-btn" hs-name="Close Button">
+           × Close Ad 
+        </div>
+      </div>      <div class="tynt-ad-frame-container"><iframe frameborder="0" class="tynt-ad-frame" scrolling="no" style="width: 300px; height: 250px;" src="./subash1_files/saved_resource(10).html"></iframe></div>
+    </div>
+  </div>
+</div>
+  </div>
+</div><iframe frameborder="0" id="tynt-ox-iframe-2" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(11).html"></iframe><iframe frameborder="0" id="tynt-ox-iframe-1" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(12).html"></iframe><iframe frameborder="0" id="tynt-apn-ast-container" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(13).html"></iframe><iframe frameborder="0" id="tynt-gpt-iframe-1" style="position: absolute; visibility: hidden; width: 1px; height: 1px;" src="./subash1_files/saved_resource(14).html"></iframe>
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark stylish-color scrolling-navbar top-nav-collapse">
+<a class="navbar-brand" href="https://picresize.com/"><img src="./subash1_files/picresize-emblem.png" alt="PicResize Logo" style="width:40px;"> <strong>PicResize</strong></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item active">
+<a class="nav-link waves-effect waves-light" href="https://picresize.com/">Edit Picture <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link waves-effect waves-light" href="https://picresize.com/en/batch">Batch Resize</a>
+</li>
+<li class="nav-item">
+<a class="nav-link waves-effect waves-light" href="https://picresize.com/en/about">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link waves-effect waves-light" href="https://picresize.com/en/help">Help</a>
+</li>
+</ul>
+<ul class="navbar-nav">
+<li class="nav-item dropdown active">
+<a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="https://picresize.com/en/edit#"><i class="fal fa-globe"></i> Language: English </a>
+<ul class="dropdown-menu dropdown-menu-right multi-column" style="min-width: 400px">
+<div class="row">
+<div class="col-sm-6">
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/en"><i class="fas fa-check"></i> English</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/ar">Arabic (ةيبرعلا)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/bn">Bengali (বাংলা)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/cn">Chinese (英文)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/nl">Dutch</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/tl">Filipino (Tagalog)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/fr">French (Français)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/fi">Finnish</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/de">German (Deutsche)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/hi">Hindi (हिंदी)</a>
+</div>
+<div class="col-sm-6">
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/id">Indonesian</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/it">Italian (Italiano)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/ja">Japanese (日本語)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/kr">Korean (한국어)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/pl">Polish (Polski)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/pt">Portuguese</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/ru">Russian (Русский)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/es">Spanish (Español)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/th">Thai (ไทย)</a>
+<a class="dropdown-item waves-effect waves-light" href="https://picresize.com/vi">Vietnamese (Tiếng Việt)</a>
+</div>
+</div>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link waves-effect waves-light" href="https://facebook.com/picresize" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<main>
+<div class="container">
+<div class="row mt-5 pt-5">
+<div class="col text-center">
+<div id="carbon-block"></div>
+<script>
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors'})).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CE7DT53I&placement=picresizecom";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+</script>
+<!-- /3092934/picresize_sitewide_atf_728x90 -->
+<div id="div-gpt-ad-1559967090531-0" data-google-query-id="CMCjn7On0-UCFT0UtwAdGucKOw">
+
+<div id="google_ads_iframe_/3092934/picresize_sitewide_atf_728x90_0__container__" style="border: 0pt none; display: inline-block; width: 728px; height: 90px;"><iframe frameborder="0" src="./subash1_files/container.html" id="google_ads_iframe_/3092934/picresize_sitewide_atf_728x90_0" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="728" height="90" data-is-safeframe="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-google-container-id="1" style="border: 0px; vertical-align: bottom;" data-load-complete="true"></iframe></div></div>
+</div>
+</div> <!-- end row -->
+<div class="row">
+<div class="col">
+<div class="text-center text-sm-left"><a href="https://picresize.com/"><img src="./subash1_files/picresize_logo_registered.png" alt="PicResize Logo"></a></div>
+<div class="jumbotron" style="padding: 2rem;margin-bottom:.5rem;">
+<script src="./subash1_files/select.js"></script>
+<script src="./subash1_files/JsHttpRequest.js"></script>
+<!-- common-resize -->
+<form class="common-resize" enctype="multipart/form-data" method="post" action="https://picresize.com/en/results" name="resize_form" id="resize_form">
+<fieldset class="step-0">
+<h2>Crop and Rotate Your Picture: <small class="text-muted">Optional</small></h2>
+<hr>
+<div class="container p-0">
+<div class="row">
+<div class="col-3" style="flex: 0 0 270px; max-width: 270px; -ms-flex: 0 0 270px;">
+Click and drag on the image to make selection. Hold Shift for square. <img src="./subash1_files/right_icon.gif" align="absmiddle">
+<br>
+<br>
+<button id="cropbutton" type="button" name="im_crop" onclick="crop_image(); return false;" class="btn btn-primary btn-lg btn-block mb-2 waves-effect waves-light animated pulse infinite" title="This button allows you to crop your picture after making a selection on the right"><i class="fas fa-crop-alt"></i> Crop Selection</button>
+<button type="button" name="im_deselect" onclick="picresize.edit.deselect(); return false;" class="btn btn-primary btn-lg btn-block mb-2 waves-effect waves-light" title="This button deselects your selection on the right"><i class="far fa-object-ungroup"></i> Deselect</button>
+<div class="container p-1 mb-2">
+<div class="row">
+<div class="col-6 p-1">
+<button type="button" name="im_rotate_ccw" onclick="rotate_image(&#39;ccw&#39;); return false;" class="btn btn-indigo btn-block waves-effect waves-light" title="This button rotates your image 90 degrees counter-clockwise"><i class="fas fa-undo"></i> Rotate</button>
+</div>
+<div class="col-6 p-1">
+<button type="button" name="im_rotate_cw" onclick="rotate_image(&#39;cw&#39;); return false;" class="btn btn-indigo btn-block waves-effect waves-light" title="This button rotates your image 90 degrees clockwise"><i class="fas fa-redo"></i> Rotate</button>
+</div>
+</div>
+<div class="row">
+<div class="col-6 p-1">
+<button type="button" name="im_flip_hor" onclick="flip_image(&#39;hor&#39;); return false;" class="btn btn-indigo btn-block waves-effect waves-light" title="This button flips your image horizontally"><i class="fas fa-arrows-alt-h"></i> Flip</button>
+</div>
+<div class="col-6 p-1">
+<button type="button" name="im_flip_ver" onclick="flip_image(&#39;ver&#39;); return false;" class="btn btn-indigo btn-block waves-effect waves-light" title="This button flips your image vertically"><i class="fas fa-arrows-alt-v"></i> Flip</button>
+</div>
+</div>
+</div>
+<button type="button" name="im_restore" onclick="restore_image(); return false;" class="btn btn-primary btn-block mb-2 waves-effect waves-light" title="This button resets your picture to the original image that you uploaded"><i class="far fa-image"></i> Revert to original</button>
+</div> <!-- end col-3 -->
+<div class="col">
+<p class="note note-primary"><strong>Note:</strong> The preview below is the actual size of your image.</p>                        <div id="pic" style="position: relative;" class="yui-skin-sam">
+<img onload="img_load(); return false;" src="./subash1_files/tsubash1.jpeg" border="0" id="select_pic" galleryimg="no" alt="" style="cursor:crosshair;">
+<div id="sel" style="position: absolute; display: none;"></div>
+</div>
+<div id="loading" style="display: none;"><span>Loading...</span></div><br>
+<input type="hidden" name="coord_x" id="coord_x" value="81">
+<input type="hidden" name="coord_y" id="coord_y" value="455">
+<input type="hidden" name="width" id="width" value="514">
+<input type="hidden" name="height" id="height" value="505">
+</div> <!-- end col -->
+</div> <!-- end row -->
+</div> <!-- end container -->
+</fieldset> <!-- /step-1 -->
+<fieldset class="step-2">
+<h2>Resize Your Picture:</h2>
+<hr>
+<div class="container p-0">
+<div class="row">
+<div class="col">
+<div class="row-resize">
+Select a new size for your picture:
+<select id="resizeselect" class="browser-default custom-select custom-select-lg mb-3" name="im_resize" onchange="picresize.edit.resize(); picresize.edit.updateResizeDetails();" title="Select a new size for your picture by clicking on this dropdown menu">
+<option value="">No change</option>
+<option value="seventyfive">25% smaller</option>
+<option value="fifty" selected="">50% smaller</option>
+<option value="twentyfive">75% smaller</option>
+<option value="resolution800">Fit to screen: 800 resolution</option>
+<option value="custom">Custom Size...</option>
+</select>
+</div>
+<div id="customrow" class="container p-3" style="display:none">
+<div class="row">
+<div class="col-3 p-0">
+<div class="md-form md-outline form-lg bg-white">
+<input id="custom-width" name="im_width" onchange="picresize.edit.updateResizeDetails();" value="" class="form-control form-control-lg" type="text">
+<label for="custom-width">Width</label>
+</div>
+</div>
+<div class="col-3 md-form md-outline p-0 pr-1">
+<select id="im_wmu" name="im_wmu" onchange="picresize.edit.updateResizeDetails();" class="browser-default custom-select custom-select-lg">
+<option value="px" selected="selected">Pixels</option>
+<option value="pr">Percent</option>
+</select>
+</div>
+<div class="col-3 p-0">
+<div class="md-form md-outline form-lg bg-white">
+<input id="custom-height" name="im_height" onchange="picresize.edit.updateResizeDetails();" value="" class="form-control form-control-lg" type="text">
+<label for="custom-height">Height (Optional)</label>
+</div>
+</div>
+<div class="col-3 md-form md-outline p-0">
+<select id="im_hmu" name="im_hmu" onchange="picresize.edit.updateResizeDetails();" class="browser-default custom-select custom-select-lg">
+<option value="px" selected="selected">Pixels</option>
+<option value="pr">Percent</option>
+</select>
+</div>
+</div> <!-- end customrow row -->
+</div> <!-- end customrow container -->
+</div> <!-- end col -->
+<div class="col-3">
+<table border="0" cellpadding="3" cellspacing="0" width="100%" style="font-size:11px;">
+<tbody><tr>
+<td width="80"><font color="gray">Your Image</font></td>
+<td width="40" align="center">Width</td>
+<td width="10"></td>
+<td width="40" align="center">Height</td>
+</tr>
+<tr>
+<td><b>Original</b> (Pixels)</td>
+<td align="center">640</td>
+<td align="center">x</td>
+<td align="center">1280</td>
+</tr>
+<tr id="after_crop">
+<td><b>Cropped</b></td>
+<td id="new_width_cropped" align="center">640</td>
+<td align="center">x</td>
+<td id="new_height_cropped" align="center">1280</td>
+</tr>
+<tr>
+<td style="background: #f6ffef;border:1px solid #5a9a26; border-right: none;"><b>Estimated Final</b></td>
+<td id="new_width_final" style="background: #f6ffef;border:1px solid #5a9a26; border-left: none; border-right: none;" align="center">320</td>
+<td style="background: #f6ffef;border:1px solid #5a9a26; border-left: none; border-right: none;" align="center">x</td>
+<td id="new_height_final" style="background: #f6ffef;border:1px solid #5a9a26; border-left: none;" align="center">640</td>
+</tr>
+</tbody></table>
+</div> <!-- end col-3 -->
+</div> <!-- end row -->
+</div> <!-- end container -->
+</fieldset> <!-- /step-2 -->
+<fieldset class="step-3">
+<h2>Choose Special Effect: <small class="text-muted">Optional</small></h2>
+<hr>
+<div class="container p-0">
+<div class="row pb-3">
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="none" class="custom-control-input" type="radio" name="im_effect" value="" checked="checked" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="none" id="ef_none">None</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="badge" class="custom-control-input" type="radio" name="im_effect" value="FilterBadge" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="badge" id="ef_badge">Badge</label>
+</div>
+<div id="options-badge" class="option-effect note note-primary">
+<strong>Diameter: </strong>
+<select name="option_badge_size">
+<option value="small">Small (100 px)</option>
+<option value="large" selected="selected">Large (200 px)</option>
+</select>
+<span><strong>Tip: </strong>Crop your picture into a square first.</span>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="blackout" class="custom-control-input" type="radio" name="im_effect" value="FilterBlackout" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="blackout" id="ef_blackout">Blackout</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="equalize" class="custom-control-input" type="radio" name="im_effect" value="Equalize" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="equalize" id="ef_equalize">Equalize</label>
+</div>
+</div>
+</div> <!-- end row 1/5 -->
+<div class="row pb-3">
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="frame" class="custom-control-input" type="radio" name="im_effect" value="Frame" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="frame" id="ef_frame">Frame Border</label>
+</div>
+<div id="options-frame" class="option-effect note note-primary">
+<strong>Type: </strong>
+<span><input id="frame_flat" type="radio" name="option_frame_flat" value="true" checked="checked"><label for="frame_flat"> Flat</label> <input id="frame_3d" type="radio" name="option_frame_flat" value="false"><label for="frame_3d"> 3D</label></span><br>
+<span><strong>Width: </strong><select name="option_frame_size">
+<option value="10">10 pixels</option>
+<option value="20" selected="selected">20 pixels</option>
+<option value="50">50 pixels</option>
+</select></span><br>
+<span><strong>Color: </strong><div class="minicolors minicolors-theme-default minicolors-no-data-uris minicolors-position-bottom minicolors-position-left"><input id="im_color" type="text" size="7" name="im_color" value="#00CCFF" style="font-size:9px;" class="minicolors-input"><span class="minicolors-swatch minicolors-sprite"><span class="minicolors-swatch-color" style="margin-left: 0px; background-color: rgb(0, 204, 255);"></span></span><div class="minicolors-panel minicolors-slider-hue"><div class="minicolors-slider minicolors-sprite"><div class="minicolors-picker" style="top: 70px;"></div></div><div class="minicolors-opacity-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-grid minicolors-sprite" style="background-color: rgb(0, 204, 255);"><div class="minicolors-grid-inner"></div><div class="minicolors-picker" style="top: 0px; left: 150px;"><div></div></div></div></div></div></span>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="gaussian" class="custom-control-input" type="radio" name="im_effect" value="Gaussian_Blur" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="gaussian" id="ef_gaussianblur">Gaussian Blur</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="grayscale" class="custom-control-input" type="radio" name="im_effect" value="Grayscale" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="grayscale" id="ef_grayscale">Grayscale</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="lomo" class="custom-control-input" type="radio" name="im_effect" value="FilterLomo" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="lomo" id="ef_lomo">Lomo Effect</label>
+</div>
+</div>
+</div> <!-- end row 2/5 -->
+<div class="row pb-3">
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="oil" class="custom-control-input" type="radio" name="im_effect" value="Oil_Paint" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="oil" id="ef_oilpaint">Oil Paint</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="slide" class="custom-control-input" type="radio" name="im_effect" value="FilterSlide" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="slide" id="ef_slide">Photo Slide</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="polaroid" class="custom-control-input" type="radio" name="im_effect" value="FilterPolaroid" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="polaroid" id="ef_polaroid">Polaroid</label>
+</div>
+<div id="options-polaroid" class="option-effect note note-primary">
+<span><strong>Background Color: </strong><div class="minicolors minicolors-theme-default minicolors-no-data-uris minicolors-position-bottom minicolors-position-left"><input id="option_polaroid_color" type="text" size="7" name="option_polaroid_color" value="#808080" style="font-size:9px;" class="minicolors-input"><span class="minicolors-swatch minicolors-sprite"><span class="minicolors-swatch-color" style="margin-left: 0px; background-color: rgb(128, 128, 128);"></span></span><div class="minicolors-panel minicolors-slider-hue"><div class="minicolors-slider minicolors-sprite"><div class="minicolors-picker" style="top: 0px;"></div></div><div class="minicolors-opacity-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-grid minicolors-sprite" style="background-color: rgb(255, 0, 0);"><div class="minicolors-grid-inner"></div><div class="minicolors-picker" style="top: 74px; left: 0px;"><div></div></div></div></div></div></span>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="raise" class="custom-control-input" type="radio" name="im_effect" value="Raise" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="raise" id="ef_raise">Raise</label>
+</div>
+<div id="options-raise" class="option-effect note note-primary">
+<span><strong>Raise by: </strong><select name="option_raise_size">
+<option value="10" selected="selected">10 pixels</option>
+<option value="20">20 pixels</option>
+<option value="50">50 pixels</option>
+</select></span>
+</div>
+</div>
+</div> <!-- end row 3/5 -->
+<div class="row pb-3">
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="rounded" class="custom-control-input" type="radio" name="im_effect" value="FilterRounded" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="rounded" id="ef_rounded">Rounded Corners</label>
+</div>
+<div id="options-rounded" class="option-effect note note-primary">
+<span><strong>Radius: </strong><select name="option_rounded_radius">
+<option value="10">10 pixels</option>
+<option value="20" selected="selected">20 pixels</option>
+<option value="50">50 pixels</option>
+<option value="100">100 pixels</option>
+</select></span><br>
+<span><strong>Background Color: </strong><div class="minicolors minicolors-theme-default minicolors-no-data-uris minicolors-position-bottom minicolors-position-left"><input id="option_rounded_color" type="text" size="7" name="option_rounded_color" value="#000000" style="font-size:9px;" class="minicolors-input"><span class="minicolors-swatch minicolors-sprite"><span class="minicolors-swatch-color" style="margin-left: 0px; background-color: rgb(0, 0, 0);"></span></span><div class="minicolors-panel minicolors-slider-hue"><div class="minicolors-slider minicolors-sprite"><div class="minicolors-picker" style="top: 0px;"></div></div><div class="minicolors-opacity-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-grid minicolors-sprite" style="background-color: rgb(255, 0, 0);"><div class="minicolors-grid-inner"></div><div class="minicolors-picker" style="top: 150px; left: 0px;"><div></div></div></div></div></div></span>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="scorched" class="custom-control-input" type="radio" name="im_effect" value="FilterScorched" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="scorched" id="ef_scorched">Scorched</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="sharpen" class="custom-control-input" type="radio" name="im_effect" value="Sharpen" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="sharpen" id="ef_sharpen">Sharpen</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="spread" class="custom-control-input" type="radio" name="im_effect" value="Spread" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="spread" id="ef_spread">Spread</label>
+</div>
+</div>
+</div> <!-- end row 4/5 -->
+<div class="row pb-5">
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="tiltshift" class="custom-control-input" type="radio" name="im_effect" value="FilterTiltShift" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="tiltshift" id="ef_tiltshift">Tilt-shifted</label>
+</div>
+</div>
+<div class="col-3">
+<div class="custom-control custom-radio special-effect">
+<input id="warming" class="custom-control-input" type="radio" name="im_effect" value="FilterWarming" onclick="picresize.edit.effect();">
+<label class="custom-control-label" for="warming" id="ef_warming">Warming</label>
+</div>
+</div>
+</div> <!-- end row 5/5 -->
+</div> <!-- end container -->
+</fieldset> <!-- /step-3 -->
+<fieldset class="step-4">
+<h2>Save As:</h2>
+<hr>
+<div class="container p-0">
+<div class="row">
+<div class="col-3">
+<label for="format">Image File Format:</label>
+<select id="format" name="im_format" onchange="picresize.edit.quality();" class="browser-default custom-select custom-select-lg mb-3">
+<option value="jpg">JPG</option>
+<option value="gif">GIF</option>
+<option value="png">PNG</option>
+<option value="bmp">BMP</option>
+</select>
+</div>
+<div class="col-3">
+<span id="jpgquality" style="">
+<label for="quality">JPG Quality:</label>
+<select id="quality" name="im_quality" class="browser-default custom-select custom-select-lg mb-3">
+<option value="good">Good</option>
+<option value="better" selected="selected">Better</option>
+<option value="best">Best</option>
+</select>
+</span>
+</div>
+<div class="col-3">
+<span id="jpgfilesize" style="">
+<label for="filesize"><span id="max-filesize" style="border-bottom:1px dotted;cursor:help;">JPG Max Filesize:</span></label> <small> (Optional)</small>
+<input class="form-control form-control-lg" id="filesize" name="im_filesize" type="text" size="5" onchange="picresize.edit.quality();"> Kilobytes
+</span>
+</div>
+</div> <!-- end row -->
+</div> <!-- end container -->
+<input type="hidden" name="resizeit" value="">
+<div class="text-center mt-4">
+<button class="btn btn-lg blue-gradient text-white waves-effect waves-light" onclick="picresize.edit.deselect();$(" #icon-loading").show();document.resize_form.submit();return="" false;"=""><i class="fas fa-check-circle"></i> I'm Done, Resize My Picture!</button><br>
+<span id="icon-loading" style="display:none;"><img src="./subash1_files/icon-loading.gif" alt="Loading..."></span>
+</div>
+<script type="text/javascript">
+                        <!-- //
+                        var pic = window.document.getElementById('select_pic');
+                        //pic.onclick = onpicclick;
+                        init_pic();
+                        // -->
+                    </script>
+</fieldset> <!-- /step-4 -->
+</form>
+</div> <!-- end jumbotron -->
+</div> <!-- end col -->
+</div> <!-- end row -->
+<div class="row">
+<div class="col-8">
+Images are automatically deleted. <a href="https://picresize.com/en/privacypolicy">Read our strict privacy policy</a>
+</div>
+<div class="col-4 text-right">© 2005-2019 Internich LLC.</div>
+</div>
+<div class="row pt-3 pb-3">
+<div class="col text-center">
+<!-- /3092934/picresize_sitewide_btf_728x90 -->
+<div id="div-gpt-ad-1559967153831-0" data-google-query-id="CMGjn7On0-UCFT0UtwAdGucKOw">
+
+<div id="google_ads_iframe_/3092934/picresize_sitewide_btf_728x90_0__container__" style="border: 0pt none; display: inline-block; width: 728px; height: 90px;"><iframe frameborder="0" src="./subash1_files/container(1).html" id="google_ads_iframe_/3092934/picresize_sitewide_btf_728x90_0" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="728" height="90" data-is-safeframe="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-google-container-id="2" style="border: 0px; vertical-align: bottom;" data-load-complete="true"></iframe></div></div>
+</div>
+</div>
+</div>
+</main>
+<script src="./subash1_files/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-3.4.0.min.js"><\/script>');</script>
+<script src="./subash1_files/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script>window.Popper || document.write('<script src="/js/popper.min.js"><\/script>');</script>
+<script src="./subash1_files/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>window.jQuery.fn.modal || document.write('<script src="/js/bootstrap.min.js"><\/script>');</script>
+<script src="./subash1_files/mdb.min.js"></script><div class="hiddendiv common"></div>
+<script src="./subash1_files/app.js"></script>
+<script src="./subash1_files/ads.js"></script><div id="pradbox" style="display: none;"></div>
+<script src="./subash1_files/jquery.imgareaselect.js"></script>
+<script src="./subash1_files/spinners.min.js"></script>
+<script src="./subash1_files/jquery.minicolors.js"></script>
+<script src="./subash1_files/tipped.js"></script>
+<script>
+    $(function(){
+        picresize.edit.init();
+    });
+  </script>
+<script>
+  !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+  // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+  apstag.init({
+    pubID:  'cc290a0e-a289-4665-94a5-f4b687eb9c39',
+    adServer: 'googletag'
+  });
+
+  // request the bids for the four googletag slots
+  apstag.fetchBids({
+    slots: [{
+      slotID: 'div-gpt-ad-1559967090531-0',
+      slotName: '/3092934/picresize_sitewide_atf_728x90',
+      sizes: [[728, 90], [970, 90], [468, 60]]
+    },
+
+
+    {
+      slotID: 'div-gpt-ad-1559967153831-0',
+      slotName: '/3092934/picresize_sitewide_btf_728x90',
+      sizes: [[728, 90], [970, 90], [468, 60]]
+    }]
+  }, function(bids) {
+    // set apstag bids, then trigger the first request to DFP
+    googletag.cmd.push(function() {
+      apstag.setDisplayBids();
+      googletag.pubads().refresh();    
+    });
+  });
+</script>
+<script>
+if(document.getElementById('pradbox')){
+   gtag('event', 'Adblock', {
+      'event_category' : 'Ad Setting',
+      'event_label' : 'Enabled'
+   });
+}
+</script>
+<!-- Begin 33Across SiteCTRL -->
+<script>
+var Tynt=Tynt||[];Tynt.push('cyEo1M344r5iTYacwqm_6r');
+(function(){var h,s=document.createElement('script');
+s.src=(window.location.protocol==='https:'?
+'https':'http')+'://cdn.tynt.com/ti.js';
+h=document.getElementsByTagName('script')[0];
+h.parentNode.insertBefore(s,h);})();
+</script>
+<!-- End 33Across SiteCTRL -->
+
+<div style="position: absolute; overflow: hidden; z-index: 2; left: 470px; top: 854px; width: 514px; height: 505px; cursor: move;"><div class="imgareaselect-selection" style="position: absolute; font-size: 0px; width: 514px; height: 505px; left: 0px; top: 0px;"></div><div class="imgareaselect-border1" style="position: absolute; font-size: 0px; left: 0px; top: 0px; width: 514px; height: 505px;"></div><div class="imgareaselect-border2" style="position: absolute; font-size: 0px; left: 0px; top: 0px; width: 514px; height: 505px;"></div><div class="imgareaselect-border3" style="position: absolute; font-size: 0px; left: 0px; top: 0px; width: 514px; height: 505px;"></div><div class="imgareaselect-border4" style="position: absolute; font-size: 0px; left: 0px; top: 0px; width: 514px; height: 505px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 0px; top: 0px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 509px; top: 0px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 509px; top: 500px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 0px; top: 500px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 254px; top: 0px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 509px; top: 250px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 254px; top: 500px;"></div><div class="imgareaselect-handle" style="position: absolute; font-size: 0px; z-index: 1; width: 5px; height: 5px; left: 0px; top: 250px;"></div></div><div class="imgareaselect-outer" style="position: absolute; overflow: hidden; z-index: 0; left: 389px; top: 399px; width: 81px; height: 1280px;"></div><div class="imgareaselect-outer" style="position: absolute; overflow: hidden; z-index: 0; left: 470px; top: 399px; width: 514px; height: 455px;"></div><div class="imgareaselect-outer" style="position: absolute; overflow: hidden; z-index: 0; left: 984px; top: 399px; width: 45px; height: 1280px;"></div><div class="imgareaselect-outer" style="position: absolute; overflow: hidden; z-index: 0; left: 470px; top: 1359px; width: 514px; height: 320px;"></div><iframe src="./subash1_files/iu3.html" style="display: none;"></iframe><iframe src="./subash1_files/rt=ifr.html" style="position: absolute; overflow: hidden; visibility: hidden; height: 1px; width: 1px; bottom: 1px; left: 1px;"></iframe><iframe id="google_osd_static_frame_1837959141566" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./subash1_files/saved_resource(15).html"></iframe></body></html>

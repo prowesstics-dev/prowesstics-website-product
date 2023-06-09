@@ -1,0 +1,135 @@
+{% extends 'career_sidebar.html' %}
+{% load static %}
+
+{% load humanize %}
+    <script>
+        $( document ).ready(function() {
+            $('#job_edit').on('click', function(){
+          txt = $(this).parents('tr').find("td:eq(1)").text();
+          alert(txt);
+        });
+        });
+
+    </script>
+        {% block stylesheet %}
+        th{
+        font-size: 17px !important;
+        }
+        .table thead th {
+        color: black !important;
+        }
+        .table thead td {
+        font-size: 0.9rem !important;
+        }
+        .modal-content {
+        border: none;
+        }
+        #btn-skills{
+        background: #2EBDD6 !important;
+        color: #15192B !important;
+        font-weight: 600;
+        }
+        #job_edit{
+        background: #2EBDD6 !important;
+        font-size: 0.9rem !important;
+        font-weight: 700;
+        }
+        #job_hide{
+        background: #F47C7C !important;
+        font-size: 0.9rem !important;
+        font-weight: 700;
+        }
+        #job_act{
+        background: #C58940 !important;
+        font-size: 0.9rem !important;
+        font-weight: 700;
+        }
+
+
+    {% endblock %}
+
+        {% block content %}
+        <section class="content">
+            <section class="container-fluid">
+                <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">
+                               Jobs</h4>
+                        </div>
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Role</th>
+                                        <th class="text-center">Edit</th>
+                                        <th class="text-center">Hide or Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for j in jobs %}
+                                    <tr>
+                                        <td class="text-center">{{ j.role }}</td>
+{#                                        <td class="text-center" hidden>{{ j.id }}</td>#}
+                                        <td class="text-center"><a href="{% url 'edit_job' pk=j.id %}">
+
+                                            <button class="btn btn-style" id="job_edit" type="button" >Edit</button>
+                                             </a> </td>
+                                        <td class="text-center">
+
+                                            <form action="{% url 'new_jobs' %}" method="post">
+                                                {% csrf_token %}
+                                                <input hidden="hidden " name="id" value="{{j.id}}">
+                                                {% if j.active %}
+                                                <button class="btn btn-style" name="jhide" id="job_hide" value='hide' type="submit" >Hide Jobs</button>
+
+                                                {% else %}
+                                                <button class="btn btn-style" name='jactive' id="job_act" value='active' type="submit" >Show Jobs</button>
+                                                 {% endif%}
+                                                </form>
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                        </div>
+
+                <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title" id="exampleModalLabel">Edit the Role</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: white;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form  action="" method="post">
+      <div class="form-group">
+          <label class="col-sm-6 col-form-label skill-label">Role</label>
+          <div class="col-sm-12">
+              <input type="text" class="form-control" name="primary_"
+              value="" placeholder="example: Python Developer, Java Developer...">
+          </div>
+      </div>
+      <div class="col-lg-12 text-center">
+         <button type="submit" style="background: #277BC0;" id="btn-skills" class="btn btn-style">Submit</button>
+          <button type="button" class="btn btn-style" data-dismiss="modal">Close</button>
+      </div>
+  </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+            </section> <!-- /container -->
+     </section>
+         {% endblock %}

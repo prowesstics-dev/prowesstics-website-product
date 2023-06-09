@@ -1,0 +1,255 @@
+<!--{% extends '_layout.html' %}-->
+<!--{% block stylesheet %}-->
+<!--{% endblock %}-->
+
+
+<!--&lt;!&ndash;CONTENTS&ndash;&gt;-->
+<!--{% block content %}-->
+<!--<script>-->
+
+<!--	function casual_leave(){-->
+<!--		if(document.getElementById('category').value == 'optional'){-->
+<!--			document.getElementById('start-container').style.display = 'none';-->
+<!--			document.getElementById('end-container').style.display = 'none';-->
+<!--			document.getElementById('description-container').style.display = 'none';-->
+<!--			document.getElementById('type-container').style.display = 'none';-->
+<!--			document.getElementById('casual-name-container').style.display = 'block';-->
+<!--			document.getElementById('apply-casual-leave').style.display = 'block';-->
+<!--			document.getElementById('apply-leave').style.display = 'none';-->
+<!--		}-->
+<!--		else{-->
+<!--			document.getElementById('start-container').style.display = 'block';-->
+<!--			document.getElementById('end-container').style.display = 'block';-->
+<!--			document.getElementById('description-container').style.display = 'block';-->
+<!--			document.getElementById('type-container').style.display = 'block';-->
+<!--			document.getElementById('casual-name-container').style.display = 'none';-->
+<!--			document.getElementById('apply-casual-leave').style.display = 'none';-->
+<!--			document.getElementById('apply-leave').style.display = 'block';-->
+<!--		}-->
+<!--	}-->
+<!--</script>-->
+
+<!--<script>-->
+<!--	function get_holiday_date(){-->
+<!--		{% for h in holiday %}-->
+<!--			if({{h.name}} == document.getElementById('holiday-name').value){-->
+<!--				document.getElementById('holiday-date').value = {{h.date}}-->
+<!--			}-->
+<!--		{% endfor %}-->
+<!--	}-->
+
+<!--</script>-->
+
+<!--<style>-->
+<!--  .card-title{-->
+<!--  font-weight: 800;-->
+<!--  color: white;-->
+<!--  }-->
+<!--    .card-header {-->
+<!--  background: #15192B !important;-->
+<!--  padding: 15px !important;-->
+<!--  }-->
+<!--  .btn-style{-->
+<!--  background: #15192B !important;-->
+<!--  color: white !important;-->
+<!--  }-->
+<!--</style>-->
+
+<!--                        <div class="card">-->
+<!--                              <div class="container-fluid">-->
+<!--                                       <div class="row">-->
+<!--                                           <div class="col-md-6 col-xl-3">-->
+<!--                                                <div class="card widget-card-1">-->
+<!--                                                    <div class="card-block-small">-->
+<!--                                                         <i class="icofont icofont-chart-pie bg-c-blue card1-icon"></i>-->
+<!--                                                        <span class="text-c-blue f-w-600">Total Leaves Applied</span>-->
+<!--                                                        <h4>{{leave_applied}}</h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; card1 end &ndash;&gt;-->
+<!--                                            &lt;!&ndash; card1 start &ndash;&gt;-->
+<!--                                            <div class="col-md-6 col-xl-3">-->
+<!--                                                <div class="card widget-card-1">-->
+<!--                                                    <div class="card-block-small">-->
+<!--                                                        <i class="icofont icofont-chart-pie-alt bg-c-yellow card1-icon"></i>-->
+<!--                                                        <span class="text-c-yellow f-w-600">Total LOP Days</span>-->
+<!--                                                        <h4>{{lop}}</h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; card1 end &ndash;&gt;-->
+<!--                                            &lt;!&ndash; card1 start &ndash;&gt;-->
+<!--                                            <div class="col-md-6 col-xl-3">-->
+<!--                                                <div class="card widget-card-1">-->
+<!--                                                    <div class="card-block-small">-->
+<!--                                                        <i class="icofont icofont-chart-histogram bg-c-green card1-icon"></i>-->
+<!--                                                        <span class="text-c-green f-w-600">Sick Leave Pending</span>-->
+<!--                                                        <h4>{{sick_leave}}</h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; card1 end &ndash;&gt;-->
+<!--                                            &lt;!&ndash; card1 start &ndash;&gt;-->
+<!--                                            <div class="col-md-6 col-xl-3">-->
+<!--                                                <div class="card widget-card-1">-->
+<!--                                                    <div class="card-block-small">-->
+<!--                                                        <i class="icofont icofont-chart-histogram-alt bg-c-pink card1-icon"></i>-->
+<!--                                                        <span class="text-c-pink f-w-600">Casual Leave Pending</span>-->
+<!--                                                        <h4>{{casual_leave}}</h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; card1 end &ndash;&gt;-->
+<!--                                       </div>-->
+<!--                              </div>-->
+<!--                            <div class="card-header">-->
+<!--                                <h4 class="text-center card-title">Apply Leave</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <form method="POST">-->
+<!--                {% csrf_token %}-->
+<!--                    <div class="row">-->
+<!--                        <div id="catagory-container" class="col-md-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="category">Category</label>-->
+<!--                                <select name="category" id="category" class="form-control" onchange="casual_leave();">-->
+<!--                                    <option value="sick">Sick Leave</option>-->
+<!--                                    <option value="casual">Casual Leave</option>-->
+<!--									<option value="optional">Optional leave</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div id="type-container" class="col-md-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="leaveT">Type</label>-->
+<!--                                <select class="form-control" name="leaveT" id="leaveT" onchange="set();">-->
+<!--                                    <option value="full">Full day</option>-->
+<!--                                    <option value="half">Half day</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--						<div id="casual-name-container" class="col-md-6" style="display:none">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="holiday-name">Name</label>-->
+<!--                                <select class="form-control" name="holiday-name" id="holiday-name" onchange="get_holiday_date();">-->
+<!--                                    {% for h in holiday %}-->
+<!--									<option value="{{h.name}}">{{h.name}} - {{h.date}}</option>-->
+<!--                                    {% endfor %}-->
+<!--								</select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div id="start-container" class="col-md-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label>Start</label>-->
+<!--                                <input type="date" name="startD" id="startD" class="form-control" onchange="set();">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div id="end-container" class="col-md-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label>End</label>-->
+<!--                                <input type="date" name="endD" id="endD" class="form-control" onchange="set();">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div id="description-container" class="row justify-content-center mb-4">-->
+<!--                            <div class="col-xl-12 col-lg-12 col-md-12 col-12 list text-left">-->
+<!--                                <div class="form-group col-md-12">-->
+<!--                                    <label class="form-control-label">No Of Days</label>-->
+<!--                                    <input type="text" id="countD" name="no-of-days" placeholder="" class="form-control"-->
+<!--                                           readonly>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-md-12">-->
+<!--                                    <label class="form-control-label">Description </label>-->
+<!--                                    <textarea type="textarea" id="" name="description" placeholder="Description"-->
+<!--                                              class="form-control" rows="5" cols="50"></textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div id='apply-leave' class="card-footer col-md-12 text-center">-->
+<!--                            <button type="submit" class="btn btn-style">Apply Leave-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--						<div id='apply-casual-leave' class="card-footer col-md-12 text-center" style='display:none'>-->
+<!--                            {% if msg == False %}-->
+<!--							<button type="submit" class="btn btn-style">Apply Leave-->
+<!--                            </button>-->
+<!--							{% else %}-->
+<!--								<h3 style="color: red"> NOT ELIGIBLE FOR OPTIONAL LEAVE</h3>-->
+<!--							{% endif %}-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                &lt;!&ndash;    <div class="card-footer col-md-12 text-center">&ndash;&gt;-->
+<!--                &lt;!&ndash;                <button type="submit" class="btn" style="background-image: linear-gradient(to right, #15c3df, #3ec9ae,#4bca9c,#57cc8e);color: black; border: none;font-family: Arial,Helvetica,sans-serif;&ndash;&gt;-->
+<!--                &lt;!&ndash; font-size: 16px;">Apply Leave</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--            </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--    <script>-->
+<!--function set()-->
+<!--	{-->
+<!--		var d1 = new Date(document.getElementById('startD').value);-->
+<!--		var d2 = new Date(document.getElementById('endD').value);-->
+<!--		var today = new Date();-->
+<!--		var dd = String(today.getDate()).padStart(2, '0');-->
+<!--		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!-->
+<!--		var yyyy = today.getFullYear();-->
+<!--		today = yyyy + '-' + mm + '-' + dd;-->
+
+<!--		if (d1 != 'Invalid Date' && d2!= 'Invalid Date'){-->
+<!--			if(d2.toDateString() == d1.toDateString() || d2 > d1)-->
+<!--			{-->
+<!--				var weekend = 0;-->
+<!--				var holiday = 0;-->
+<!--				for(i=new Date(d1); i<= d2; i.setDate(i.getDate()+1))-->
+<!--				{-->
+<!--					console.log(i.getDay());-->
+<!--					if(i.getDay()==0 || i.getDay()==6)-->
+<!--					{-->
+<!--						weekend += 1;-->
+<!--					}-->
+<!--					console.log('no of weekends = ', weekend)-->
+<!--				}-->
+<!--				if(true){-->
+<!--					var h = [new Date(d1.getFullYear(),0,1), new Date(d1.getFullYear(),0,14), new Date(d1.getFullYear(),0,15), new Date(d1.getFullYear(),0,26),-->
+<!--					new Date(d1.getFullYear(),3,2), new Date(d1.getFullYear(),3,14), new Date(d1.getFullYear(),8,10),-->
+<!--					new Date(d1.getFullYear(),9,14), new Date(d1.getFullYear(),9,15), new Date(d1.getFullYear(),10,4)];-->
+<!--					for(i=new Date(d1); i<= d2; i.setDate(i.getDate()+1))-->
+<!--					{-->
+<!--						console.log('i', i);-->
+<!--						for(j=0; j<h.length; j++)-->
+<!--						{-->
+<!--							if(i.getDate() == h[j].getDate() && i.getMonth() == h[j].getMonth()){-->
+<!--								console.log('	value', h[j]);-->
+<!--								holiday += 1;-->
+<!--							}-->
+<!--						}-->
+<!--					}-->
+<!--				}-->
+<!--				-->
+<!--				var sub =(d2-d1)/86400000;-->
+<!--				document.getElementById('countD').value = sub+1-weekend-holiday;-->
+<!--				-->
+<!--			}-->
+<!--			else-->
+<!--			{-->
+<!--				document.getElementById('endD').value = '0000-00-00';-->
+<!--				document.getElementById('countD').value = "";-->
+<!--			}-->
+<!--		}-->
+<!--		if(document.getElementById('leaveT').getElementsByTagName('option')[1].selected==true){-->
+<!--			document.getElementById('countD').value = 0.5;-->
+<!--			document.getElementById('endD').value = document.getElementById('startD').value;-->
+<!--		}-->
+<!--		if (document.getElementById('countD').value > 1){-->
+<!--			document.getElementById('leaveT').getElementsByTagName('option')[0].selected = true;-->
+<!--		}-->
+<!--		-->
+<!--	}-->
+
+<!--    </script>-->
+
+<!--    {% endblock %}-->
+

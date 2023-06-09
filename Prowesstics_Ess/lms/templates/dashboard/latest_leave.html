@@ -1,0 +1,291 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+
+<style>
+  h4{
+  font-weight: 800;
+  }
+    table thead {
+  background: #15192B;
+  }
+  .col-form-label{
+  text-align: end;
+  font-size: 16px;
+  }
+  .form-control{
+  max-width: 200px;
+  }
+  #jn_lf td{
+    min-width: 160px;
+    white-space: normal;
+  }
+   @media only screen and (max-width: 600px) {
+  #jn_lf td{
+    min-width: 160px;
+    white-space: normal;
+  }
+}
+ @media (min-width: 481px) and (max-width: 767px) {
+             #jn_lf td{
+    min-width: 250px;
+    white-space: normal;
+  }
+ }
+  @media only screen and (max-width: 670px) {
+    .col-form-label{
+  text-align: center !important;
+  }
+  .form-control{
+  max-width: 100%;
+  }
+}
+.leave_details{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white !important;
+    background: #4680FF;
+    padding: 2px 13px;
+    font-size: 14px;
+    border-radius: 7px;
+ }
+ @media (min-width: 576px){
+.modal-dialog {
+    max-width: 850px !important;
+    margin: 30px auto;
+}
+}
+.modal-body {
+padding: 0px;
+}
+.widget-card-1 {
+    margin-top: 40px;
+    text-align: right;
+    height: 100px !important;
+}
+.view-btn{
+margin-top: -33px;
+float: left;
+}
+  @media only screen and (max-width: 600px) {
+  .view-btn{
+margin-top: -29px;
+float: left;
+}
+}
+
+</style>
+
+                             <div class="card">
+                                 <div class="container-fluid">
+                                       <div class="row">
+
+                                           <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                         <i class="icofont icofont-chart-pie bg-c-blue card1-icon"></i>
+                                                        <span class="text-c-blue f-w-600">Total Leaves Applied</span>
+                                                        <h4>{{leave_applied}}</h4>
+                                                        <div class="view-btn" ><button class="leave_details">View</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-pie-alt bg-c-yellow card1-icon"></i>
+                                                        <span class="text-c-yellow f-w-600">Total LOP Days</span>
+                                                        <h4>{{lop}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram bg-c-green card1-icon"></i>
+                                                        <span class="text-c-green f-w-600">Sick Leave Pending</span>
+                                                        <h4>{{sick_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                            <!-- card1 start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card widget-card-1">
+                                                    <div class="card-block-small">
+                                                        <i class="icofont icofont-chart-histogram-alt bg-c-pink card1-icon"></i>
+                                                        <span class="text-c-pink f-w-600">Casual Leave Pending</span>
+                                                        <h4>{{casual_leave}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- card1 end -->
+                                       </div>
+                                 </div>
+                                 <!-- Basic table card start -->
+                                        <div class="card-header">
+                                            <h4 class="text-center">Latest Leave Applications</h4>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                {%if leave_application%}
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Leave Type1</th>
+                                                            <th>Applied date</th>
+                                                            {% if role != 'INTERN' and role != 'EMPLOYEE' %}
+                                                            <th class="e">MANAGER Status</th>
+                                                            <th class="e"> HR Status</th>
+                                                            {% endif %}
+                                        {% if role == 'INTERN' or role == 'EMPLOYEE'  %}
+                                                            <th>Report TO Status</th>
+                                                            {% endif %}
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {%for application in leave_application%}
+                                                        <tr>
+                                                            <td>{{application.category}}</td>
+                                                            <td>{{application.date}}</td>
+                                                            <td>
+                                                                 {%if application.manager_level_approval == True %}
+                                                                Approved
+                                                                {% elif application.manager_level_approval == False%}
+                                                                Rejected
+                                                                {%else%}
+                                                                Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            {% if role != 'INTERN' and role != 'EMPLOYEE' %}
+                                                            <td>
+                                                                {%if application.admin_level_approval == True %}
+                                                                Approved
+                                                                {% elif application.admin_level_approval == False%}
+                                                                Rejected
+                                                                {%else%}
+                                                                Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            {% if role == 'INTERN' or role == 'EMPLOYEE' %}
+                                                            <td>
+                                                                {%if application.employee_level_approval == True %}
+                                                                Approved
+                                                                {% elif application.employee_level_approval == False%}
+                                                                Rejected
+                                                                {%else%}
+                                                                Pending
+                                                                {% endif %}
+                                                            </td>
+                                                            {% endif %}
+                                                            {% endif %}
+                                                            <td>
+                                                                <a href="/profile/leave_details/?id={{application.id}}">
+                                                                <span>View</span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {%endfor%}
+                                                    </tbody>
+                                                    {%else%}
+                                                    <h3 class="text-center"> NO DATA</h3>
+                                                    {%endif%}
+                                                </table>
+                                            </div>
+                                        </div>
+                                    <!-- Basic table card end -->
+                             </div>
+
+<div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="/*padding-top: 200px; padding-left: 100px*/ ">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="font-size: 0.87rem !important;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="color:  #464646;">Leave Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: white; color: #3f3939;">
+                        <div class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>No of Days</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                 <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody id="jn_lf">
+                            </tbody>
+                        </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer" style="background-color: white; color: white">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+
+$(document).ready(function ()
+{
+
+       $('body').on('click', '.leave_details', function(event) {
+           var value = $(this).text().trim()
+           var ids = '{{user}}'
+           var id = ids.trim()
+           console.log(id)
+
+                if (value ==='0'){
+                     console.log(value ==='0')
+                }
+                 else
+                 {$("#myModal").modal();
+                $("#jn_lf").empty();
+
+                    var holiday_ = {{holiday | safe}}
+
+                    for (var i = 0; i < holiday_.length; i++) {
+
+                        if (id === holiday_[i].user_) {
+
+                            var ele = "<tr> <td>" + holiday_[i].type_ + "</td><td>" + holiday_[i].days_ + "</td><td>" + holiday_[i].start_date + "</td><td>" + holiday_[i].end_date + "</td><td>" + holiday_[i].description_ + "</td></tr>"
+
+                            $('#jn_lf').append(ele)
+                        }
+                    }}
+
+       })
+            });
+    $(function() {
+        $('#myModal').draggable({
+            handle: ".modal-header"
+        });
+    });
+
+
+
+</script>
+
+    {% endblock %}

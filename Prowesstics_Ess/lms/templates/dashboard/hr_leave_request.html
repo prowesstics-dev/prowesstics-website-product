@@ -1,0 +1,97 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+
+<style>
+    card-title{
+  font-weight: 800 !important;
+  color: black;
+  }
+   .card-header {
+  padding: 15px !important;
+  }
+  table thead {
+  background: #15192B;
+  }
+</style>
+
+<div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">
+                                HR Applications For Approval</h4>
+                        </div>
+                            <div class="table-responsive">
+                                {%if leave_application%}
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+										<th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Leave Type
+                                        </th>
+                                        <th>
+                                            Applied date
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for application in leave_application%}
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+										<td>
+                                            {{application.user.name}}
+                                        </td>
+                                        <td>
+                                            {{application.category}}
+                                        </td>
+                                        <td>
+                                            {{application.date}}
+                                        </td>
+                                        <td>
+                                            {%if application.admin_level_approval == True %}
+                                            Approved
+                                            {% elif application.admin_level_approval == False%}
+                                            Rejected
+											{%else%}
+											Pending
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="/profile/leave_details/?id={{application.id}}">
+                                                <span>View</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                                {%else%}
+                                <h5 class="text-center"> NO DATA</h5>
+                                {%endif%}
+                            </div>
+                    </div>
+
+            </div>
+</div>
+
+    {% endblock %}

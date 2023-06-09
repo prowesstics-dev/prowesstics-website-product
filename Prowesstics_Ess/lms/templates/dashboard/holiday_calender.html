@@ -1,0 +1,83 @@
+{% extends '_layout.html' %} {% block stylesheet %} {% endblock %}
+
+<!--CONTENTS-->
+{% block content %}
+
+<style>
+  h4 {
+    font-weight: 800;
+    color: white;
+  }
+  .card-header {
+    background: #15192b !important;
+    padding: 10px !important;
+  }
+</style>
+
+{%if request.user.role == 'ADMIN'%}
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-center">Holiday Calender - {% now "Y" %}</h4>
+  </div>
+  <div class="card-block table-border-style">
+    <div class="table-responsive">
+      <table class="table">
+        {% if holiday %}
+        <tbody>
+          {% for h in holiday %}
+          <tr>
+            <td>{{h.sno}}</td>
+            <td>{{h.date}}</td>
+            <td>{{h.name}}</td>
+            <td>{{h.opt}}</td>
+          </tr>
+        </tbody>
+
+        {% endfor %} {% else %}
+        <h4>NO DATA AVAILABLE</h4>
+        {% endif %}
+      </table>
+      <div style="text-align: center; margin-top: 15px">
+        <div class="d-inline">
+          <a href="{% url 'add_holiday' %}" class="btn btn-info"
+            >Add New Holiday</a
+          >
+        </div>
+
+        <div class="d-inline">
+          <a href="{% url 'modify_holiday' %}" class="btn btn-danger"
+            >Modify Holiday</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%else%}
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-center">Holiday Calender - {% now "Y" %}</h4>
+  </div>
+  <div class="card-block table-border-style">
+    <div class="table-responsive">
+      <table class="table">
+        {% if holiday %}
+        <tbody>
+          {% for h in holiday %}
+          <tr>
+            <td>{{h.sno}}</td>
+            <td>{{h.date}}</td>
+            <td>{{h.name}}</td>
+            <td>{{h.opt}}</td>
+          </tr>
+        </tbody>
+        {% endfor %} {% else %}
+        <h4>NO DATA AVAILABLE</h4>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock %}

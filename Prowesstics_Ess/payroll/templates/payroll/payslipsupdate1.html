@@ -1,0 +1,719 @@
+{% extends 'payroll/base.html' %}
+
+{% block stylesheet %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link href="/static/css/app-style.css" rel="stylesheet">
+
+    <!doctype html>
+    <div lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+
+        <link rel="icon" href="Favicon.png">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+        <title>Laravel</title>
+    </head>
+
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+           <style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+    body{
+    margin: 0;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #212529;
+    text-align: left;
+    background-color: #f5f8fa;
+    }
+    .card .card-header {
+      background-color: #15192B !important;
+      padding: 10px 20px;
+        }
+
+    .navbar-laravel
+    {
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    }
+
+    .navbar-brand , .nav-link, .my-form, .login-form
+    {
+    font-family: Raleway, sans-serif;
+    }
+
+    .my-form
+    {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    }
+
+    .my-form .row
+    {
+    margin-left: 0;
+    margin-right: 0;
+    }
+
+    .login-form
+    {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    }
+
+    .login-form .row
+    {
+    margin-left: 0;
+    margin-right: 0;
+    }
+    .sec-box{
+    <!-- width:400px; --><!-- dont uncomment this code - line -->
+    height:160px;
+    max-width:100%;
+    line-height:160px;
+    text-align:center;
+    position:relative;
+
+    font-size:1.9rem;
+
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    transition: all 400ms ease-in;
+
+    font-variant: petite-caps;
+    }
+
+    .sec-box a{
+    color:#fff;
+    text-decoration:none;
+
+    }
+    .employee-box{
+    background:#fff;
+    border-radius: 10px;
+    }
+
+    .employee-box a{
+    color:#000 !important;
+    font-family: "Times New Roman", Times, serif;
+    }
+    .leave-box{
+    background:#fff;
+    border-radius: 10px;
+
+    }
+
+    .leave-box a{
+    color:#000 !important;
+    font-family: "Times New Roman", Times, serif;
+    }
+    .lop-box{
+    background:#fff;
+    }
+
+    .lop-box a{
+    color:#000 !important;
+
+    }
+
+    .birthday-box{
+    background:#8664ad;
+    }
+
+    .company-box{
+    background:#868686;
+    }
+
+
+    .count-object {
+    position: absolute;
+    top: 40%;
+    right: 12px;
+    font-size: 29px;
+    font-weight: 100;
+    font-variant: petite-caps;
+    color: #f5f5f5;
+    text-shadow:1px 1px rgba(8, 8, 8, 0.23);
+    }
+        @media only screen and (max-width: 480px) {
+        .card {
+        margin-top: 30px !important;
+        }
+        }
+
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+    margin-top: -30px
+    }
+
+    .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .lable1{
+    margin: 30px 0px 0px 150px;
+    font-size:20px;
+    }
+
+    .lable2{
+    margin: 20px 0px 0px 0px;
+    font-size:20px;
+    }
+    .card-body{
+        padding: 10px 20px !important;
+        }
+        </style>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#ctc').on('input', function () {
+                let ctc = this.value
+                let base_sal = ((ctc / 12) / 100) * 50
+                // let base_sal = ((ctc / 12) / 100) * 40
+                $('#base_salary').val(Math.ceil(base_sal))
+                let hra_allowance = (base_sal / 100) * 50
+                let provident_fund = (base_sal / 100) * 12
+                if (provident_fund < 1800) {
+                    $('#provident_fund').val(Math.ceil(provident_fund))
+                } else {
+                    $('#provident_fund').val(1800)
+                }
+                $('#hra_allowance').val(Math.ceil(hra_allowance))
+                if (typeof value === "undefined") {
+
+                }
+                let conv_allowance = $('#conv_allowance').val()
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+                // let other_allowance = $('#other_allowance').val()
+                let other_allowance = Number(sal_pm)-Number(base_sal)-Number(hra_allowance)-Number(conv_allowance)
+                    $('#other_allowance').val(Math.ceil(other_allowance))
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                console.log(conv_allowance,other_allowance,bonus_arrear,spl_allowance)
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+
+            })
+            $('#base_salary').on('input', function () {
+                let base_sal = this.value
+                let hra_allowance = (base_sal / 100) * 50
+                let provident_fund = (base_sal / 100) * 12
+                if (provident_fund < 1800) {
+                    $('#provident_fund').val(Math.ceil(provident_fund))
+                } else {
+                    $('#provident_fund').val(1800)
+                }
+                $('#hra_allowance').val(Math.ceil(hra_allowance))
+                let conv_allowance = $('#conv_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#hra_allowance').on('input', function () {
+                let hra_allowance = this.value
+                let base_sal = $('#base_salary').val()
+                $('#hra_allowance').val(Math.ceil(hra_allowance))
+                let conv_allowance = $('#conv_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#conv_allowance').on('input', function () {
+                let conv_allowance = this.value
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#conv_allowance').on('input', function () {
+                let conv_allowance = this.value
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#other_allowance').on('input', function () {
+                let other_allowance = this.value
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let conv_allowance = $('#conv_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#spl_allowance').on('input', function () {
+                let spl_allowance = this.value
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let conv_allowance = $('#conv_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let other_allowance = $('#other_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#bonus_arrear').on('input', function () {
+                let bonus_arrear = this.value
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let conv_allowance = $('#conv_allowance').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = $('#provident_fund').val()
+                {#let total_deduction = $('#provident_fund').val() + $('#other_deductions').val() + $('#income_tax').val() + $('#professional_tax').val()#}
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#provident_fund, #other_deductions, #income_tax,#professional_tax').on('input', function () {
+                let base_sal = $('#base_salary').val()
+                let hra_allowance = $('#hra_allowance').val()
+                let conv_allowance = $('#conv_allowance').val()
+                let bonus_arrear = $('#bonus_arrear').val()
+                let spl_allowance = $('#spl_allowance').val()
+                let other_allowance = $('#other_allowance').val()
+                let gross = Number(base_sal) + Number(hra_allowance) + Number(conv_allowance) + Number(other_allowance) + Number(bonus_arrear) + Number(spl_allowance)
+                $('#gross_salary').val(Math.ceil(gross))
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = Number($('#provident_fund').val()) + Number($('#other_deductions').val()) + Number($('#income_tax').val()) + Number($('#professional_tax').val())
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+            $('#gross_salary').on('input', function () {
+                let gross = $('#gross_salary').val()
+                $('#total_earnings').val(Math.ceil(gross))
+                let total_deduction = Number($('#provident_fund').val()) + Number($('#other_deductions').val()) + Number($('#income_tax').val()) + Number($('#professional_tax').val())
+                $('#total_deduction').val(Math.ceil(total_deduction))
+                let net_amount = $('#total_earnings').val() - $('#total_deduction').val()
+                $('#net_amount').val(Math.ceil(net_amount))
+                $('#net_salary').val(Math.ceil(net_amount))
+                let sal_pm = ($('#ctc').val() / 12)
+                $('#sal_pm').val(Math.ceil(sal_pm))
+
+            })
+        });
+
+        {#function is_employee(){#}
+        {##}
+        {#	if(document.getElementById('role').value == 'EMPLOYEE'){#}
+        {#		document.getElementById('report_to_1-div').style.display = 'None';#}
+        {#		document.getElementById('report_to-div').style.display = 'block';#}
+        {#	}#}
+        {#	else if(document.getElementById('role').value == 'INTERN'){#}
+        {#		document.getElementById('report_to_1-div').style.display = 'block';#}
+        {#		document.getElementById('report_to-div').style.display = 'None';#}
+        {#	}#}
+        {#	else{#}
+        {#		document.getElementById('report_to_1-div').style.display = 'None';#}
+        {#		document.getElementById('report_to-div').style.display = 'None';#}
+        {#	}#}
+        {##}
+
+    </script>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary text-center" >
+                            <h4 class="card-title " style="color: #ffffff;font-weight: 800;">
+                                Pay Slip Updation</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <main class="my-form">
+                                <div class="container">
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8" style="">
+                                            <div class="card-body">
+                                                <form name="my-form" action="{% url 'pay_slip_update' pk=id %}"
+                                                      method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group row" hidden>
+                                                        <label for="employee_name"
+                                                               class="col-md-4 col-form-label text-md-right">Employee
+                                                            Name</label>
+                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                            <input type="text" id="employee_name" class="form-control"
+                                                                   name="emp_id" value="{{ id }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="employee_name"
+                                                               class="col-md-4 col-form-label text-md-right">Employee
+                                                            Name</label>
+                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                            <input type="text" id="employee_name" class="form-control"
+                                                                   name="username" value="{{ name }}">
+                                                        </div>
+                                                    </div>
+                                                    {% if payroll is not None %}
+                                                        {% for pay in payroll %}
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">CTC
+                                                                    - Per Annum</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="ctc" class="form-control"
+                                                                           name="ctc" value="{{ pay.ctc }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Basic
+                                                                    Salary + DA </label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="base_salary"
+                                                                           class="form-control" name="base_salary"
+                                                                           value="{{ pay.basic_salary }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">HRA
+                                                                    Allowance</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="hra_allowance"
+                                                                           class="form-control" name="hra_allowance"
+                                                                           value="{{ pay.hra_allowance }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Special
+                                                                    Allowance</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" class="form-control"
+                                                                           id="spl_allowance" name="spl_allowance"
+                                                                           value="{{ pay.spl_allowance }}">
+                                                                </div>
+                                                                    </div>
+                                                            <div class="form-group row">
+                                                                        <label for=""
+                                                                               class="col-md-4 col-form-label text-md-right">Total
+                                                                            Earnings </label>
+                                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                                            <input type="number" id="total_earnings"
+                                                                                   class="form-control" name="total_earnings"
+                                                                                   value="{{ pay.total_earnings }}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                            <div class="form-group row">
+                                                                        <label for=""
+                                                                               class="col-md-4 col-form-label text-md-right">EPF
+                                                                             </label>
+                                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                                            <input type="number" id="employee_provident_fund" class="form-control"
+                                                                                   name="employee_provident_fund"
+                                                                                   value="{{ pay.employee_provident_fund }}">
+                                                                        </div>
+                                                                    </div>
+                                                            <div class="form-group row">
+                                                                        <label for=""
+                                                                               class="col-md-4 col-form-label text-md-right">ESI
+                                                                           </label>
+                                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                                            <input type="number" id="esi" class="form-control"
+                                                                                   name="esi"
+                                                                                   value="{{ pay.esi }}">
+                                                                        </div>
+                                                                    </div>
+                                                            <div class="form-group row">
+                                                                        <label for=""
+                                                                               class="col-md-4 col-form-label text-md-right">TDS
+                                                                            </label>
+                                                                        <div class="col-md-6" style="margin-top: -10px;">
+                                                                            <input type="number" id="tds" class="form-control"
+                                                                                   name="tds"
+                                                                                   value="{{ pay.tds }}">
+                                                                        </div>
+                                                                    </div>
+
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Total
+                                                                    Deductions</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="total_deduction"
+                                                                           class="form-control" name="total_deduction"
+                                                                           value="{{ pay.total_deduction }}" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Salary
+                                                                    (CTC) /PM</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="text" id="sal_pm" class="form-control"
+                                                                           name="sal_ctc_pm" value="{{ pay.sal_ctc_pm }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Gross
+                                                                    Salary </label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="gross_salary"
+                                                                           class="form-control" name="gross_salary"
+                                                                           value="{{ pay.gross_salary }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for=""
+                                                                       class="col-md-4 col-form-label text-md-right">Net
+                                                                    Salary</label>
+                                                                <div class="col-md-6" style="margin-top: -10px;">
+                                                                    <input type="number" id="net_salary"
+                                                                           class="form-control" name="net_salary"
+                                                                           value="{{ pay.net_salary }}">
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">CTC
+                                                                - Per Annum</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="ctc" class="form-control"
+                                                                       name="ctc" value="" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Basic
+                                                                Salary </label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="base_salary"
+                                                                       class="form-control" name="base_salary"
+                                                                       value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">HRA
+                                                                Allowance</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="hra_allowance"
+                                                                       class="form-control" name="hra_allowance"
+                                                                       value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Special.
+                                                                Allowance</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" class="form-control"
+                                                                       id="spl_allowance" name="spl_allowance"
+                                                                       value="1600">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Total
+                                                                Earnings </label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="total_earnings"
+                                                                       class="form-control" name="total_earnings"
+                                                                       value="0" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">EPF</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="provident_fund"
+                                                                       class="form-control" name="employee_provident_fund"
+                                                                       value="0">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">ESI </label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="esi" class="form-control"
+                                                                       name="esi" value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">TDS</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="tds" class="form-control"
+                                                                       name="tds" value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Total
+                                                                Deductions</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="total_deduction"
+                                                                       class="form-control" name="total_deduction"
+                                                                       value="0" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Salary
+                                                                (CTC) /PM</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="text" id="sal_ctc_pm" class="form-control"
+                                                                       name="sal_pm" value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Gross
+                                                                Salary </label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="gross_salary"
+                                                                       class="form-control" name="gross_salary"
+                                                                       value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 col-form-label text-md-right">Net
+                                                                Salary</label>
+                                                            <div class="col-md-6" style="margin-top: -10px;">
+                                                                <input type="number" id="net_salary"
+                                                                       class="form-control" name="net_salary" value="0">
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer col-md-9 text-center">
+                                        <button type="submit" class="btn"
+                                                style="display: none;background: #15192B; color: white !important; border: none;font-family: Arial,Helvetica,sans-serif;font-size: 16px;width: 150px;">
+                                            Modify
+                                        </button>
+                                        <button type="submit" class="btn"
+                                                style="background: #15192B; color: white !important; border: none;font-family: Arial,Helvetica,sans-serif;font-size: 16px;width: 150px;">
+                                            Save
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
+
+
+                            </main>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+{% endblock %}

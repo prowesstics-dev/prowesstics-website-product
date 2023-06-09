@@ -1,0 +1,110 @@
+{% extends '_layout.html' %}
+{% block stylesheet %}
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+
+<style>
+     h4{
+  font-weight: 800;
+  color: #000;
+  }
+  table thead{
+  background: #15192B !important;
+  }
+  .card-header{
+  padding: 10px !important;
+  }
+</style>
+
+<div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">
+                                Rejected Applications</h4>
+                        </div>
+                            <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                {%if rejected_application%}
+								<table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+										<th>
+											NAME
+										</th>
+                                        <th>
+                                            Leave Type
+                                        </th>
+                                        <th>
+                                            Applied date
+                                        </th>
+										<th>
+                                            MANAGER Status
+                                        </th>
+                                        {%comment%}
+										<th>
+                                            HR Status
+                                        </th>
+										{%endcomment%}
+										<th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for application in rejected_application%}
+                                    <tr>
+                                        <td>
+                                            #{{application.id}}
+                                        </td>
+										<td>
+											{{application.user.name}}
+										</td>
+                                        <td>
+                                            {{application.category}}
+                                        </td>
+                                        <td>
+                                            {{application.date}}
+                                        </td>
+										<td>
+                                            {%if application.manager_level_approval == True %}
+                                            Approved
+                                            {% elif application.manager_level_approval == False%}
+                                            Rejected
+											{%else%}
+											Pending
+                                            {% endif %}
+                                        </td>
+										{%comment%}
+										<td>
+                                            {%if application.admin_level_approval == True %}
+                                            Approved
+                                            {% elif application.admin_level_approval == False%}
+                                            Rejected
+											{%else%}
+											Pending
+                                            {% endif %}
+                                        </td>
+                                        {%endcomment%}
+										<td>
+                                            <a href="/profile/user_holiday_details?id={{application.user.id}}">
+                                                <span>View</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+								{%else%}
+                                <h4 class="text-center"> NO DATA</h4>
+                                {%endif%}
+                            </div>
+                            </div>
+</div>
+
+    {% endblock %}

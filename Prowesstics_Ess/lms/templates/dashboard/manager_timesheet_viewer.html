@@ -1,0 +1,851 @@
+{% extends 'includes/timesheet_layoutt.html' %}
+{% block stylesheet %}
+
+{% endblock %}
+
+
+<!--CONTENTS-->
+{% block content %}
+<!--  section {-->
+<!--  padding-left: 220px;-->
+<!--  padding-right: 10px;-->
+<!--  padding-bottom: 0px !important;-->
+<!--  margin-bottom: 0px !important; }-->
+<!--  @media screen and (max-width: 991px) {-->
+<!--    section {-->
+<!--      padding-left: 70px; } }-->
+
+<!--body {-->
+<!--  background-image: url("https://static.pexels.com/photos/173434/pexels-photo-173434.jpeg");-->
+<!--  -webkit-background-size: cover;-->
+<!--  -moz-background-size: cover;-->
+<!--  -o-background-size: cover;-->
+<!--  background-size: cover;-->
+<!--  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.85) 100%), url("https://static.pexels.com/photos/173434/pexels-photo-173434.jpeg");-->
+<!--  background-repeat: no-repeat; }-->
+
+<!--p {-->
+<!--  font-family: "Roboto"; }-->
+
+
+<!--.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {-->
+
+<!--   // border-top: 1px solid #ededed ! important;-->
+<!--    border-top: 1px solid #a1a1a1 ! important;-->
+<!--}-->
+<!--.table {-->
+<!--  border-collapse: collapse;-->
+<!--  border-spacing: 0;-->
+<!--  width: 100%;-->
+<!--}-->
+
+<!--@media screen and (max-width: 767px){-->
+<!--.table-responsive>.table>tbody>tr>td, .table-responsive>.table>tbody>tr>th, .table-responsive>.table>tfoot>tr>td, .table-responsive>.table>tfoot>tr>th, .table-responsive>.table>thead>tr>td, .table-responsive>.table>thead>tr>th {-->
+<!--    white-space: normal !important;-->
+<!--}-->
+<!--}-->
+
+<!--th{-->
+<!--    background-color: #1AAEAB;-->
+<!--    color: white ! important;-->
+<!--    font-size: 15px! important;-->
+<!--    font-weight: 700! important;-->
+<!--    text-transform: none ! important;-->
+<!--    }-->
+<!--.maintitle {-->
+<!--  padding: 20px 0 0px 0%;-->
+<!--  margin-bottom: 50px;-->
+<!--  text-align: center;-->
+<!--  font-size: 40px;-->
+<!--  font-weight: 200; }-->
+
+<!--.timesheet-navigation {-->
+<!--  margin-top: -30px;-->
+<!--  margin-left: -12px; }-->
+
+<!--.timesheet-buttons {-->
+<!--  margin-top: 30px; }-->
+
+<!--.today-timesheet {-->
+<!--  /* margin-top: 30px; */-->
+<!--    position: relative;-->
+<!--    /* top: -66px; */-->
+<!--    /* left: 200px; */-->
+<!--    float: right;-->
+<!--    margin: -29px 20px 10px 4px;-->
+<!--   // float: left;-->
+<!--    //margin: 6px 20px 10px 4px;-->
+<!--     }-->
+
+<!--.newmsgb, #theDate {-->
+<!--  border: solid 1px #1c7f7d;-->
+<!--  background-color: transparent;-->
+<!--  color: #1c7f7d;-->
+<!--  border-radius: 5px;-->
+<!--  padding: 7px 15px 7px 15px;-->
+<!--  white-space: nowrap; }-->
+
+<!--.newmsgb:hover {-->
+<!--  background-color: #1c7f7d;-->
+<!--  color: white; }-->
+
+<!--.newmsgb:focus {-->
+<!--  outline: none !important; }-->
+
+<!--#theDate {-->
+<!--   margin-top: 5px;-->
+<!-- float: left; }-->
+
+<!--.add-task-timesheet {-->
+<!--  border-radius: 5px;-->
+<!-- // padding: 7px 15px 7px 15px;-->
+<!--  padding: 13px 15px 13px 15px;-->
+<!--  white-space: nowrap;-->
+<!--  background-color: #DD8F5B;-->
+<!--  border: none;-->
+<!--  margin-left: 10px;-->
+<!--  color: white; }-->
+<!--  .add-task-timesheet:hover {-->
+<!--    background-color: #E15959; }-->
+<!--  .add-task-timesheet:focus {-->
+<!--    outline: none !important; }-->
+
+<!--.tab-text {-->
+<!--  padding-left: 20px;-->
+<!--  background-color: rgba(255, 255, 255, 0.6); }-->
+
+<!--.tab-title {-->
+<!--  padding-top: 10px;-->
+<!--  padding-bottom: 10px;-->
+<!--  background-color: #1AAEAB;-->
+<!--  color: white;-->
+<!--  font-weight: 100; }-->
+<!--  @media screen and (max-width: 600px) {-->
+<!--    .tab-title {-->
+<!--      display: none; } }-->
+<!--  .tab-title div div {-->
+<!--    font-size: 15px;-->
+<!--    font-weight: 500;-->
+<!--    text-align: left;-->
+<!--    padding-left: 5px; }-->
+<!--    @media screen and (max-width: 768px) {-->
+<!--      .tab-title div div {-->
+<!--        font-size: 13px; } }-->
+
+<!--.picked-day {-->
+<!--  font-size: 24px;-->
+<!--  color: #1c7f7d; }-->
+
+<!--.dropdown-timesheet {-->
+<!--  position: relative;-->
+<!--  color: black;-->
+<!--  top: -42px;-->
+<!--  left: 140px; }-->
+<!--  .dropdown-timesheet .timesheet-button {-->
+<!--    font-size: 14px;-->
+<!--    border: none;-->
+<!--    background-color: #1c7f7d;-->
+<!--    color: white;-->
+<!--    border-radius: 5px;-->
+<!--    padding: 5px 15px 5px 15px; }-->
+<!--    .dropdown-timesheet .timesheet-button:focus {-->
+<!--      outline: none; }-->
+<!--    .dropdown-timesheet .timesheet-button .fa-sort {-->
+<!--      padding-right: 6px; }-->
+
+<!--.timesheet-menu > li > a:focus, .timesheet-menu > li > a:hover {-->
+<!--  background-color: rgba(28, 127, 125, 0.6); }-->
+
+<!--.modal-backdrop.in {-->
+<!--  z-index: 0 !important;-->
+<!--  opacity: 0; }-->
+
+<!--.modal-content {-->
+<!--  box-shadow: none !important;-->
+<!--  font-family: Roboto; }-->
+
+<!--.timesheet .modal-title {-->
+<!--  text-align: center; }-->
+
+<!--.select2-container {-->
+<!--  width: 255px !important; }-->
+
+<!--.timesheet select, .timesheet input {-->
+<!--  color: #444;-->
+<!--  line-height: 28px;-->
+<!--  padding-left: 8px;-->
+<!--  padding-right: 20px;-->
+<!--  text-overflow: ellipsis;-->
+<!--  white-space: nowrap;-->
+<!--  background-color: #fff;-->
+<!--  border: 1px solid #aaa;-->
+<!--  border-radius: 4px;-->
+<!--  width: 255px;-->
+<!--  height: 37px;-->
+<!--   }-->
+<!--  @media screen and (max-width: 768px) {-->
+<!--    .timesheet select, .timesheet input {-->
+<!--      width: 200px; } }-->
+
+<!--@media screen and (max-width: 768px) {-->
+<!--  .timesheet .modal-body {-->
+<!--    display: block;-->
+<!--    margin: auto;-->
+<!--    text-align: center; } }-->
+
+<!--.timesheet .modal-body .row {-->
+<!--  padding-top: 5px;-->
+<!--  padding-bottom: 5px; }-->
+
+<!--.timesheet-description {-->
+<!--  height: 118px !important;-->
+<!--  padding-bottom: 83px !important; }-->
+
+<!--.user-aciton {-->
+<!--  font-weight: 700;-->
+<!--  text-transform: uppercase;-->
+<!--  font-size: 13px;-->
+<!--  text-align: center;-->
+<!--  color: white;-->
+<!--  width: 255px;-->
+<!--  height: 35px;-->
+<!--  border: none;-->
+<!--  border-radius: 5px;-->
+<!--  margin-top: 23px;-->
+<!--  background-color: #E46A6A;-->
+<!--  left: 0px;-->
+<!--  top: 0px;-->
+<!--  -webkit-transition: all .1s ease, top .1s ease .1s, height .1s ease .1s, background-color .1s ease .1s;-->
+<!--  transition: all .1s ease, top .1s ease .1s, height .1s ease .1s, background-color .1s ease .1s;-->
+<!--  padding: 0; }-->
+<!--  @media screen and (max-width: 768px) {-->
+<!--    .user-aciton {-->
+<!--      width: 200px; } }-->
+
+<!--.timesheet-task-row {-->
+<!--  padding-top: 10px; }-->
+
+<!--.nav-tabs {-->
+<!--  background-color: white;-->
+<!--  border: none;-->
+<!--  width: 100%; }-->
+
+<!--.nav-tabs > li {-->
+<!--  width: 150px;-->
+<!--  text-align: center; }-->
+<!--  @media screen and (max-width: 860px) {-->
+<!--    .nav-tabs > li {-->
+<!--      width: 103px; } }-->
+<!--  @media screen and (max-width: 650px) {-->
+<!--    .nav-tabs > li {-->
+<!--      font-size: 90px !important; } }-->
+
+<!--.nav-tabs > li > a {-->
+<!--  color: rgba(28, 127, 125, 0.6);-->
+<!--  font-weight: 700;-->
+<!--  font-size: 15px;-->
+<!--  height: 60px;-->
+<!--  line-height: 40px;-->
+<!--  white-space: nowrap; }-->
+<!--  @media screen and (max-width: 860px) {-->
+<!--    .nav-tabs > li > a {-->
+<!--      font-size: 13px !important; } }-->
+<!--  @media screen and (max-width: 650px) {-->
+<!--    .nav-tabs > li > a {-->
+<!--      font-size: 11px !important; } }-->
+
+<!--.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {-->
+<!--  border: none;-->
+<!--  border-bottom: solid 3px #dd915b;-->
+<!--  border-radius: 0px;-->
+<!--  color: #1c7f7d;-->
+<!--  z-index: 1; }-->
+
+<!--.nav > li > a:focus, .nav > li > a:hover {-->
+<!--  background-color: rgba(28, 127, 125, 0.02);-->
+<!--  border: none;-->
+<!--  border-radius: 0px !important; }-->
+
+<!--.tab-content {-->
+<!--  overflow: hidden; }-->
+
+<!--.tab-text {-->
+<!--  padding-left: 20px;-->
+<!--  background-color: rgba(255, 255, 255, 0.6); }-->
+
+<!--  textarea {-->
+
+<!--    width: 254px ! important;-->
+<!--}-->
+
+<!--.tab-title {-->
+<!--  padding-top: 10px;-->
+<!--  padding-bottom: 10px;-->
+<!--  background-color: #1AAEAB;-->
+<!--  color: white;-->
+<!--  font-weight: 100; }-->
+<!--  @media screen and (max-width: 600px) {-->
+<!--    .tab-title {-->
+<!--      display: none; } }-->
+
+<!--.col-md-12 {-->
+<!--    width: 100%;-->
+<!--    padding-top: 30px;-->
+<!--}-->
+
+<!--input{-->
+<!--padding1: 7px 6px 6px 7px;-->
+<!--//padding: 7px 39px 6px 40px;-->
+<!--padding: 7px 26px 6px 13px;-->
+<!--text-align: center;-->
+<!--    border-radius: 4px;-->
+<!--}-->
+
+<!--h2, .h2 {-->
+<!--    font-size: 30px;-->
+<!--    text-align: center;-->
+<!--}-->
+<!--.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {-->
+
+<!-- //   border-top: 1px solid #a1a1a1 ! important;-->
+<!--}-->
+
+<style>
+
+   body{
+   font-size: .69rem !important;
+   }
+   .new-logo{
+   max-width: 80%;
+   }
+    .card-header {
+ background: none !important;
+ }
+ .btn {
+    margin: 0.375rem;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    white-space: normal;
+    cursor: pointer;
+    border: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead {
+  background: #15192B;
+}
+.btn-danger {
+    background-color: #F5F8FA !important;
+    border-color: #fd93a8;
+    color: #000;
+}
+.btn-danger:hover {
+    background-color: #F5F8FA !important;
+    border-color: #fd93a8;
+    font-weight: 600;
+    color: #000;
+}
+.btn-grd-inverse.hor-grd {
+ background: #4FCFE6 !important;
+ border-radius: 4px;
+ font-weight: 800;
+ }
+.modal-header h4{
+  color: white;
+  font-weight: 600;
+  }
+ .modal-content {
+   background-clip: revert-layer !important;
+   }
+   .modal-content p{
+    font-size: 13px;
+    color: #000000;
+    font-weight: 700;
+    }
+    .modal-content select {
+    width: 100%;
+    font-size: 13px;
+    min-height: 27px;
+    border: 2px solid #2EBDD6;
+    }
+     .modal-content input {
+    width: 100%;
+    font-size: 13px;
+    min-height: 27px;
+    }
+    .modal-content textarea {
+    width: 100%;
+    font-size: 13px;
+    min-height: 90px;
+    }
+    .modal-dialog{
+    -webkit-box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+    }
+    .btn{
+    white-space: inherit !important;
+    }
+    .modal-content {
+    line-height: 0.6 !important;
+    }
+    .modal-header {
+    padding: 4px 20px !important;
+    }
+    .modal-body {
+    padding: 3px 25px !important;
+    }
+    input[type="date"]{
+    max-width: 300px;
+    margin: 0 auto;
+    }
+    .form-group label {
+    font-size: 16px;
+    }
+</style>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+<head>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/accordion.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/accordion.min.js"></script>
+
+</head>
+
+
+<div class="content" style="background: #FDFDFD;">
+<!--    <div class="container-fluid timesheet-buttons" style="">-->
+<!--        <h2> Employee Time Sheet</h2>-->
+
+<!--        <script>-->
+<!--            // INCLUDE JQUERY & JQUERY UI 1.12.1-->
+<!--$( function() {-->
+<!--	$( ".datepicker" ).datepicker({-->
+<!--		dateFormat: "dd-mm-yy"-->
+<!--		,	duration: "fast"-->
+<!--	});-->
+<!--} );-->
+
+<!--        </script>-->
+<!--  <input type="date" id="theDate" min="{{ date }}" max="{{ date }}" >-->
+  <!--<input type="date" id="theDate"  name="datemin" value="{{date}}"
+           min="{{date}}" max="{{date}}">-->
+  <!--<input type="date" id="theDate"  name="datemin" value="{{date}}"
+           min="{{date}}" max="{{end}}">-->
+
+
+         <!-- Basic table card start -->
+                                    <div class="card-header col-lg-12">
+
+                                                         <!-- Input Grid card start -->
+                                                                <div class="card">
+                                                                     <div class="today-timesheet text-left"><a href='{% url "hr_timesheet_dashbord" %}'>
+                        <button type="button" class="btn hor-grd btn-grd-inverse"> Back </button>
+                                                     </a>
+                                                           </div>
+                                                                    <div class="card-header text-center" style="padding: 10px 20px;">
+                                                                        <h4 style="text-transform: capitalize;">{{users.name}} Time Sheet</h4>
+                                                                    </div>
+                                                                    <div class="card-block">
+                                                                        <form action ='{% url "hr_timesheet_viwer"  %}?id={{id}}' method="post">
+                                                                           {% csrf_token %}
+                                                                            <div class="form-group row">
+                                                                                <div class="col col-lg-5 text-center">
+                                                                                    <label for="fdate">From:</label>
+                                                                                    <input id='f' value="{{f}}" type="date" class="form-control datepicker" placeholder="col" name="fdate" required >
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-lg-5 text-center">
+                                                                                    <label for="todate">To:</label>
+                                                                                    <input  value="{{t}}" type="date" class="form-control datepicker"
+                                                                                    placeholder="col-sm-4" name="todate"  required>
+                                                                                </div>
+                                                                                <div class="col col-lg-2" style="text-align: center;">
+                                                                                    <button  type="submit" style="margin-top: 33px;" class="btn btn-primary hor-grd btn-grd-inverse">submit</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Input Grid card end -->
+
+                                                 <div class="today-timesheet text-right">
+                                                     <a href='{% url "timesheet_excel"  %}?id={{id}}&from={{f}}&to={{t}}'>
+                        <button type="button" class="btn hor-grd btn-grd-inverse"> Export </button>
+                                                     </a>
+
+                                                 </div>
+                                        </div>
+
+    <div class="card">
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Project</th>
+                                                            <th>Manager</th>
+                                                            <th>Date</th>
+                                                            <th>Start Time</th>
+                                                            <th>End Time</th>
+                                                            <th>Logged Hrs</th>
+                                                            <th>Status</th>
+                                                            <th>View</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in user %}
+                                                        <tr>
+                                                            <td class="pt-3-half">{{i.project}}</td>
+                                                            <td class="pt-3-half">{{ i.project_manager}}</td>
+                                                            <td class="pt-3-half">{{ i.date }}</td>
+                                                            <td class="pt-3-half">{{ i.start_time }}</td>
+                                                            <td class="pt-3-half">{{ i.end_time}}</td>
+                                                            <td class="pt-3-half">{{ i.logged_hours }}</td>
+                                                            <td class="pt-3-half" style="max-width: 200px;white-space: normal !important; word-wrap: break-word;">{{ i.status|safe|truncatewords:"15" }}</td>
+                                                            <td class="pt-3-half">
+                                                                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light" data-toggle="modal" onclick='f(value)'  value="{{i.id}}" data-target="#exampleModal1" data-whatever="@fat">Views </button>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                            </table>
+                                                {% if user.has_other_pages %}
+
+                                                 <nav aria-label="Page navigation example">
+                                                                          <ul class="pagination justify-content-center">
+                                                       {% if user.has_previous %} <li class="page-item ">
+                                                                              <a class="page-link" href="?page={{ user.previous_page_number }}&id={{id}}&from={{f}}&to={{t}}" tabindex="-1">Previous</a>
+                                                                            </li>
+                                                       {% endif %}      {% for i in user.paginator.page_range %}
+                                                                              {% if user.number == i %}
+                                                                            <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                                                                       {% else %}<li class="page-item"><a class="page-link" href="?page={{ i }}&id={{id}}&from={{f}}&to={{t}}">{{ i }}</a></li>
+                                                                              {% endif %}
+                                                                                         {% endfor %}
+                                                                            <li class="page-item">{% if users.has_next %}
+                                                                              <a class="page-link" href="?page={{ user.next_page_number }}?id={{id}}&from={{f}}&to={{t}}">Next</a>
+                                                                            </li>
+                                                                          </ul>{% endif %}
+                                                                        </nav>
+                                                {% endif %}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Basic table card end -->
+
+
+
+
+
+
+
+
+<!--<form  class="card" action ='{% url "hr_timesheet_viwer"  %}?id={{id}}' method="post" style="text-align: center;padding: 0px 162px 0px 0px;margin-left: 300x;margin1: -70px 0px 1px 300px;">-->
+<!--    {% csrf_token %}-->
+<!--  <label for="fdate">From:</label>-->
+<!--    &lt;!&ndash;<input value="{{f}}" type="date" name="fdate" >&ndash;&gt;-->
+<!--    <input id='f' value="{{f}}"  type="text" class="datepicker"name="fdate" >-->
+<!--  <label for="todate">To:</label>-->
+<!--    &lt;!&ndash;<input value="{{t}}"  type="date" name="todate" >&ndash;&gt;-->
+<!--    <input value="{{t}}"   type="text" class="datepicker" name="todate" >-->
+<!--  &lt;!&ndash;<input type="submit">&ndash;&gt;-->
+<!--    <button type="submit" style="margin: 95px 10px 6px -277px;padding: 6px 26px 4px 26px;background-color: #3472F7 ! important;color: white ! important; border-color: #3472F7 ! important;"-->
+<!--            class="btn btn-primary">submit</button>-->
+
+<!--</form>-->
+
+<!--    </div>-->
+    <!--<div>  <a type="button"  href='{% url "timesheet_excel"  %}?id={{id}}'>Excel Export </a>  </div>-->
+
+<!--    <div class="container-fluid">-->
+<!--&lt;!&ndash;        <div style="float: right;margin-top: -39x;">&ndash;&gt;-->
+
+<!--&lt;!&ndash;         <a href='{% url "timesheet_excel"  %}?id={{id}}&from={{f}}&to={{t}}'>&ndash;&gt;-->
+<!--&lt;!&ndash;             <button type="button" style="margin-right: 27x; margin-bottom: -18px;" class="btn btn-primary">Excel Export</button>&ndash;&gt;-->
+<!--&lt;!&ndash;         </a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        &lt;!&ndash;<a type="button" href="{% url 'timesheet_excel' %}">Excel Export </a> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="card">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="table-responsive" style="padding-left: 42; padding-bottom: 10x;">-->
+
+<!--                                <table class="table" width="100%">-->
+<!--                                    <thead class=" text-primary">-->
+<!--                                    <tr>-->
+<!--                                        <th>-->
+<!--                                            Project-->
+<!--                                        </th>-->
+<!--                                        <th>-->
+<!--                                            Manager-->
+<!--                                        </th>-->
+<!--                                        <th>-->
+<!--                                            Date-->
+<!--                                        </th>-->
+<!--                                        <th>-->
+<!--                                            Start Time-->
+<!--                                        </th>-->
+<!--                                         <th>-->
+<!--                                            End Time-->
+<!--                                        </th>-->
+<!--                                           <th>-->
+<!--                                            Logged Hours-->
+<!--                                        </th>-->
+<!--                                         <th>-->
+<!--                                            Status-->
+
+<!--                                        </th>-->
+<!--                                        <th>-->
+<!--                                          View-->
+
+<!--                                        </th>-->
+
+<!--                                    </tr>-->
+<!--                                    </thead>-->
+
+<!--                                    &lt;!&ndash;<tbody>-->
+<!--                                     <tr>-->
+<!--                                       <td width="10%">-->
+<!--                                            Gs-->
+<!--                                        </td>-->
+<!--                                        <td width="10%">-->
+<!--                                              Sudhakar v-->
+<!--                                        </td>-->
+<!--                                        <td width="10%">-->
+<!--                                            Jan. 17, 2022-->
+<!--                                        </td>-->
+<!--                                       <td width="10%">-->
+<!--                                             11.06-->
+<!--                                        </td>-->
+<!--										<td width="10%">-->
+<!--                                                00.09-->
+<!--                                        </td>-->
+<!--                                        <td width="50%">-->
+<!--                ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB ASFSSGSDB g-->
+
+<!--                                        </td>-->
+<!--                                       <td width="10%">-->
+<!--                                            <button class="btn btn-primary  " type="submit" value="" href="#" style=""-->
+<!--                                      >Edit-->
+<!--                              </button>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>&ndash;&gt;-->
+
+
+<!--                                    <tbody>-->
+<!--                                     {% for i in user %}-->
+<!--                                    <tr>-->
+<!--                                        <td width="10%">-->
+<!--                                          {{i.project}}-->
+<!--                                        </td>-->
+<!--                                         <td width="10%">-->
+<!--                                            {{ i.project_manager}}-->
+<!--                                        </td>-->
+<!--                                         <td width="10%">-->
+<!--                                            {{ i.date }}-->
+<!--                                        </td>-->
+<!--                                         <td width="10%">-->
+<!--                                            {{ i.start_time }}-->
+<!--                                        </td>-->
+<!--										 <td width="10%">-->
+<!--                                            {{ i.end_time}}-->
+<!--                                        </td>-->
+<!--                                        <td width="10%">-->
+<!--                                            {{ i.logged_hours}}-->
+<!--                                        </td>-->
+<!--                                         <td style="max-width: 270px; word-wrap: break-word;">-->
+<!--                                            {{ i.status|safe|truncatewords:"20" }}-->
+<!--                                        </td>-->
+<!--                                         <td width="10%">-->
+
+<!--                                              <button type="button" class="btn btn-info" data-toggle="modal" onclick='f(value)'  value="{{i.id}}" data-target="#exampleModal1" data-whatever="@fat">Views </button>-->
+
+
+
+
+<!--                              </button>-->
+<!--                                        </td>-->
+
+<!--                                    </tr>-->
+<!--                                     {% endfor %}-->
+
+
+<!--                                    </tbody>-->
+<!--                                </table>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  style="text-align: center;" id="exampleModalLabel">Enable Access</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form id ='gg' method="post">
+           {% csrf_token %}
+      <div class="modal-body" style="text-align: center;">
+      Do You Need To Give Access
+      </div>
+
+      <div class="modal-footer">
+
+
+        <button  type='submit' name="no" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type='submit' name ='yes' value="yes" class="btn btn-success">Yes</button>
+
+      </div>
+    </div>
+      </form>
+
+  </div>
+</div>
+
+
+<div id='show' class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+<!--        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center ; ">New message</h5>-->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label  class="col-form-label">Project:</label>
+            <input type="text" class="form-control" id="project" readonly>
+          </div>
+            <div class="form-group">
+            <label  class="col-form-label">Manager:</label>
+            <input type="text" class="form-control" id="manager"readonly>
+          </div>
+            <div class="form-group">
+            <label  class="col-form-label">Start Time:</label>
+            <input type="text" class="form-control" id="stime"readonly>
+          </div>
+            <div class="form-group">
+            <label  class="col-form-label">End Time:</label>
+            <input type="text" class="form-control" id="etime"readonly>
+          </div>
+            <div class="form-group">
+            <label  class="col-form-label">Date:</label>
+            <input type="text" class="form-control" id="date"readonly>
+          </div>
+              <div class="form-group">
+            <label  class="col-form-label">Logged Hours:</label>
+            <input type="text" class="form-control" name="logg"  id="logg"readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Status:</label>
+            <textarea class="form-control" id="status"readonly></textarea >
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script>
+function getTitle(value){
+   const id =value
+
+   console.log(id)
+   // var url = '{% url "hr_timesheet_viwer"  %}?id='+id+' '
+
+ $('#gg').attr( 'action', '{% url "hr_timesheet_viwer"  %}?id={{id}}&time_id='+id+'')
+ //             $('#gg').attr('action', url)
+
+
+
+}
+function f(value) {
+
+        const Id = value;
+      {
+       console.log(Id)
+      }
+      if(Id === 'none'){
+        $("#edit").val('');
+      }
+      else{
+
+        $.ajax({
+
+            type: "POST",
+            url: '{% url "edit_timesheet" %}',
+            data: {
+                'id': Id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (data)  {
+        // $("#mymodal").toggle("show");
+        jQuery("#show").modal('show');
+
+         $("#project").val(data.p);
+                console.log(data)
+        // $("#project").val(data.project);
+        $("#manager").val(data.manager);
+        $("#date").val(data.date);
+        $("#stime").val(data.stime);
+        $("#etime").val(data.etime)
+        $("#status").val(data.status);
+          $("#logg").val(data.logg);
+
+    }
+        });}
+    }
+
+
+</script>
+
+{% endblock %}
+
+
+    success: function (data)  {
+        // $("#mymodal").toggle("show");
+        jQuery("#addtask").modal('show');
+
+        // $('#project" option[value='+data.project+']').attr('selected','selected')"
+                console.log(data)
+        $("#project").val(data.p);
+        $("#manager").val(data.manager);
+        $("#date").val(data.date);
+        $("#stime").val(data.stime);
+        $("#etime").val(data.etime)
+        $("#status").val(data.status);
+        var id =data.id
+                console.log(id)
+
+    }
